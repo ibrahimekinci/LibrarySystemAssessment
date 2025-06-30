@@ -1,16 +1,16 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
-    public class ReserveService : IReserveService
+    public class ReserveService : BaseService, IReserveService
     {
-        public PagedResultDataTableDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto, int userId)
+        public PagedResultDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto, int userId)
         {
             throw new System.NotImplementedException();
         }
 
-        public int ReserveBook(ReserveDto reserveRecordDto)
+        public int ReserveBook(ReserveCreateDto reserveRecordDto)
         {
             throw new System.NotImplementedException();
         }

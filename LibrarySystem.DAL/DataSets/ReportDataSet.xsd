@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportDataSet" targetNamespace="http://tempuri.org/ReportDataSet.xsd" xmlns:mstns="http://tempuri.org/ReportDataSet.xsd" xmlns="http://tempuri.org/ReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="librarysystemConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="librarysystemConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.LibrarySystem.DAL.Properties.Settings.GlobalReference.Default.librarysystemConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewReportBorrowedBooksByCategoryTableAdapter" GeneratorDataComponentClassName="ViewReportBorrowedBooksByCategoryTableAdapter" Name="ViewReportBorrowedBooksByCategory" UserDataComponentName="ViewReportBorrowedBooksByCategoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="librarysystemConnectionString (Settings)" DbObjectName="librarysystem.dbo.ViewReportBorrowedBooksByCategory" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT CategoryName, BorrowedCount FROM dbo.ViewReportBorrowedBooksByCategory</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CategoryName" DataSetColumn="CategoryName" />
+              <Mapping SourceColumn="BorrowedCount" DataSetColumn="BorrowedCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewReportOverdueBooksTableAdapter" GeneratorDataComponentClassName="ViewReportOverdueBooksTableAdapter" Name="ViewReportOverdueBooks" UserDataComponentName="ViewReportOverdueBooksTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="librarysystemConnectionString (Settings)" DbObjectName="librarysystem.dbo.ViewReportOverdueBooks" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT UID, UserName, Email, ISBN, BookName, BID, BorrowDate, ReturnDate, DaysOverdue, OverduePeriod FROM dbo.ViewReportOverdueBooks</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="UID" DataSetColumn="UID" />
+              <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+              <Mapping SourceColumn="ISBN" DataSetColumn="ISBN" />
+              <Mapping SourceColumn="BookName" DataSetColumn="BookName" />
+              <Mapping SourceColumn="BID" DataSetColumn="BID" />
+              <Mapping SourceColumn="BorrowDate" DataSetColumn="BorrowDate" />
+              <Mapping SourceColumn="ReturnDate" DataSetColumn="ReturnDate" />
+              <Mapping SourceColumn="DaysOverdue" DataSetColumn="DaysOverdue" />
+              <Mapping SourceColumn="OverduePeriod" DataSetColumn="OverduePeriod" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewReportMostBorrowedBooksTableAdapter" GeneratorDataComponentClassName="ViewReportMostBorrowedBooksTableAdapter" Name="ViewReportMostBorrowedBooks" UserDataComponentName="ViewReportMostBorrowedBooksTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="librarysystemConnectionString (Settings)" DbObjectName="librarysystem.dbo.ViewReportMostBorrowedBooks" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ISBN, BookName, Author, CategoryName, BorrowCount, PopularityRank FROM dbo.ViewReportMostBorrowedBooks</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ISBN" DataSetColumn="ISBN" />
+              <Mapping SourceColumn="BookName" DataSetColumn="BookName" />
+              <Mapping SourceColumn="Author" DataSetColumn="Author" />
+              <Mapping SourceColumn="CategoryName" DataSetColumn="CategoryName" />
+              <Mapping SourceColumn="BorrowCount" DataSetColumn="BorrowCount" />
+              <Mapping SourceColumn="PopularityRank" DataSetColumn="PopularityRank" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="ReportDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ViewReportBorrowedBooksByCategory" msprop:Generator_RowEvHandlerName="ViewReportBorrowedBooksByCategoryRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewReportBorrowedBooksByCategoryRowDeleted" msprop:Generator_RowDeletingName="ViewReportBorrowedBooksByCategoryRowDeleting" msprop:Generator_RowEvArgName="ViewReportBorrowedBooksByCategoryRowChangeEvent" msprop:Generator_TablePropName="ViewReportBorrowedBooksByCategory" msprop:Generator_RowChangedName="ViewReportBorrowedBooksByCategoryRowChanged" msprop:Generator_RowChangingName="ViewReportBorrowedBooksByCategoryRowChanging" msprop:Generator_TableClassName="ViewReportBorrowedBooksByCategoryDataTable" msprop:Generator_RowClassName="ViewReportBorrowedBooksByCategoryRow" msprop:Generator_TableVarName="tableViewReportBorrowedBooksByCategory" msprop:Generator_UserTableName="ViewReportBorrowedBooksByCategory">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_UserColumnName="CategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BorrowedCount" msprop:Generator_ColumnPropNameInRow="BorrowedCount" msprop:Generator_ColumnPropNameInTable="BorrowedCountColumn" msprop:Generator_ColumnVarNameInTable="columnBorrowedCount" msprop:Generator_UserColumnName="BorrowedCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewReportOverdueBooks" msprop:Generator_RowEvHandlerName="ViewReportOverdueBooksRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewReportOverdueBooksRowDeleted" msprop:Generator_RowDeletingName="ViewReportOverdueBooksRowDeleting" msprop:Generator_RowEvArgName="ViewReportOverdueBooksRowChangeEvent" msprop:Generator_TablePropName="ViewReportOverdueBooks" msprop:Generator_RowChangedName="ViewReportOverdueBooksRowChanged" msprop:Generator_RowChangingName="ViewReportOverdueBooksRowChanging" msprop:Generator_TableClassName="ViewReportOverdueBooksDataTable" msprop:Generator_RowClassName="ViewReportOverdueBooksRow" msprop:Generator_TableVarName="tableViewReportOverdueBooks" msprop:Generator_UserTableName="ViewReportOverdueBooks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UID" msprop:Generator_ColumnPropNameInRow="UID" msprop:Generator_ColumnPropNameInTable="UIDColumn" msprop:Generator_ColumnVarNameInTable="columnUID" msprop:Generator_UserColumnName="UID" type="xs:int" />
+              <xs:element name="UserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_UserColumnName="UserName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ISBN" msprop:Generator_ColumnPropNameInRow="ISBN" msprop:Generator_ColumnPropNameInTable="ISBNColumn" msprop:Generator_ColumnVarNameInTable="columnISBN" msprop:Generator_UserColumnName="ISBN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BookName" msprop:Generator_ColumnPropNameInRow="BookName" msprop:Generator_ColumnPropNameInTable="BookNameColumn" msprop:Generator_ColumnVarNameInTable="columnBookName" msprop:Generator_UserColumnName="BookName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BID" msprop:Generator_ColumnPropNameInRow="BID" msprop:Generator_ColumnPropNameInTable="BIDColumn" msprop:Generator_ColumnVarNameInTable="columnBID" msprop:Generator_UserColumnName="BID" type="xs:int" />
+              <xs:element name="BorrowDate" msprop:Generator_ColumnPropNameInRow="BorrowDate" msprop:Generator_ColumnPropNameInTable="BorrowDateColumn" msprop:Generator_ColumnVarNameInTable="columnBorrowDate" msprop:Generator_UserColumnName="BorrowDate" type="xs:dateTime" />
+              <xs:element name="ReturnDate" msprop:Generator_ColumnPropNameInRow="ReturnDate" msprop:Generator_ColumnPropNameInTable="ReturnDateColumn" msprop:Generator_ColumnVarNameInTable="columnReturnDate" msprop:Generator_UserColumnName="ReturnDate" type="xs:dateTime" />
+              <xs:element name="DaysOverdue" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DaysOverdue" msprop:Generator_ColumnPropNameInTable="DaysOverdueColumn" msprop:Generator_ColumnVarNameInTable="columnDaysOverdue" msprop:Generator_UserColumnName="DaysOverdue" type="xs:int" minOccurs="0" />
+              <xs:element name="OverduePeriod" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="OverduePeriod" msprop:Generator_ColumnPropNameInTable="OverduePeriodColumn" msprop:Generator_ColumnVarNameInTable="columnOverduePeriod" msprop:Generator_UserColumnName="OverduePeriod" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewReportMostBorrowedBooks" msprop:Generator_RowEvHandlerName="ViewReportMostBorrowedBooksRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewReportMostBorrowedBooksRowDeleted" msprop:Generator_RowDeletingName="ViewReportMostBorrowedBooksRowDeleting" msprop:Generator_RowEvArgName="ViewReportMostBorrowedBooksRowChangeEvent" msprop:Generator_TablePropName="ViewReportMostBorrowedBooks" msprop:Generator_RowChangedName="ViewReportMostBorrowedBooksRowChanged" msprop:Generator_RowChangingName="ViewReportMostBorrowedBooksRowChanging" msprop:Generator_TableClassName="ViewReportMostBorrowedBooksDataTable" msprop:Generator_RowClassName="ViewReportMostBorrowedBooksRow" msprop:Generator_TableVarName="tableViewReportMostBorrowedBooks" msprop:Generator_UserTableName="ViewReportMostBorrowedBooks">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ISBN" msprop:Generator_ColumnPropNameInRow="ISBN" msprop:Generator_ColumnPropNameInTable="ISBNColumn" msprop:Generator_ColumnVarNameInTable="columnISBN" msprop:Generator_UserColumnName="ISBN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BookName" msprop:Generator_ColumnPropNameInRow="BookName" msprop:Generator_ColumnPropNameInTable="BookNameColumn" msprop:Generator_ColumnVarNameInTable="columnBookName" msprop:Generator_UserColumnName="BookName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Author" msprop:Generator_ColumnPropNameInRow="Author" msprop:Generator_ColumnPropNameInTable="AuthorColumn" msprop:Generator_ColumnVarNameInTable="columnAuthor" msprop:Generator_UserColumnName="Author" type="xs:int" />
+              <xs:element name="CategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_UserColumnName="CategoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BorrowCount" msprop:Generator_ColumnPropNameInRow="BorrowCount" msprop:Generator_ColumnPropNameInTable="BorrowCountColumn" msprop:Generator_ColumnVarNameInTable="columnBorrowCount" msprop:Generator_UserColumnName="BorrowCount" type="xs:int" minOccurs="0" />
+              <xs:element name="PopularityRank" msprop:Generator_ColumnPropNameInRow="PopularityRank" msprop:Generator_ColumnPropNameInTable="PopularityRankColumn" msprop:Generator_ColumnVarNameInTable="columnPopularityRank" msprop:Generator_UserColumnName="PopularityRank" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ViewReportOverdueBooks" />
+      <xs:field xpath="mstns:UID" />
+      <xs:field xpath="mstns:ISBN" />
+      <xs:field xpath="mstns:BID" />
+    </xs:unique>
+    <xs:unique name="ViewReportMostBorrowedBooks_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ViewReportMostBorrowedBooks" />
+      <xs:field xpath="mstns:ISBN" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

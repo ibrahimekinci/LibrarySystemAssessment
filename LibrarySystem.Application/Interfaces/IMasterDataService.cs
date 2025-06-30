@@ -1,13 +1,13 @@
-﻿using LibrarySystem.Application.DTOs;
+﻿using LibrarySystem.BLL.DTOs;
 using System.Collections.Generic;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface IMasterDataService
     {
-        PagedResultDataTableDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto);
-        PagedResultDataTableDto<CategoryViewDto> GetAllCategories(PagedRequestDto pagedRequestDto);
-        PagedResultDataTableDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto);
+        PagedResultDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto);
+        PagedResultDto<List<CategoryViewDto>> GetAllCategories(PagedRequestDto pagedRequestDto=null);
+        PagedResultDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto);
 
         int AddAuthor(AuthorCreateDto author);
         int AddCategory(CategoryCreateDto category);

@@ -46,14 +46,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstracts\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abstracts\FormBaseAuthorizedRequired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookBrowsingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookBrowsingForm.Designer.cs">
+      <DependentUpon>BookBrowsingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookSearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookSearchForm.Designer.cs">
+      <DependentUpon>BookSearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MenuOutlineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MenuOutlineForm.Designer.cs">
+      <DependentUpon>MenuOutlineForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UnauthorizedWarningForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UnauthorizedWarningForm.Designer.cs">
+      <DependentUpon>UnauthorizedWarningForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTemplates\MdiContainerFormBaseAuthorizedRequired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ILibrarySystemForm.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Styles\AppTheme.cs" />
+    <EmbeddedResource Include="Forms\BookBrowsingForm.resx">
+      <DependentUpon>BookBrowsingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookSearchForm.resx">
+      <DependentUpon>BookSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MenuOutlineForm.resx">
+      <DependentUpon>MenuOutlineForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UnauthorizedWarningForm.resx">
+      <DependentUpon>UnauthorizedWarningForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +112,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -75,6 +126,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibrarySystem.Application\LibrarySystem.BLL.csproj">
+      <Project>{4a81701b-170a-4b15-bd32-8c538de0753a}</Project>
+      <Name>LibrarySystem.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibrarySystem.Domain\LibrarySystem.Domain.csproj">
+      <Project>{a8f66709-f6b1-47cf-9ca3-7b6b590c34c6}</Project>
+      <Name>LibrarySystem.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\401.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

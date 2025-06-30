@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Domain.Enums;
 
-namespace LibrarySystem.Application.DTOs
+namespace LibrarySystem.BLL.DTOs
 {
     public class UserViewDto
     {

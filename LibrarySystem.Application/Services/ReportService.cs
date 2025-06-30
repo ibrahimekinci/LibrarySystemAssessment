@@ -1,22 +1,22 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
 using System.Data;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
-    public class ReportService : IReportService
+    public class ReportService : BaseService, IReportService
     {
-        public PagedResultDataTableDto<DataTable> GetBorrowedBooksByCategory(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<DataTable> GetBorrowedBooksByCategory(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDataTableDto<DataTable> GetMostBorrowedBooks(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<DataTable> GetMostBorrowedBooks(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDataTableDto<DataTable> GetOverdueBooks(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<DataTable> GetOverdueBooks(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }

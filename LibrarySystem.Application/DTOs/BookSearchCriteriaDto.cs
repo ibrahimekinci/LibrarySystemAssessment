@@ -1,9 +1,9 @@
-﻿namespace LibrarySystem.Application.DTOs
+﻿namespace LibrarySystem.BLL.DTOs
 {
     public class BookSearchCriteriaDto
     {
-        public string Title { get; set; }
+        public string BookName { get; set; }
+        public string AuthorName { get; set; }
         public int? CategoryId { get; set; }
-        public int? LanguageId { get; set; }
     }
 }

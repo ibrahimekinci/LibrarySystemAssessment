@@ -1,10 +1,16 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using AutoMapper;
+using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.DAL.Repositories;
+using System.Collections.Generic;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
-    public class MasterDataService : IMasterDataService
+    public class MasterDataService : BaseService, IMasterDataService
     {
+        ICategoryRepository categoryRepository = new CategoryRepository();
         public int AddAuthor(AuthorCreateDto author)
         {
             throw new System.NotImplementedException();
@@ -35,17 +41,21 @@ namespace LibrarySystem.Application.Services
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDataTableDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDataTableDto<CategoryViewDto> GetAllCategories(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<List<CategoryViewDto>> GetAllCategories(PagedRequestDto pagedRequestDto = null)
         {
-            throw new System.NotImplementedException();
+         var repoDto= Mapper.Map<DAL.DTOs.PagedRequestDto>(pagedRequestDto ?? new PagedRequestDto());
+            
+            var resultEntities = categoryRepository.GetAllPaged(repoDto);
+            var result = Mapper.Map<PagedResultDto<List<CategoryViewDto>>>(resultEntities);
+            return result;
         }
 
-        public PagedResultDataTableDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }

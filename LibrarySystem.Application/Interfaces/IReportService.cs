@@ -1,12 +1,12 @@
-﻿using LibrarySystem.Application.DTOs;
+﻿using LibrarySystem.BLL.DTOs;
 using System.Data;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface IReportService
     {
-        PagedResultDataTableDto<DataTable> GetMostBorrowedBooks(PagedRequestDto pagedRequestDto);
-        PagedResultDataTableDto<DataTable> GetOverdueBooks(PagedRequestDto pagedRequestDto);
-        PagedResultDataTableDto<DataTable> GetBorrowedBooksByCategory(PagedRequestDto pagedRequestDto);
+        PagedResultDto<DataTable> GetMostBorrowedBooks(PagedRequestDto pagedRequestDto);
+        PagedResultDto<DataTable> GetOverdueBooks(PagedRequestDto pagedRequestDto);
+        PagedResultDto<DataTable> GetBorrowedBooksByCategory(PagedRequestDto pagedRequestDto);
     }
 }

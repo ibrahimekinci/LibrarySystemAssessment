@@ -1,7 +1,7 @@
 ﻿using LibrarySystem.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace LibrarySystem.Application.DTOs
+namespace LibrarySystem.BLL.DTOs
 {
     public class UserUpdateDto
     {

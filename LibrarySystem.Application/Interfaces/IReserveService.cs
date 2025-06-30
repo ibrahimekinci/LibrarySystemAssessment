@@ -1,14 +1,11 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Domain.Entities;
-using System;
-using System.Collections.Generic;
+﻿using LibrarySystem.BLL.DTOs;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface IReserveService
     {
-        int ReserveBook(ReserveDto reserveRecordDto);
+        int ReserveBook(ReserveCreateDto reserveRecordDto);
         int UpdateBookReservation(ReserveUpdateDto reserveRecordDto);
-        PagedResultDataTableDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto,int userId);
+        PagedResultDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto,int userId);
     }
 }

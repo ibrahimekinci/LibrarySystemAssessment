@@ -1,21 +1,21 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
-    public class BorrowService : IBorrowService
+    public class BorrowService :  BaseService, IBorrowService
     {
-        public int BorrowBook(BarrowRecordCreateDto barrowRecord)
+        public int BorrowBook(BarrowCreateDto barrowRecord)
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDataTableDto<BookViewDto> GetBorrowedBooksByUser(PagedRequestDto pagedRequestDto, int userId)
+        public PagedResultDto<BookViewDto> GetBorrowedBooksByUser(PagedRequestDto pagedRequestDto, int userId)
         {
             throw new System.NotImplementedException();
         }
 
-        public void ReturnBook(BarrowRecordUpdateDto barrowRecord)
+        public void ReturnBook(BarrowUpdateDto barrowRecord)
         {
             throw new System.NotImplementedException();
         }

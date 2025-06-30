@@ -1,13 +1,12 @@
-﻿using LibrarySystem.Application.DTOs;
-using System.Collections.Generic;
+﻿using LibrarySystem.BLL.DTOs;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface IBorrowService
     {
-        int BorrowBook(BarrowRecordCreateDto barrowRecord);
-        void ReturnBook(BarrowRecordUpdateDto barrowRecord);
-        PagedResultDataTableDto<BookViewDto> GetBorrowedBooksByUser(PagedRequestDto pagedRequestDto, int userId);
+        int BorrowBook(BarrowCreateDto barrowRecord);
+        void ReturnBook(BarrowUpdateDto barrowRecord);
+        PagedResultDto<BookViewDto> GetBorrowedBooksByUser(PagedRequestDto pagedRequestDto, int userId);
     }
 
 }

@@ -1,10 +1,16 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.DAL.Repositories;
 using System;
-namespace LibrarySystem.Application.Services
+using System.Collections.Generic;
+
+namespace LibrarySystem.BLL.Services
 {
-    public class BookService : IBookService
+    public class BookService : BaseService, IBookService
     {
+        IBookRepository repo = new BookRepository();
         public int AddBook(BookDto book)
         {
             throw new NotImplementedException();
@@ -15,24 +21,29 @@ namespace LibrarySystem.Application.Services
             throw new NotImplementedException();
         }
 
-        public PagedResultDataTableDto<BookViewDto> GetAllBooks(PagedRequestDto pagedRequestDto)
+        public List<BookViewDto> GetAll()
+        {
+            List<BookEntity> resultEntities = repo.GetAll();
+            var result = Mapper.Map<List<BookViewDto>>(resultEntities ?? new List<BookEntity>());
+            return result;
+        }
+
+        public BookViewDto GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public BookViewDto GetBookById(int id)
+        public BookViewDto GetByISBN(string isbn)
         {
             throw new NotImplementedException();
         }
 
-        public BookViewDto GetBookByISBN(string isbn)
+        public List<BookViewDto> Search(BookSearchCriteriaDto dto)
         {
-            throw new NotImplementedException();
-        }
-
-        public PagedResultDataTableDto<BookViewDto> SearchBooks(PagedRequestDto pagedRequestDto, BookSearchCriteriaDto dto)
-        {
-            throw new NotImplementedException();
+            var repoDto = Mapper.Map<DAL.DTOs.BookSearchCriteriaDto>(dto);
+            List<BookEntity> resultEntities = repo.Search(repoDto);
+            var result = Mapper.Map<List<BookViewDto>>(resultEntities ?? new List<BookEntity>());
+            return result;
         }
 
         public void UpdateBook(BookDto book)

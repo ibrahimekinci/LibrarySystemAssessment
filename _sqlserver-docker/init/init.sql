@@ -169,3 +169,53 @@ GROUP BY TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publi
 HAVING	(MIN(dbo.TabBorrow.ActualReturnDate) <= CONVERT(DATETIME, '2001-01-01 00:00:00', 102));
 
 go
+
+-- 1. Most Borrowed Books View
+CREATE VIEW ViewReportMostBorrowedBooks AS
+SELECT TOP 10 
+    b.ISBN,
+    b.BookName,
+    b.Author,
+    c.CategoryName,
+    COUNT(*) AS BorrowCount,
+    DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS PopularityRank
+FROM TabBorrow br
+JOIN TabBook b ON br.ISBN = b.ISBN
+JOIN TabCategory c ON b.Category = c.CID
+GROUP BY b.ISBN, b.BookName, b.Author, c.CategoryName
+ORDER BY BorrowCount DESC;
+go
+
+-- 2. Overdue Books View
+CREATE VIEW ViewReportOverdueBooks AS
+SELECT 
+    u.UID,
+    u.UserName,
+    u.Email,
+    b.ISBN,
+    b.BookName,
+    br.BID,
+    br.BorrowDate,
+    br.ReturnDate,
+    DATEDIFF(day, br.ReturnDate, GETDATE()) AS DaysOverdue,
+    CASE 
+        WHEN DATEDIFF(day, br.ReturnDate, GETDATE()) BETWEEN 1 AND 7 THEN '1 Week'
+        WHEN DATEDIFF(day, br.ReturnDate, GETDATE()) BETWEEN 8 AND 30 THEN '1 Month'
+        ELSE 'Over 1 Month'
+    END AS OverduePeriod
+FROM TabBorrow br
+JOIN TabUser u ON br.UID = u.UID
+JOIN TabBook b ON br.ISBN = b.ISBN
+WHERE br.ActualReturnDate is null  
+AND GETDATE() > br.ReturnDate;
+go
+
+
+-- 3. Borrowed Books by Category View
+CREATE VIEW ViewReportBorrowedBooksByCategory AS
+SELECT TabCategory.CategoryName, COUNT(*) AS BorrowedCount
+FROM TabBorrow
+JOIN TabBook ON TabBorrow.ISBN = TabBook.ISBN
+JOIN TabCategory ON TabBook.Category = TabCategory.CID
+GROUP BY TabCategory.CategoryName;
+go

@@ -1,16 +1,16 @@
-﻿using LibrarySystem.Application.DTOs;
+﻿using LibrarySystem.BLL.DTOs;
 using System.Collections.Generic;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface IBookService
     {
-        PagedResultDataTableDto<BookViewDto> GetAllBooks(PagedRequestDto pagedRequestDto);
-        BookViewDto GetBookByISBN(string isbn);
-        BookViewDto GetBookById(int id);
+        List<BookViewDto> GetAll();
+        BookViewDto GetByISBN(string isbn);
+        BookViewDto GetById(int id);
         int AddBook(BookDto book);
         void UpdateBook(BookDto book);
         void DeleteBook(string isbn);
-        PagedResultDataTableDto<BookViewDto> SearchBooks(PagedRequestDto pagedRequestDto, BookSearchCriteriaDto dto);
+        List<BookViewDto> Search(BookSearchCriteriaDto dto);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace LibrarySystem.Application.DTOs
+﻿namespace LibrarySystem.BLL.DTOs
 {
     public class CategoryViewDto
     {

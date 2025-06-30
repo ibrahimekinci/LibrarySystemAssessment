@@ -1,16 +1,31 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.DAL.Repositories;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
+        private readonly IUserRepository _repository = new UserRepository();
         public UserViewDto Authenticate(string username, string password)
         {
-            throw new System.NotImplementedException();
+            UserViewDto result = null;
+            var user = _repository.GetByUsername(username);
+
+            if (user.UID > 0 && user.Password == password)
+            {
+                result = Mapper.Map<UserViewDto>(user);
+            }
+            else
+            {
+                result = new UserViewDto();
+            }
+
+            return result;
         }
 
-        public PagedResultDataTableDto<UserViewDto> GetAllUsers(PagedRequestDto pagedRequestDto)
+        public PagedResultDto<UserViewDto> GetAllUsers(PagedRequestDto pagedRequestDto)
         {
             throw new System.NotImplementedException();
         }
