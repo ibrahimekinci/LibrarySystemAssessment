@@ -50,10 +50,11 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.groupBox1.Location = new System.Drawing.Point(238, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 9, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.groupBox1.Size = new System.Drawing.Size(363, 395);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Library System";
             // 
             // groupBox3
             // 
@@ -63,7 +64,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.groupBox3.Location = new System.Drawing.Point(60, 235);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 9, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.groupBox3.Size = new System.Drawing.Size(270, 91);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
@@ -81,10 +82,10 @@
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Location = new System.Drawing.Point(19, 29);
-            this.btnLogin.MinimumSize = new System.Drawing.Size(86, 29);
+            this.btnLogin.MinimumSize = new System.Drawing.Size(100, 34);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Padding = new System.Windows.Forms.Padding(9, 3, 9, 3);
-            this.btnLogin.Size = new System.Drawing.Size(86, 39);
+            this.btnLogin.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.btnLogin.Size = new System.Drawing.Size(100, 39);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -103,10 +104,10 @@
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(154, 29);
-            this.btnClose.MinimumSize = new System.Drawing.Size(86, 29);
+            this.btnClose.MinimumSize = new System.Drawing.Size(100, 34);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Padding = new System.Windows.Forms.Padding(9, 3, 9, 3);
-            this.btnClose.Size = new System.Drawing.Size(86, 39);
+            this.btnClose.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.btnClose.Size = new System.Drawing.Size(100, 39);
             this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -122,7 +123,7 @@
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             this.groupBox2.Location = new System.Drawing.Point(61, 101);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 9, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 10, 5, 5);
             this.groupBox2.Size = new System.Drawing.Size(269, 116);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
@@ -137,7 +138,7 @@
             this.txtUserName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtUserName.Location = new System.Drawing.Point(109, 24);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(5);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(130, 29);
             this.txtUserName.TabIndex = 0;
@@ -171,7 +172,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPassword.Location = new System.Drawing.Point(109, 56);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(5);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(130, 29);
             this.txtPassword.TabIndex = 1;
@@ -183,6 +184,7 @@
             this.AccessibleDescription = "Form for  operations";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.groupBox1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));

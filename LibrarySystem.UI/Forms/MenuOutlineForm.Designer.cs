@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuOutlineForm));
             this.lnkSearchBook = new System.Windows.Forms.LinkLabel();
             this.lnkBooks = new System.Windows.Forms.LinkLabel();
             this.lnkWelcome = new System.Windows.Forms.LinkLabel();
@@ -103,6 +104,7 @@
             this.Controls.Add(this.lnkSearchBook);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "MenuOutlineForm";

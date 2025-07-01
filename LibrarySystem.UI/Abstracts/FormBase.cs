@@ -49,7 +49,7 @@ namespace LibrarySystem.UI.Abstracts
             this.BackColor = SystemColors.Window;
             this.ForeColor = SystemColors.WindowText;
             this.MinimumSize = new Size(800, 600);
-            //this.Icon = Properties.Resources.AppIcon; // Your application icon
+            this.Icon = Properties.Resources.AppIcon;
             // Apply theme when form loads
             this.Load += (sender, e) => AppTheme.StyleControl(this);
 
@@ -96,6 +96,24 @@ namespace LibrarySystem.UI.Abstracts
 
         #region Common Functionality
 
+        public void RiderectToHomePage()
+        {
+            var form = new MenuOutlineForm(CurrentUser);
+            form.Show();
+            Hide();
+        }
+        public void RiderectToLoginPage()
+        {
+            var form = new LoginForm();
+            form.Show();
+            Hide();
+        }
+        public void RiderectToUnauthorizedPage()
+        {
+            var form = new UnauthorizedWarningForm();
+            form.Show();
+            Hide();
+        }
         /// <summary>
         /// Show informational message with modern styling
         /// </summary>
@@ -179,21 +197,11 @@ namespace LibrarySystem.UI.Abstracts
         }
 
         #endregion
-        protected void RiderectToHomePage()
-        {
-            var form = new MenuOutlineForm(CurrentUser);
-            form.Show();
-            Hide();
-        }
 
-        #region Exceptions
-
+        #region Exception Handling
         private readonly string _logFilePath = Path.Combine(
             Application.StartupPath,
             "ErrorLog.txt");
-
-        #region Exception Handling Methods
-
         private void HandleThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             HandleException(e.Exception);
@@ -209,7 +217,7 @@ namespace LibrarySystem.UI.Abstracts
             try
             {
                 LogException(ex);
-               ShowError("Opps! There is an exception. Please try again");
+                ShowError(GetUserFriendlyMessage(ex), GetErrorTitle(ex));
 
                 if (IsCriticalException(ex))
                 {
@@ -249,7 +257,6 @@ namespace LibrarySystem.UI.Abstracts
                        $"Inner Exception:\n{GetExceptionDetails(ex.InnerException)}" : "");
         }
 
-       
         private bool IsCriticalException(Exception ex)
         {
             return ex is OutOfMemoryException ||
@@ -257,9 +264,57 @@ namespace LibrarySystem.UI.Abstracts
                    ex is BadImageFormatException;
         }
 
+        private string GetUserFriendlyMessage(Exception ex)
+        {
+            if (ex is System.Data.Common.DbException)
+            {
+                return "A database error occurred. Please try again later.";
+            }
+            else if (ex is System.IO.IOException)
+            {
+                return "A file access error occurred. Check your permissions.";
+            }
+            else if (ex is TimeoutException)
+            {
+                return "The operation timed out. Please check your connection.";
+            }
+            else if (ex is UnauthorizedAccessException)
+            {
+                return "You don't have permission to perform this action.";
+            }
+            else
+            {
+                return "An unexpected error occurred. Our team has been notified. Please try again.";
+            }
+        }
+
+        private string GetErrorTitle(Exception ex)
+        {
+            if (ex is System.Data.Common.DbException)
+            {
+                return "Database Error";
+            }
+            else if (ex is System.IO.IOException)
+            {
+                return "File Error";
+            }
+            else
+            {
+                return "Error";
+            }
+        }
         #endregion
 
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // FormBase
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "FormBase";
+            this.ResumeLayout(false);
 
-        #endregion
+        }
     }
 }

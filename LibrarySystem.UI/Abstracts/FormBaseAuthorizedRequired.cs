@@ -25,16 +25,14 @@ namespace LibrarySystem.UI.Abstracts
                 AuthorizedUserLevels == null ||
                 AuthorizedUserLevels.Count == 0)
             {
-                ShowForm<LoginForm>();
-                Hide();
+                RiderectToLoginPage();
             }
 
             if (
                  AuthorizedUserLevels == null ||
                  AuthorizedUserLevels.Count == 0)
             {
-                ShowForm<UnauthorizedWarningForm>();
-                Hide();
+                RiderectToUnauthorizedPage();
             }
         }
     }

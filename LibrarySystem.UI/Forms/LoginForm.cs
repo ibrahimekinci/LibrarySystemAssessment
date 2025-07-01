@@ -12,12 +12,15 @@ namespace LibrarySystem.UI.Forms
         private readonly IUserService _service = new UserService();
         public LoginForm()
         {
+            this.BackgroundImage = Properties.Resources.bg2;
+            this.BackgroundImageLayout = ImageLayout.Stretch;
             if (CurrentUser?.UID > 0)
             {
                 RiderectToHomePage();
             }
             InitializeComponent();
         }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = txtUserName.Text;
