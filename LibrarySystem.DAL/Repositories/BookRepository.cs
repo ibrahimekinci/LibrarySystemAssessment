@@ -1,5 +1,4 @@
-﻿// BookRepository.cs — Implementation using XSD and AutoMapper
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
@@ -37,10 +36,10 @@ namespace LibrarySystem.DAL.Repositories
             var filtered = table.AsEnumerable();
 
             if (filtered.Count() > 0 && !string.IsNullOrWhiteSpace(dto.BookName))
-                filtered = filtered.Where(r => r.Field<string>("BookName").IndexOf(dto.BookName, StringComparison.CurrentCultureIgnoreCase) > 0);
+                filtered = filtered.Where(r => r.Field<string>("BookName").IndexOf(dto.BookName, StringComparison.OrdinalIgnoreCase) >= 0);
 
             if (filtered.Count() > 0 && !string.IsNullOrWhiteSpace(dto.AuthorName))
-                filtered = filtered.Where(r => r.Field<string>("AuthorName").IndexOf(dto.AuthorName, StringComparison.CurrentCultureIgnoreCase) > 0);
+                filtered = filtered.Where(r => r.Field<string>("AuthorName").IndexOf(dto.AuthorName, StringComparison.OrdinalIgnoreCase) >= 0);
 
             if (filtered.Count() > 0 && dto.CategoryId.HasValue && dto.CategoryId > 0)
                 filtered = filtered.Where(r => r.Field<int>("Category") == dto.CategoryId);

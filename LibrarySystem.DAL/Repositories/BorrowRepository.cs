@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Data;
-using LibrarySystem.DAL.DataSets;
 using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
-using AutoMapper;
 using System.Collections.Generic;
 using LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters;
 

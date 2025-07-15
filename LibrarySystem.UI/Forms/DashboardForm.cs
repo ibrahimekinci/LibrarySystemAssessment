@@ -1,41 +1,36 @@
 ﻿using LibrarySystem.BLL.DTOs;
 using LibrarySystem.Domain.Enums;
-using LibrarySystem.UI.Abstracts;
+using LibrarySystem.UI.Helpers;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LibrarySystem.UI.Forms
 {
-    public partial class MenuOutlineForm : FormBaseAuthorizedRequired
+    public partial class DashboardForm : FormBase
     {
         public override string FormTitle => "Home Page";
-        private List<UserLevelEnum> authorizedUserLevels = new List<UserLevelEnum>
+        private static readonly IReadOnlyList<UserLevelEnum> authorizedUserLevels = new List<UserLevelEnum>
         {
             UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student
         };
-        protected override List<UserLevelEnum> AuthorizedUserLevels => authorizedUserLevels;
+        protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => authorizedUserLevels;
 
-        public MenuOutlineForm() : base(CurrentUser)
+        public DashboardForm()
         {
             InitializeComponent();
-        }
-        public MenuOutlineForm(UserViewDto user) : base(user)
-        {
-            InitializeComponent();
-            lnkWelcome.Text = $"🙍 Hello {CurrentUser.UserName}, How are you today ?";
-
+            lnkWelcome.Text = $"🙍 Hello {UserManager.CurrentUser.UserName}, How are you today ?";
             lnkWelcome.Anchor = AnchorStyles.None; // Remove any anchors
             lnkWelcome.Left = (this.ClientSize.Width - lnkWelcome.Width) / 2;
         }
 
         private void lnkBooks_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowForm<BookBrowsingForm>();
+            FormManager.ShowFormInMdi<BookBrowsingForm>();
         }
 
         private void lnkSearchBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ShowForm<BookSearchForm>();
+            FormManager.ShowFormInMdi<BookSearchForm>();
         }
     }
 }

@@ -1,22 +1,24 @@
 ﻿using LibrarySystem.BLL.DTOs;
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.BLL.Services;
-using LibrarySystem.UI.Abstracts;
+using LibrarySystem.Domain.Enums;
 using System;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace LibrarySystem.UI.Forms
 {
-    public partial class BookSearchForm : FormBaseAuthorizedRequired
+    public partial class BookSearchForm : FormBase
     {
         public override string FormTitle => "Book Search";
+        private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
+        {
+            UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student
+        };
+        protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => allowedUserLevels;
+
         IBookService bookService = new BookService();
         IMasterDataService masterDataService = new MasterDataService();
-        public BookSearchForm() : base(CurrentUser)
-        {
-            InitializeComponent();
-        }
-        public BookSearchForm(UserViewDto user) : base(user)
+        public BookSearchForm()
         {
             InitializeComponent();
         }

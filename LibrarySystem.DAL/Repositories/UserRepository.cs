@@ -1,11 +1,9 @@
-﻿using LibrarySystem.DAL.DataSets;
-using LibrarySystem.DAL.Entities;
+﻿using LibrarySystem.DAL.DataSets.UserDataSetTableAdapters;
 using LibrarySystem.DAL.DTOs;
+using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using LibrarySystem.DAL.DataSets.UserDataSetTableAdapters;
-using LibrarySystem.DAL.Interfaces;
-using System.Data;
 
 namespace LibrarySystem.DAL.Repositories
 {

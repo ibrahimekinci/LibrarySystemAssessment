@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace LibrarySystem.UI.Styles
+namespace LibrarySystem.UI.Helpers
 {
     public static class AppTheme
     {
@@ -23,6 +18,31 @@ namespace LibrarySystem.UI.Styles
         public static readonly Padding ControlPadding = new Padding(5);
         public static readonly int GridRowHeight = 28;
 
+        public static void StyleForm(Form frm)
+        {
+            // Modern form styling
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.BackColor = SystemColors.Window;
+            frm.ForeColor = SystemColors.WindowText;
+
+            frm.FormBorderStyle = FormBorderStyle.Sizable;
+            frm.ControlBox = true;
+            frm.MinimizeBox = true;
+            frm.MaximizeBox = true;
+
+            frm.WindowState = FormWindowState.Maximized;
+            frm.MinimumSize = new Size(800, 600);
+
+            frm.ShowIcon = true;
+            frm.Icon = Properties.Resources.AppIcon;
+        }
+        public static void StyleMdiChildForm(Form frm)
+        {
+            frm.WindowState = FormWindowState.Normal;
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.Dock = DockStyle.None;
+            frm.MinimumSize = new Size(600, 600);
+        }
         /// <summary>
         /// Applies consistent styling to a control and all its children
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.UI.Forms
 {
-    partial class MenuOutlineForm
+    partial class DashboardForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuOutlineForm));
             this.lnkSearchBook = new System.Windows.Forms.LinkLabel();
             this.lnkBooks = new System.Windows.Forms.LinkLabel();
             this.lnkWelcome = new System.Windows.Forms.LinkLabel();
@@ -43,7 +42,7 @@
             this.lnkSearchBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkSearchBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkSearchBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkSearchBook.Location = new System.Drawing.Point(109, 258);
+            this.lnkSearchBook.Location = new System.Drawing.Point(109, 326);
             this.lnkSearchBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkSearchBook.Name = "lnkSearchBook";
             this.lnkSearchBook.Padding = new System.Windows.Forms.Padding(2);
@@ -63,7 +62,7 @@
             this.lnkBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkBooks.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkBooks.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkBooks.Location = new System.Drawing.Point(109, 120);
+            this.lnkBooks.Location = new System.Drawing.Point(109, 188);
             this.lnkBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkBooks.Name = "lnkBooks";
             this.lnkBooks.Padding = new System.Windows.Forms.Padding(2);
@@ -83,7 +82,7 @@
             this.lnkWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkWelcome.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkWelcome.LinkColor = System.Drawing.Color.Black;
-            this.lnkWelcome.Location = new System.Drawing.Point(71, 14);
+            this.lnkWelcome.Location = new System.Drawing.Point(71, 43);
             this.lnkWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkWelcome.Name = "lnkWelcome";
             this.lnkWelcome.Padding = new System.Windows.Forms.Padding(2);
@@ -93,7 +92,7 @@
             this.lnkWelcome.Text = "🙍 Hello Ibrahim, How are you today?";
             this.lnkWelcome.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
             // 
-            // MenuOutlineForm
+            // DashboardForm
             // 
             this.AccessibleDescription = "Form for  operations";
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -104,10 +103,9 @@
             this.Controls.Add(this.lnkSearchBook);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1024, 726);
-            this.Name = "MenuOutlineForm";
+            this.Name = "DashboardForm";
             this.Text = "MainPageForm";
             this.ResumeLayout(false);
             this.PerformLayout();

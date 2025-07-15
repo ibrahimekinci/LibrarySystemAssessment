@@ -1,9 +1,7 @@
-﻿using LibrarySystem.DAL.DataSets;
-using LibrarySystem.DAL.DTOs;
+﻿using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Data;
-using System.Linq;
 
 namespace LibrarySystem.DAL.Repositories
 {
