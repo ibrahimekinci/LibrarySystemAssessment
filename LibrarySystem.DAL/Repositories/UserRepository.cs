@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.DAL.DataSets.UserDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +13,11 @@ namespace LibrarySystem.DAL.Repositories
 
         public int Add(UserEntity user)
         {
-            var id = tableAdapter.InsertCustom(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel);
+            var effectedDbRows = tableAdapter.InsertCustom(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel);
+            if (effectedDbRows <= 0)
+                return 0;
+
+            var id = Convert.ToInt32(tableAdapter.GetLastId());
             return id;
         }
 

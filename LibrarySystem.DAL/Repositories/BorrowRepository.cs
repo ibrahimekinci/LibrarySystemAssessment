@@ -13,7 +13,11 @@ namespace LibrarySystem.DAL.Repositories
 
         public int Add(BarrowEntity borrow)
         {
-            var id = tableAdapter.InsertCustom(borrow.UID,borrow.ISBN,formatDateForDb(borrow.BorrowDate), formatDateForDb(borrow.ReturnDate));
+            var effectedDbRows = tableAdapter.InsertCustom(borrow.UID,borrow.ISBN,formatDateForDb(borrow.BorrowDate), formatDateForDb(borrow.ReturnDate));
+            if (effectedDbRows <= 0)
+                return 0;
+
+            var id = Convert.ToInt32(tableAdapter.GetLastId());
             return id;
         }
 

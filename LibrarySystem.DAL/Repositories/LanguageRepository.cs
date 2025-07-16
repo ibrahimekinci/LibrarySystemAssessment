@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace LibrarySystem.DAL.Repositories
@@ -11,7 +12,11 @@ namespace LibrarySystem.DAL.Repositories
 
         public int Add(LanguageEntity language)
         {
-            var id = tableAdapter.InsertCustom(language.LanguageName);
+            var effectedDbRows = tableAdapter.InsertCustom(language.LanguageName);
+            if (effectedDbRows <= 0)
+                return 0;
+
+            var id = Convert.ToInt32(tableAdapter.GetLastId());
             return id;
         }
 

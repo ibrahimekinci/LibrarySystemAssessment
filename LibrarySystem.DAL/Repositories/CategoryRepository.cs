@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.DAL.DataSets.CategoryDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 namespace LibrarySystem.DAL.Repositories
 {
@@ -10,7 +11,11 @@ namespace LibrarySystem.DAL.Repositories
 
         public int Add(CategoryEntity category)
         {
-            var id = tableAdapter.InsertCustom(category.CategoryName);
+            var effectedDbRows = tableAdapter.InsertCustom(category.CategoryName);
+            if (effectedDbRows <= 0)
+                return 0;
+
+            var id = Convert.ToInt32(tableAdapter.GetLastId());
             return id;
         }
 

@@ -50,26 +50,26 @@ namespace LibrarySystem.DAL
                    .ConvertUsing<DataRowConverter<DataRow, UserEntity>>();
 
                 // datatable to Entity list Mapping
-                cfg.CreateMap<DataTable, List<AuthorEntity>>()
-                   .ConvertUsing<DataTableConverter<AuthorEntity>>();
+                //cfg.CreateMap<DataTable, List<AuthorEntity>>()
+                //   .ConvertUsing<DataTableConverter<AuthorEntity>>();
 
-                cfg.CreateMap<DataTable, List<BarrowEntity>>()
-                    .ConvertUsing<DataTableConverter<BarrowEntity>>();
+                //cfg.CreateMap<DataTable, List<BarrowEntity>>()
+                //    .ConvertUsing<DataTableConverter<BarrowEntity>>();
 
-                cfg.CreateMap<DataTable, List<BookEntity>>()
-                    .ConvertUsing<DataTableConverter<BookEntity>>();
+                //cfg.CreateMap<DataTable, List<BookEntity>>()
+                //    .ConvertUsing<DataTableConverter<BookEntity>>();
 
-                cfg.CreateMap<DataTable, List<CategoryEntity>>()
-                    .ConvertUsing<DataTableConverter<CategoryEntity>>();
+                //cfg.CreateMap<DataTable, List<CategoryEntity>>()
+                //    .ConvertUsing<DataTableConverter<CategoryEntity>>();
 
-                cfg.CreateMap<DataTable, List<LanguageEntity>>()
-                    .ConvertUsing<DataTableConverter<LanguageEntity>>();
+                //cfg.CreateMap<DataTable, List<LanguageEntity>>()
+                //    .ConvertUsing<DataTableConverter<LanguageEntity>>();
 
-                cfg.CreateMap<DataTable, List<ReserveEntity>>()
-                    .ConvertUsing<DataTableConverter<ReserveEntity>>();
+                //cfg.CreateMap<DataTable, List<ReserveEntity>>()
+                //    .ConvertUsing<DataTableConverter<ReserveEntity>>();
 
-                cfg.CreateMap<DataTable, List<UserEntity>>()
-                    .ConvertUsing<DataTableConverter<UserEntity>>();
+                //cfg.CreateMap<DataTable, List<UserEntity>>()
+                //    .ConvertUsing<DataTableConverter<UserEntity>>();
             });
             //config.AssertConfigurationIsValid();
             _mapper = config.CreateMapper();
@@ -98,16 +98,30 @@ namespace LibrarySystem.DAL
             return entity;
         }
     }
-    public class DataTableConverter<T> : ITypeConverter<DataTable, List<T>>
+    public class DataTableConverter<T> : ITypeConverter<DataTable, List<T>> where T : class, new()
     {
         public List<T> Convert(DataTable source, List<T> destination, ResolutionContext context)
         {
-            destination = new List<T>();
+            // Null kontrolü
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source), "DataTable cannot be null.");
+            }
+
+            // Yeni bir liste oluştur (destination null olsa bile yeni liste döndürüyoruz)
+            var result = new List<T>();
+
+            // Her bir DataRow'u T türüne eşle
             foreach (DataRow row in source.Rows)
             {
-                destination.Add(context.Mapper.Map<T>(row));
+                if (row != null) // DataRow null kontrolü
+                {
+                    var item = context.Mapper.Map<T>(row);
+                    result.Add(item);
+                }
             }
-            return destination;
+
+            return result;
         }
     }
 }

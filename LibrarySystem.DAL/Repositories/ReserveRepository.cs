@@ -1,6 +1,7 @@
 ﻿using LibrarySystem.DAL.DataSets.ReserveDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace LibrarySystem.DAL.Repositories
@@ -10,7 +11,11 @@ namespace LibrarySystem.DAL.Repositories
         private readonly TabReservedTableAdapter tableAdapter = new TabReservedTableAdapter();
         public int Add(ReserveEntity reserve)
         {
-            var id = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, formatDateForDb(reserve.ReservedDate));
+            var effectedDbRows = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, formatDateForDb(reserve.ReservedDate));
+            if (effectedDbRows <= 0)
+                return 0;
+
+            var id = Convert.ToInt32(tableAdapter.GetLastId());
             return id;
         }
 
