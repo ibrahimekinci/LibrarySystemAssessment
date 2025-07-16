@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace LibrarySystem.UI.Forms
 {
-    public partial class BookSearchForm : FormBase
+    public partial class SearchBooksForm : FormBase
     {
         public override string FormTitle => "Book Search";
         private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
@@ -18,7 +18,7 @@ namespace LibrarySystem.UI.Forms
 
         IBookService bookService = new BookService();
         IMasterDataService masterDataService = new MasterDataService();
-        public BookSearchForm()
+        public SearchBooksForm()
         {
             InitializeComponent();
         }

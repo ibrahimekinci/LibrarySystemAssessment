@@ -30,7 +30,7 @@ namespace LibrarySystem.UI.Forms
 
         private void lnkSearchBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<BookSearchForm>();
+            FormManager.ShowFormInMdi<SearchBooksForm>();
         }
     }
 }

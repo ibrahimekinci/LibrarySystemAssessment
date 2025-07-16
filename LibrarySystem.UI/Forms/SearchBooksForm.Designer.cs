@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.UI.Forms
 {
-    partial class BookSearchForm
+    partial class SearchBooksForm
     {
         /// <summary>
         /// Required designer variable.

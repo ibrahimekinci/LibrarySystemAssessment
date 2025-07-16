@@ -1,9 +1,7 @@
 ﻿using LibrarySystem.Domain.Enums;
 using LibrarySystem.UI.Helpers;
-using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.UI.Forms
@@ -24,7 +22,7 @@ namespace LibrarySystem.UI.Forms
         public MainMdiForm()
         {
             InitializeComponent();
-            CreateRoleBasedMenu();
+            InitializeMenu();
             FormManager.ShowFormInMdi<DashboardForm>(this);
         }
 
@@ -45,7 +43,7 @@ namespace LibrarySystem.UI.Forms
             }
         }
 
-        protected void CreateRoleBasedMenu()
+        public void InitializeMenu()
         {
             menuStrip.BackColor = Color.White;
             menuStrip.Dock = DockStyle.Top;
@@ -56,90 +54,112 @@ namespace LibrarySystem.UI.Forms
             if (!UserManager.IsUserLoggedIn())
                 return;
 
-            switch (UserManager.CurrentUser.UserLevel)
-            {
-                case UserLevelEnum.Student:
-                    CreateStudentMenu();
-                    break;
-                case UserLevelEnum.Staff:
-                    CreateStaffMenu();
-                    break;
-                case UserLevelEnum.Manager:
-                    CreateManagerMenu();
-                    break;
-            }
-        }
+            var currentUserRole = UserManager.CurrentUser.UserLevel;
 
-        private void CreateStudentMenu()
-        {
+            //// 📚 BOOKS – Everyone
+            //var booksMenu = new ToolStripMenuItem("📚 Books");
+            //booksMenu.DropDownItems.Add("🔍 Search Books", null, (s, e) => FormManager.ShowFormInMdi<SearchBooksForm>());
+            //booksMenu.DropDownItems.Add("📌 Reserve a Book", null, (s, e) => FormManager.ShowFormInMdi<ReserveBookForm>());
+            //booksMenu.DropDownItems.Add("📤 Borrow a Book", null, (s, e) => FormManager.ShowFormInMdi<BorrowBookForm>());
+            //booksMenu.DropDownItems.Add("📥 Return a Book", null, (s, e) => FormManager.ShowFormInMdi<ReturnBookForm>());
+            //menuStrip.Items.Add(booksMenu);
 
-        }
+            //// 📖 MY ACTIVITY – Everyone
+            //var myActivityMenu = new ToolStripMenuItem("📖 My Activity");
+            //myActivityMenu.DropDownItems.Add("📚 My Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<BorrowedHistoryForm>());
+            //myActivityMenu.DropDownItems.Add("📌 My Reservations", null, (s, e) => FormManager.ShowFormInMdi<ReservedBooksForm>());
+            //menuStrip.Items.Add(myActivityMenu);
 
-        private void CreateStaffMenu()
-        {
+            //// 📖 Student ACTIVITY – For Staff and Manager
+            //if (currentUserRole == UserLevelEnum.Staff || currentUserRole == UserLevelEnum.Manager)
+            //{
+            //    var StudentActivityMenu = new ToolStripMenuItem("📖 Student Activity");
+            //    StudentActivityMenu.DropDownItems.Add("📚 Student Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<BorrowedHistoryForm>());
+            //    StudentActivityMenu.DropDownItems.Add("📌 Student Reservations", null, (s, e) => FormManager.ShowFormInMdi<ReservedBooksForm>());
+            //    menuStrip.Items.Add(StudentActivityMenu);
+            //}
 
-        }
+            //// 🛠️ ADMIN – For Staff and Manager
+            //if (currentUserRole == UserLevelEnum.Staff || currentUserRole == UserLevelEnum.Manager)
+            //{
+            //    var adminMenu = new ToolStripMenuItem("🛠️ Admin");
+            //    adminMenu.DropDownItems.Add("👥 Manage Users", null, (s, e) => FormManager.ShowFormInMdi<ManageUsersForm>());
+            //    adminMenu.DropDownItems.Add("📘 Manage Books", null, (s, e) => FormManager.ShowFormInMdi<ManageBooksForm>());
+            //    adminMenu.DropDownItems.Add("🏷️ Manage Categories", null, (s, e) => FormManager.ShowFormInMdi<ManageCategoriesForm>());
+            //    adminMenu.DropDownItems.Add("👨‍💼 Manage Authors", null, (s, e) => FormManager.ShowFormInMdi<ManageAuthorsForm>());
+            //    adminMenu.DropDownItems.Add("🌐 Manage Languages", null, (s, e) => FormManager.ShowFormInMdi<ManageLanguagesForm>());
+            //    menuStrip.Items.Add(adminMenu);
+            //}
 
-        private void CreateManagerMenu()
-        {
-            // Books Menu
-            var booksMenu = new ToolStripMenuItem("📚 Books");
-            booksMenu.DropDownItems.Add("🔍 Search Book", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            booksMenu.DropDownItems.Add("📌 Reserve Book", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //// 🛠️ ADMIN – For Staff and Manager
+            //if (currentUserRole == UserLevelEnum.Staff || currentUserRole == UserLevelEnum.Manager)
+            //{
+            //    var manageUsersMenu = new ToolStripMenuItem("👥 Manage Users");
+            //    manageUsersMenu.DropDownItems.Add("➕ Add User", null, (s, e) => FormManager.ShowFormInMdi<AddUserForm>());
+            //    manageUsersMenu.DropDownItems.Add("📝 Update User", null, (s, e) => FormManager.ShowFormInMdi<UpdateUserForm>());
+            //    manageUsersMenu.DropDownItems.Add("❌ Delete User", null, (s, e) => FormManager.ShowFormInMdi<DeleteUserForm>());
+            //    manageUsersMenu.DropDownItems.Add("🔑 Reset Password", null, (s, e) => FormManager.ShowFormInMdi<ResetPasswordForm>());
+            //    menuStrip.Items.Add(manageUsersMenu);
 
-            // My Activity Menu
-            var activityMenu = new ToolStripMenuItem("📖 My Activity");
-            activityMenu.DropDownItems.Add("🕘 Borrowed Books History", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            activityMenu.DropDownItems.Add("📌 Reserved Books", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //    var manageBooksMenu = new ToolStripMenuItem("📘 Manage Books");
+            //    manageBooksMenu.DropDownItems.Add("➕ Add Book", null, (s, e) => FormManager.ShowFormInMdi<AddBookForm>());
+            //    manageBooksMenu.DropDownItems.Add("📝 Update Book", null, (s, e) => FormManager.ShowFormInMdi<UpdateBookForm>());
+            //    manageBooksMenu.DropDownItems.Add("❌ Delete Book", null, (s, e) => FormManager.ShowFormInMdi<DeleteBookForm>());
+            //    menuStrip.Items.Add(manageBooksMenu);
 
-            // User Management Menu
-            var userMenu = new ToolStripMenuItem("👥 User Management");
-            userMenu.DropDownItems.Add("➕ Add User", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            userMenu.DropDownItems.Add("📝 Update User Info", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            userMenu.DropDownItems.Add("🔑 Reset Password", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //    var manageCategoriesMenu = new ToolStripMenuItem("🏷️ Manage Categories");
+            //    manageCategoriesMenu.DropDownItems.Add("➕ Add Category", null, (s, e) => FormManager.ShowFormInMdi<AddCategoryForm>());
+            //    manageCategoriesMenu.DropDownItems.Add("📝 Update Category", null, (s, e) => FormManager.ShowFormInMdi<UpdateCategoryForm>());
+            //    manageCategoriesMenu.DropDownItems.Add("❌ Delete Category", null, (s, e) => FormManager.ShowFormInMdi<DeleteCategoryForm>());
+            //    menuStrip.Items.Add(manageCategoriesMenu);
 
-            // Book Management Menu (same as staff)
-            var bookMenu = new ToolStripMenuItem("📚 Book Management");
-            bookMenu.DropDownItems.Add("➕ Add Book", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            bookMenu.DropDownItems.Add("📝 Update Book", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            bookMenu.DropDownItems.Add("❌ Delete Book", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //    var manageAuthorsMenu = new ToolStripMenuItem("👨‍💼 Manage Authors");
+            //    manageAuthorsMenu.DropDownItems.Add("➕ Add Author", null, (s, e) => FormManager.ShowFormInMdi<AddAuthorForm>());
+            //    manageAuthorsMenu.DropDownItems.Add("📝 Update Author", null, (s, e) => FormManager.ShowFormInMdi<UpdateAuthorForm>());
+            //    manageAuthorsMenu.DropDownItems.Add("❌ Delete Author", null, (s, e) => FormManager.ShowFormInMdi<DeleteAuthorForm>());
+            //    menuStrip.Items.Add(manageAuthorsMenu);
 
-            bookMenu.DropDownItems.Add(new ToolStripSeparator());
-            bookMenu.DropDownItems.Add("📂 Manage Categories", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            bookMenu.DropDownItems.Add("👨‍💼 Manage Authors", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            bookMenu.DropDownItems.Add("🌐 Manage Languages", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //    var manageLanguagesMenu = new ToolStripMenuItem("🌐 Manage Languages");
+            //    manageLanguagesMenu.DropDownItems.Add("➕ Add Language", null, (s, e) => FormManager.ShowFormInMdi<AddLanguageForm>());
+            //    manageLanguagesMenu.DropDownItems.Add("📝 Update Language", null, (s, e) => FormManager.ShowFormInMdi<UpdateLanguageForm>());
+            //    manageLanguagesMenu.DropDownItems.Add("❌ Delete Language", null, (s, e) => FormManager.ShowFormInMdi<DeleteLanguageForm>());
+            //    menuStrip.Items.Add(manageLanguagesMenu);
+            //}
 
-            // Student Activity Menu
-            var studentMenu = new ToolStripMenuItem("👥 Activity");
-            studentMenu.DropDownItems.Add("🧾 View Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            studentMenu.DropDownItems.Add("📌 View Reservations", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //// 📊 REPORTS – Only for Manager
+            //if (currentUserRole == UserLevelEnum.Manager)
+            //{
+            //    var reportsMenu = new ToolStripMenuItem("📊 Reports");
+            //    reportsMenu.DropDownItems.Add("📈 Most Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<ReportMostBorrowedBooksForm>());
+            //    reportsMenu.DropDownItems.Add("⏰ Overdue Books", null, (s, e) => FormManager.ShowFormInMdi<ReportOverdueBooksForm>());
+            //    reportsMenu.DropDownItems.Add("📚 Borrowings by Category", null, (s, e) => FormManager.ShowFormInMdi<ReportByCategoryForm>());
+            //    menuStrip.Items.Add(reportsMenu);
+            //}
 
-            // Reports Menu
-            var reportsMenu = new ToolStripMenuItem("📊 Reports");
-            reportsMenu.DropDownItems.Add("📈 Most Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            reportsMenu.DropDownItems.Add("⏰ Overdue Books", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            reportsMenu.DropDownItems.Add("📚 Borrowings by Category", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
+            //// ⚙️ PROFILE – Shared by All Users
+            //var profileMenu = new ToolStripMenuItem("⚙️ Profile");
+            //profileMenu.DropDownItems.Add("✏️ Update My Info", null, (s, e) => FormManager.ShowFormInMdi<UpdateProfileForm>());
+            //profileMenu.DropDownItems.Add("🔒 Change Password", null, (s, e) => FormManager.ShowFormInMdi<ChangePasswordForm>());
+            //menuStrip.Items.Add(profileMenu);
 
-            // Profile Menu
-            var profileMenu = new ToolStripMenuItem("🙍 Profile");
-            profileMenu.DropDownItems.Add("✏️ Update Email/Phone", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-            profileMenu.DropDownItems.Add("🔑 Change Password", null, (s, e) => FormManager.ShowFormInMdi<DashboardForm>());
-
-            // Windows
-            var windowsMenu = new ToolStripMenuItem("👥 Windows");
+            // 🪟 WINDOWS – Always
+            var windowsMenu = new ToolStripMenuItem("🪟 Windows");
             windowsMenu.DropDownItems.Add("🪟 Cascade", null, (s, e) => LayoutMdi(MdiLayout.Cascade));
             windowsMenu.DropDownItems.Add("📏 Tile Vertical", null, (s, e) => LayoutMdi(MdiLayout.TileVertical));
             windowsMenu.DropDownItems.Add("📐 Tile Horizontal", null, (s, e) => LayoutMdi(MdiLayout.TileHorizontal));
-            windowsMenu.DropDownItems.Add("❌ Close All", null, (s, e) =>
+            windowsMenu.DropDownItems.Add("❌ Close All Windows", null, (s, e) =>
             {
                 foreach (Form childForm in this.MdiChildren)
-                {
                     childForm.Close();
-                }
             });
+            menuStrip.Items.Add(windowsMenu);
 
-            var closeAppMenu = new ToolStripMenuItem("❌ Close", null, (s, e) => this.Close());
-            menuStrip.Items.AddRange(new ToolStripItem[] { booksMenu, activityMenu, userMenu, bookMenu, studentMenu, reportsMenu, profileMenu, windowsMenu, closeAppMenu });
+            // 🔚 EXIT – Always
+            var exitMenu = new ToolStripMenuItem("🔚 Exit", null, (s, e) => this.Close());
+            menuStrip.Items.Add(exitMenu);
+
+            // Assign to Form
+            this.MainMenuStrip = menuStrip;
         }
         #endregion
     }

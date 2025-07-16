@@ -1,15 +1,17 @@
 ﻿using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
-using System.Data;
 
 namespace LibrarySystem.DAL.Interfaces
 {
     public interface IBorrowRepository
     {
+        //PagedResultDto<List<BarrowEntity>> GetAllPaged(PagedRequestDto request);
+        //PagedResultDto<List<BarrowEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
+        List<BarrowEntity> GetAll();
+        List<BarrowEntity> GetAllByUserId(int uid);
         BarrowEntity GetById(int bid);
-        PagedResultDto<List<BarrowEntity>> GetByUserPaged(int uid, PagedRequestDto request);
         int Add(BarrowEntity borrow);
-        void Return(int borrowId, System.DateTime actualReturnDate);
+        bool Return(int borrowId, System.DateTime actualReturnDate, decimal lateFee);
     }
 }

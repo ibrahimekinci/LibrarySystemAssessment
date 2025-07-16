@@ -1,22 +1,25 @@
-﻿using System.Data;
-using System.Linq;
+﻿using LibrarySystem.DAL.DataSets.BookDataSetTableAdapters;
 using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
-using LibrarySystem.DAL.DataSets.BookDataSetTableAdapters;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace LibrarySystem.DAL.Repositories
 {
     public class BookRepository : BaseRepository, IBookRepository
     {
-        private readonly ViewBookTableAdapter _viewBookAdapter = new ViewBookTableAdapter();
-        private readonly TabBookTableAdapter _tabBookAdapter = new TabBookTableAdapter();
+
+        private readonly TabBookTableAdapter tableAdapter = new TabBookTableAdapter();
+        private readonly ViewBookTableAdapter ViewAdapter = new ViewBookTableAdapter();
+        private readonly ViewBookAvailableTableAdapter _viewBookAvailableAdapter = new ViewBookAvailableTableAdapter();
+        private readonly ViewBookBorrowedTableAdapter _viewBookBorrowedAdapter = new ViewBookBorrowedTableAdapter();
 
         public BookEntity GetByISBN(string isbn)
         {
-            var table = _viewBookAdapter.GetData().AsEnumerable()
+            var table = ViewAdapter.GetData().AsEnumerable()
                 .Where(r => r.Field<string>("ISBN") == isbn)
                 .CopyToDataTable();
 
@@ -26,13 +29,13 @@ namespace LibrarySystem.DAL.Repositories
         }
         public List<BookEntity> GetAll()
         {
-            var table = _viewBookAdapter.GetData();
+            var table = ViewAdapter.GetData();
             var result = Mapper.Map<List<BookEntity>>(table) ?? new List<BookEntity>();
             return result;
         }
         public List<BookEntity> Search(BookSearchCriteriaDto dto)
         {
-            var table = _viewBookAdapter.GetData();
+            var table = ViewAdapter.GetData();
             var filtered = table.AsEnumerable();
 
             if (filtered.Count() > 0 && !string.IsNullOrWhiteSpace(dto.BookName))
@@ -56,22 +59,34 @@ namespace LibrarySystem.DAL.Repositories
             return result;
         }
 
-
-        public void Update(BookEntity book)
+        public List<BookEntity> GetAllBookBorrowed()
         {
-            throw new System.NotImplementedException();
+            var table = _viewBookBorrowedAdapter.GetData();
+            var result = Mapper.Map<List<BookEntity>>(table) ?? new List<BookEntity>();
+            return result;
         }
 
-        public int Add(BookEntity book)
+        public List<BookEntity> GetAllBookAvailable()
         {
-            throw new System.NotImplementedException();
+            var table = _viewBookAvailableAdapter.GetData();
+            var result = Mapper.Map<List<BookEntity>>(table) ?? new List<BookEntity>();
+            return result;
         }
 
-        public void Delete(string isbn)
+        public string Add(BookEntity book)
         {
-            throw new System.NotImplementedException();
+            var id = tableAdapter.InsertCustom(book.ISBN, book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher);
+            return id > 0 ? book.ISBN : "";
         }
 
+        public bool Update(BookEntity book)
+        {
+            return tableAdapter.UpdateById(book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher, book.ISBN) > 0;
+        }
 
+        public bool Delete(string isbn)
+        {
+            return tableAdapter.DeleteByISBN(isbn) > 0;
+        }
     }
 }

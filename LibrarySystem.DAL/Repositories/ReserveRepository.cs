@@ -1,5 +1,4 @@
-﻿using System;
-using LibrarySystem.DAL.DTOs;
+﻿using LibrarySystem.DAL.DataSets.ReserveDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
 using System.Collections.Generic;
@@ -8,14 +7,30 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class ReserveRepository : BaseRepository, IReserveRepository
     {
+        private readonly TabReservedTableAdapter tableAdapter = new TabReservedTableAdapter();
         public int Add(ReserveEntity reserve)
         {
-            throw new NotImplementedException();
+            var id = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, formatDateForDb(reserve.ReservedDate));
+            return id;
         }
 
-        public PagedResultDto<List<ReserveEntity>> GetByUserPaged(int uid, PagedRequestDto request)
+        public bool Delete(int rid)
         {
-            throw new NotImplementedException();
+            return tableAdapter.DeleteById(rid) > 0;
+        }
+
+        public List<ReserveEntity> GetAll()
+        {
+            var table = tableAdapter.GetData();
+            var result = Mapper.Map<List<ReserveEntity>>(table) ?? new List<ReserveEntity>();
+            return result;
+        }
+
+        public List<ReserveEntity> GetByUserId(int uid)
+        {
+            var table = tableAdapter.GetByUserId(uid);
+            var result = Mapper.Map<List<ReserveEntity>>(table) ?? new List<ReserveEntity>();
+            return result;
         }
     }
 }

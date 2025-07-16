@@ -6,11 +6,14 @@ namespace LibrarySystem.DAL.Interfaces
 {
     public interface IBookRepository
     {
-        BookEntity GetByISBN(string isbn);
+        //PagedResultDto<List<BookEntity>> GetAllPaged(PagedRequestDto request);
         List<BookEntity> GetAll();
+        List<BookEntity> GetAllBookBorrowed();
+        List<BookEntity> GetAllBookAvailable();
         List<BookEntity> Search(BookSearchCriteriaDto dto);
-        int Add(BookEntity book);
-        void Update(BookEntity book);
-        void Delete(string isbn);
+        BookEntity GetByISBN(string isbn);
+        string Add(BookEntity book);
+        bool Update(BookEntity book);
+        bool Delete(string isbn);
     }
 }

@@ -14,9 +14,11 @@ namespace LibrarySystem.DAL.DataSets.AuthorDataSetTableAdapters {
     }
 }
 
-namespace LibrarySystem.DAL.AuthorDataSetTableAdapters {
-    
-    
-    public partial class TabAuthorTableAdapter {
+namespace LibrarySystem.DAL.DataSets.AuthorDataSetTableAdapters
+{
+
+
+    public partial class TabAuthorTableAdapter
+    {
     }
 }

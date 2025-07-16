@@ -1,5 +1,4 @@
 ﻿using LibrarySystem.DAL.DataSets.UserDataSetTableAdapters;
-using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
 using System.Collections.Generic;
@@ -9,58 +8,43 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly TabUserTableAdapter _adapter = new TabUserTableAdapter();
+        private readonly TabUserTableAdapter tableAdapter = new TabUserTableAdapter();
+
+        public int Add(UserEntity user)
+        {
+            var id = tableAdapter.InsertCustom(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel);
+            return id;
+        }
+
+        public bool Delete(int uid)
+        {
+            return tableAdapter.DeleteById(uid) > 0;
+        }
+
+        public List<UserEntity> GetAll()
+        {
+            var table = tableAdapter.GetData();
+            var result = Mapper.Map<List<UserEntity>>(table) ?? new List<UserEntity>();
+            return result;
+        }
 
         public UserEntity GetById(int uid)
         {
-            var table = _adapter.GetDataById(uid); // View ya da sorgu: WHERE UID = @uid
+            var table = tableAdapter.GetById(uid);
             var row = table.FirstOrDefault();
             return row == null ? new UserEntity() : Mapper.Map<UserEntity>(row);
         }
 
         public UserEntity GetByUsername(string username)
         {
-            var table = _adapter.GetDataByUserName(username); // WHERE UserName = @username
+            var table = tableAdapter.GetByUserName(username);
             var row = table.FirstOrDefault();
             var result = row == null ? new UserEntity() : Mapper.Map<UserEntity>(row);
             return result;
         }
-
-        public PagedResultDto<List<UserEntity>> GetAll(PagedRequestDto request)
+        public bool Update(UserEntity user)
         {
-            var table = _adapter.GetData();
-            var data = Mapper.Map<List<UserEntity>>(table);
-            var paged = data.Skip((request.PageNumber - 1) * request.PageSize)
-                            .Take(request.PageSize)
-                            .ToList();
-
-            return new PagedResultDto<List<UserEntity>>
-            {
-                Items = paged,
-                TotalCount = data.Count,
-                PageNumber = request.PageNumber,
-                PageSize = request.PageSize
-            };
-        }
-
-        public PagedResultDto<List<UserEntity>> GetAllPaged(PagedRequestDto request)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int Add(UserEntity user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Update(UserEntity user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void UpdatePassword(int uid, string hashedPassword)
-        {
-            throw new System.NotImplementedException();
+            return tableAdapter.UpdateById(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel, user.UID) > 0;
         }
     }
 }

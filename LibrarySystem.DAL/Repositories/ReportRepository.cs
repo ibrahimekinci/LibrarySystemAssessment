@@ -1,25 +1,31 @@
-﻿using LibrarySystem.DAL.DTOs;
+﻿using LibrarySystem.DAL.DataSets.ReportDataSetTableAdapters;
 using LibrarySystem.DAL.Interfaces;
-using System;
 using System.Data;
 
 namespace LibrarySystem.DAL.Repositories
 {
     public class ReportRepository : IReportRepository
     {
-        public PagedResultDto<DataTable> GetBorrowedBooksByCategoryPaged(PagedRequestDto request)
+        private readonly ViewReportBorrowedBooksByCategoryTableAdapter viewReportBorrowedBooksByCategoryTableAdapter = new ViewReportBorrowedBooksByCategoryTableAdapter();
+        private readonly ViewReportMostBorrowedBooksTableAdapter viewReportMostBorrowedBooksTableAdapter = new ViewReportMostBorrowedBooksTableAdapter();
+        private readonly ViewReportOverdueBooksTableAdapter viewReportOverdueBooksTableAdapter = new ViewReportOverdueBooksTableAdapter();
+
+        public DataTable GetBorrowedBooksByCategory()
         {
-            throw new NotImplementedException();
+            var table = viewReportBorrowedBooksByCategoryTableAdapter.GetData();
+            return table;
         }
 
-        public PagedResultDto<DataTable> GetMostBorrowedBooksPaged(PagedRequestDto request)
+        public DataTable GetMostBorrowedBooks()
         {
-            throw new NotImplementedException();
+            var table = viewReportMostBorrowedBooksTableAdapter.GetData();
+            return table;
         }
 
-        public PagedResultDto<DataTable> GetOverdueBooksPaged(PagedRequestDto request)
+        public DataTable GetOverdueBooks()
         {
-            throw new NotImplementedException();
+            var table = viewReportOverdueBooksTableAdapter.GetData();
+            return table;
         }
     }
 }

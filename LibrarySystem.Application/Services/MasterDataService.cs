@@ -48,9 +48,7 @@ namespace LibrarySystem.BLL.Services
 
         public PagedResultDto<List<CategoryViewDto>> GetAllCategories(PagedRequestDto pagedRequestDto = null)
         {
-         var repoDto= Mapper.Map<DAL.DTOs.PagedRequestDto>(pagedRequestDto ?? new PagedRequestDto());
-            
-            var resultEntities = categoryRepository.GetAllPaged(repoDto);
+            var resultEntities = categoryRepository.GetAll();
             var result = Mapper.Map<PagedResultDto<List<CategoryViewDto>>>(resultEntities);
             return result;
         }

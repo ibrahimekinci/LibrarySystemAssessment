@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 
 namespace LibrarySystem.DAL.Repositories
 {
@@ -16,6 +17,10 @@ namespace LibrarySystem.DAL.Repositories
                 }
                 return _mapper;
             }
+        }
+        public static string formatDateForDb(DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss");
         }
     }
 }

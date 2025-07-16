@@ -5,6 +5,7 @@ namespace LibrarySystem.DAL.Entities
     public class BarrowEntity
     {
         public int BID { get; set; }
+        public int UID { get; set; }
         public string ISBN { get; set; }
         public DateTime ReturnDate { get; set; }
         public DateTime ActualReturnDate { get; set; }

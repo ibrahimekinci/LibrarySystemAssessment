@@ -6,8 +6,10 @@ namespace LibrarySystem.DAL.Interfaces
 {
     public interface IAuthorRepository
     {
-        PagedResultDto<List<AuthorEntity>> GetAllPaged(PagedRequestDto request);
+        //PagedResultDto<List<AuthorEntity>> GetAllPaged(PagedRequestDto request);
+        List<AuthorEntity> GetAll();
         int Add(AuthorEntity author);
-        void Delete(int aid);
+        bool Delete(int aid);
+        bool Update(AuthorEntity author);
     }
 }

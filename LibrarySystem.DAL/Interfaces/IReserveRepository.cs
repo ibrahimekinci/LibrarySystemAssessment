@@ -1,13 +1,17 @@
 ﻿using LibrarySystem.DAL.DTOs;
 using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
-using System.Data;
 
 namespace LibrarySystem.DAL.Interfaces
 {
     public interface IReserveRepository
     {
-        PagedResultDto<List<ReserveEntity>> GetByUserPaged(int uid, PagedRequestDto request);
+        //PagedResultDto<List<ReserveEntity>> GetAllPaged(PagedRequestDto request);
+        //PagedResultDto<List<ReserveEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
+        List<ReserveEntity> GetAll();
+        List<ReserveEntity> GetByUserId(int uid);
         int Add(ReserveEntity reserve);
+        bool Delete(int rid);
+
     }
 }

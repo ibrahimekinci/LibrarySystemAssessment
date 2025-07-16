@@ -5,7 +5,9 @@ namespace LibrarySystem.BLL.DTOs
 {
     public class BarrowCreateDto
     {
-        public int BID { get; set; }
+
+        [Required]
+        public int UID { get; set; }
 
         [Required, StringLength(13, MinimumLength = 10)]
         public string ISBN { get; set; }
