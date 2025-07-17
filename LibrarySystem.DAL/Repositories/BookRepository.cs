@@ -4,6 +4,7 @@ using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace LibrarySystem.DAL.Repositories
@@ -18,25 +19,40 @@ namespace LibrarySystem.DAL.Repositories
 
         public BookEntity GetByISBN(string isbn)
         {
-            return ViewAdapter.GetDataByISBN("ISBN").ToList<BookEntity>().FirstOrDefault();
+            var table = ViewAdapter.GetDataByISBN(isbn);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();
         }
         public List<BookEntity> GetAll()
         {
-            return ViewAdapter.GetData().ToList<BookEntity>();
+            var table = ViewAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>();
         }
         public List<BookEntity> Search(BookSearchCriteriaDto dto)
         {
-            return ViewAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId.ToString()).ToList<BookEntity>();
+            var table = ViewAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId.ToString());
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>();
         }
 
         public List<BookEntity> GetAllBookBorrowed()
         {
-            return _viewBookBorrowedAdapter.GetData().ToList<BookEntity>();
+            var table = _viewBookBorrowedAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>();
         }
 
         public List<BookEntity> GetAllBookAvailable()
         {
-            return _viewBookAvailableAdapter.GetData().ToList<BookEntity>();
+            var table = _viewBookAvailableAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>();
         }
 
         public string Add(BookEntity book)

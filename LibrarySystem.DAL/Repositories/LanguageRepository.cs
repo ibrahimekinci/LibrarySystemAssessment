@@ -4,6 +4,7 @@ using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace LibrarySystem.DAL.Repositories
 {
@@ -28,7 +29,10 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<LanguageEntity> GetAll()
         {
-            return tableAdapter.GetData().ToList<LanguageEntity>();
+            var table = tableAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<LanguageEntity>();
         }
 
         public bool Update(LanguageEntity language)

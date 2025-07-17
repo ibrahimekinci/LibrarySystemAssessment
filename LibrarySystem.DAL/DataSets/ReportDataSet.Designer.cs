@@ -353,6 +353,8 @@ namespace LibrarySystem.DAL.DataSets {
             
             private global::System.Data.DataColumn columnBorrowedCount;
             
+            private global::System.Data.DataColumn columnCID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewReportBorrowedBooksByCategoryDataTable() {
@@ -404,6 +406,14 @@ namespace LibrarySystem.DAL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CIDColumn {
+                get {
+                    return this.columnCID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,14 +449,22 @@ namespace LibrarySystem.DAL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewReportBorrowedBooksByCategoryRow AddViewReportBorrowedBooksByCategoryRow(string CategoryName, int BorrowedCount) {
+            public ViewReportBorrowedBooksByCategoryRow AddViewReportBorrowedBooksByCategoryRow(string CategoryName, int BorrowedCount, int CID) {
                 ViewReportBorrowedBooksByCategoryRow rowViewReportBorrowedBooksByCategoryRow = ((ViewReportBorrowedBooksByCategoryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CategoryName,
-                        BorrowedCount};
+                        BorrowedCount,
+                        CID};
                 rowViewReportBorrowedBooksByCategoryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewReportBorrowedBooksByCategoryRow);
                 return rowViewReportBorrowedBooksByCategoryRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ViewReportBorrowedBooksByCategoryRow FindByCID(int CID) {
+                return ((ViewReportBorrowedBooksByCategoryRow)(this.Rows.Find(new object[] {
+                            CID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -468,6 +486,7 @@ namespace LibrarySystem.DAL.DataSets {
             internal void InitVars() {
                 this.columnCategoryName = base.Columns["CategoryName"];
                 this.columnBorrowedCount = base.Columns["BorrowedCount"];
+                this.columnCID = base.Columns["CID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -477,8 +496,14 @@ namespace LibrarySystem.DAL.DataSets {
                 base.Columns.Add(this.columnCategoryName);
                 this.columnBorrowedCount = new global::System.Data.DataColumn("BorrowedCount", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBorrowedCount);
+                this.columnCID = new global::System.Data.DataColumn("CID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnCID}, true));
                 this.columnCategoryName.AllowDBNull = false;
                 this.columnCategoryName.MaxLength = 50;
+                this.columnCID.AllowDBNull = false;
+                this.columnCID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1383,6 +1408,17 @@ namespace LibrarySystem.DAL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int CID {
+                get {
+                    return ((int)(this[this.tableViewReportBorrowedBooksByCategory.CIDColumn]));
+                }
+                set {
+                    this[this.tableViewReportBorrowedBooksByCategory.CIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsBorrowedCountNull() {
                 return this.IsNull(this.tableViewReportBorrowedBooksByCategory.BorrowedCountColumn);
             }
@@ -1917,6 +1953,7 @@ namespace LibrarySystem.DAL.DataSets.ReportDataSetTableAdapters {
             tableMapping.DataSetTable = "ViewReportBorrowedBooksByCategory";
             tableMapping.ColumnMappings.Add("CategoryName", "CategoryName");
             tableMapping.ColumnMappings.Add("BorrowedCount", "BorrowedCount");
+            tableMapping.ColumnMappings.Add("CID", "CID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1933,7 +1970,7 @@ namespace LibrarySystem.DAL.DataSets.ReportDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT CategoryName, BorrowedCount FROM dbo.ViewReportBorrowedBooksByCategory";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.ViewReportBorrowedBooksByCategory";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2109,8 +2146,7 @@ namespace LibrarySystem.DAL.DataSets.ReportDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT UID, UserName, Email, ISBN, BookName, BID, BorrowDate, ReturnDate, DaysOve" +
-                "rdue, OverduePeriod FROM dbo.ViewReportOverdueBooks";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.ViewReportOverdueBooks";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

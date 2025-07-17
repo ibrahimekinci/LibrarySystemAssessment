@@ -13,18 +13,24 @@ namespace LibrarySystem.DAL.Repositories
         public DataTable GetBorrowedBooksByCategory()
         {
             var table = viewReportBorrowedBooksByCategoryTableAdapter.GetData();
+            if (table == null)
+                return null;
             return table;
         }
 
         public DataTable GetMostBorrowedBooks()
         {
             var table = viewReportMostBorrowedBooksTableAdapter.GetData();
+            if (table == null)
+                return null;
             return table;
         }
 
         public DataTable GetOverdueBooks()
         {
             var table = viewReportOverdueBooksTableAdapter.GetData();
+            if (table == null)
+                return null;
             return table;
         }
     }

@@ -1,16 +1,17 @@
 ﻿using LibrarySystem.BLL.DTOs;
 using LibrarySystem.BLL.Interfaces;
+using System.Collections.Generic;
 
 namespace LibrarySystem.BLL.Services
 {
-    public class BorrowService :  BaseService, IBorrowService
+    public class BarrowService :  BaseService, IBarrowService
     {
         public int BorrowBook(BarrowCreateDto barrowRecord)
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDto<BookViewDto> GetBorrowedBooksByUser(PagedRequestDto pagedRequestDto, int userId)
+        public List<BookViewDto> GetBorrowedBooksByUser(int userId)
         {
             throw new System.NotImplementedException();
         }

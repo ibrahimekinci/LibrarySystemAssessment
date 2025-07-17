@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.BLL.DTOs;
+using System.Collections.Generic;
 
 namespace LibrarySystem.BLL.Interfaces
 {
@@ -6,6 +7,6 @@ namespace LibrarySystem.BLL.Interfaces
     {
         int ReserveBook(ReserveCreateDto reserveRecordDto);
         int UpdateBookReservation(ReserveUpdateDto reserveRecordDto);
-        PagedResultDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto,int userId);
+        List<ReserveViewDto> GetReservationsByUser(int userId);
     }
 }

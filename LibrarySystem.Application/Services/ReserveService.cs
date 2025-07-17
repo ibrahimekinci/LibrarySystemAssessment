@@ -1,11 +1,13 @@
 ﻿using LibrarySystem.BLL.DTOs;
 using LibrarySystem.BLL.Interfaces;
+using System.Collections.Generic;
 
 namespace LibrarySystem.BLL.Services
 {
     public class ReserveService : BaseService, IReserveService
     {
-        public PagedResultDto<ReserveViewDto> GetReservationsByUser(PagedRequestDto pagedRequestDto, int userId)
+
+        public List<ReserveViewDto> GetReservationsByUser(int userId)
         {
             throw new System.NotImplementedException();
         }

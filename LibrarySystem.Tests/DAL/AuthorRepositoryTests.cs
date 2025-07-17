@@ -1,8 +1,5 @@
-﻿using Xunit;
-using LibrarySystem.DAL.Repositories;
+﻿using LibrarySystem.DAL.Repositories;
 using LibrarySystem.DAL.Entities;
-using System.Linq;
-using System;
 
 namespace LibrarySystem.Tests.DAL
 {

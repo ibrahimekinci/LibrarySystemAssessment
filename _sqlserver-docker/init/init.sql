@@ -197,25 +197,26 @@ SELECT
     br.BID,
     br.BorrowDate,
     br.ReturnDate,
-    DATEDIFF(day, br.ReturnDate, GETDATE()) AS DaysOverdue,
+    DATEDIFF(DAY, br.ReturnDate, GETDATE()) AS DaysOverdue,
     CASE 
-        WHEN DATEDIFF(day, br.ReturnDate, GETDATE()) BETWEEN 1 AND 7 THEN '1 Week'
-        WHEN DATEDIFF(day, br.ReturnDate, GETDATE()) BETWEEN 8 AND 30 THEN '1 Month'
-        ELSE 'Over 1 Month'
+        WHEN DATEDIFF(DAY, br.ReturnDate, GETDATE()) BETWEEN 1 AND 7 THEN '1 Week'
+        WHEN DATEDIFF(DAY, br.ReturnDate, GETDATE()) BETWEEN 8 AND 30 THEN '1 Month'
+        WHEN DATEDIFF(DAY, br.ReturnDate, GETDATE()) > 30 THEN 'Over 1 Month'
+        ELSE 'Not Overdue'
     END AS OverduePeriod
 FROM TabBorrow br
 JOIN TabUser u ON br.UID = u.UID
 JOIN TabBook b ON br.ISBN = b.ISBN
-WHERE br.ActualReturnDate is null  
-AND GETDATE() > br.ReturnDate;
+WHERE br.ActualReturnDate = '2000-01-01'
+  AND GETDATE() > br.ReturnDate;
 go
 
 
 -- 3. Borrowed Books by Category View
 CREATE VIEW ViewReportBorrowedBooksByCategory AS
-SELECT TabCategory.CategoryName, COUNT(*) AS BorrowedCount
+SELECT TabCategory.CID, TabCategory.CategoryName, COUNT(*) AS BorrowedCount
 FROM TabBorrow
 JOIN TabBook ON TabBorrow.ISBN = TabBook.ISBN
 JOIN TabCategory ON TabBook.Category = TabCategory.CID
-GROUP BY TabCategory.CategoryName;
+GROUP BY TabCategory.CID,TabCategory.CategoryName;
 go

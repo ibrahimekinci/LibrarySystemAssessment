@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.DAL.DataSets.AuthorDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
-using LibrarySystem.DAL.Interfaces;
 using LibrarySystem.DAL.Helpers;
+using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 namespace LibrarySystem.DAL.Repositories
 {
@@ -28,7 +29,10 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<AuthorEntity> GetAll()
         {
-            return tableAdapter.GetData().ToList<AuthorEntity>();
+            var table = tableAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<AuthorEntity>();
         }
 
         public bool Update(AuthorEntity author)

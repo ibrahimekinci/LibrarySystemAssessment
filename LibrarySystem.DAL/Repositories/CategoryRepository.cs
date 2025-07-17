@@ -4,6 +4,7 @@ using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data;
 namespace LibrarySystem.DAL.Repositories
 {
     public class CategoryRepository : BaseRepository, ICategoryRepository
@@ -27,7 +28,10 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<CategoryEntity> GetAll()
         {
-            return tableAdapter.GetData().ToList<CategoryEntity>();
+            var table = tableAdapter.GetData();
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<CategoryEntity>();
         }
 
         public bool Update(CategoryEntity category)

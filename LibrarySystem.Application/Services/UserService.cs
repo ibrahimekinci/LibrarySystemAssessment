@@ -2,6 +2,7 @@
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.DAL.Interfaces;
 using LibrarySystem.DAL.Repositories;
+using System.Collections.Generic;
 
 namespace LibrarySystem.BLL.Services
 {
@@ -25,7 +26,8 @@ namespace LibrarySystem.BLL.Services
             return result;
         }
 
-        public PagedResultDto<UserViewDto> GetAllUsers(PagedRequestDto pagedRequestDto)
+
+        public List<UserViewDto> GetAllUsers()
         {
             throw new System.NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace LibrarySystem.DAL.Entities
         public string Password { get; set; }
         public int UID { get; set; }
         public string Email { get; set; }
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
         public UserLevelEnum UserLevel { get; set; }
         public string UserLevelName
         {

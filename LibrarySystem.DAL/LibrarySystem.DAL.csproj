@@ -133,7 +133,7 @@
     <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
     <Compile Include="Interfaces\IBookRepository.cs" />
-    <Compile Include="Interfaces\IBorrowRepository.cs" />
+    <Compile Include="Interfaces\IBarrowRepository.cs" />
     <Compile Include="Interfaces\ICategoryRepository.cs" />
     <Compile Include="Interfaces\ILanguageRepository.cs" />
     <Compile Include="Interfaces\IReportRepository.cs" />
@@ -148,7 +148,7 @@
     <Compile Include="Repositories\AuthorRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
-    <Compile Include="Repositories\BorrowRepository.cs" />
+    <Compile Include="Repositories\BarrowRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\LanguageRepository.cs" />
     <Compile Include="Repositories\ReportRepository.cs" />

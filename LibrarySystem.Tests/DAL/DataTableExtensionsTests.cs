@@ -27,7 +27,7 @@ namespace LibrarySystem.Tests.DAL
             table.Rows.Add(row);
 
             // Act
-            var entity = row.ToEntity<SampleEntity>();
+            var entity = table.ToList<SampleEntity>().FirstOrDefault();
 
             // Assert
             Assert.Equal(1, entity.Id);
@@ -39,10 +39,16 @@ namespace LibrarySystem.Tests.DAL
         public void ToEntity_Should_Return_Default_Instance_When_Row_Is_Null()
         {
             // Arrange
-            DataRow nullRow = null;
+            var table = new DataTable();
+            table.Columns.Add("Id", typeof(int));
+            table.Columns.Add("Name", typeof(string));
+            table.Columns.Add("CreatedDate", typeof(DateTime));
+
+            var row = table.NewRow();
+            table.Rows.Add(row);
 
             // Act
-            var entity = nullRow.ToEntity<SampleEntity>();
+            var entity = table.ToList<SampleEntity>().FirstOrDefault();
 
             // Assert
             Assert.NotNull(entity);
@@ -63,7 +69,7 @@ namespace LibrarySystem.Tests.DAL
             table.Rows.Add(row);
 
             // Act
-            var entity = row.ToEntity<SampleEntity>();
+            var entity = table.ToList<SampleEntity>().FirstOrDefault();
 
             // Assert
             Assert.Equal(42, entity.Id);
@@ -83,7 +89,7 @@ namespace LibrarySystem.Tests.DAL
             table.Rows.Add(row);
 
             // Act
-            var entity = row.ToEntity<SampleEntity>();
+            var entity = table.ToList<SampleEntity>().FirstOrDefault();
 
             // Assert
             Assert.Null(entity.Name); // Should handle DBNull gracefully

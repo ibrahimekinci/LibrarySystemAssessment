@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LibrarySystem.DAL.Interfaces
 {
-    public interface IBorrowRepository
+    public interface IBarrowRepository
     {
         //PagedResultDto<List<BarrowEntity>> GetAllPaged(PagedRequestDto request);
         //PagedResultDto<List<BarrowEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);

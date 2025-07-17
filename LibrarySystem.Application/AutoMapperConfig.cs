@@ -49,16 +49,8 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<UserUpdateDto, UserEntity>();
 
                 cfg.CreateMap<BookSearchCriteriaDto, DAL.DTOs.BookSearchCriteriaDto>();
-                cfg.CreateMap<PagedRequestDto, DAL.DTOs.PagedRequestDto>().ReverseMap();
-                cfg.CreateMap(typeof(DAL.DTOs.PagedResultDto<>), typeof(PagedResultDto<>))
-         .ForMember("Items", opt => opt.MapFrom("Items"))
-         .ForMember("TotalCount", opt => opt.MapFrom("TotalCount"))
-         .ForMember("PageNumber", opt => opt.MapFrom("PageNumber"))
-         .ForMember("PageSize", opt => opt.MapFrom("PageSize"));
-
-
             });
-            //config.AssertConfigurationIsValid();
+            config.AssertConfigurationIsValid();
             _mapper = config.CreateMapper();
         }
     }

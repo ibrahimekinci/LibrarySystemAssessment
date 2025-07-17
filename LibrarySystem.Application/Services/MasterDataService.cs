@@ -41,19 +41,18 @@ namespace LibrarySystem.BLL.Services
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto)
+        public List<AuthorViewDto> GetAllAuthors()
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDto<List<CategoryViewDto>> GetAllCategories(PagedRequestDto pagedRequestDto = null)
+
+        public List<List<CategoryViewDto>> GetAllCategories()
         {
-            var resultEntities = categoryRepository.GetAll();
-            var result = Mapper.Map<PagedResultDto<List<CategoryViewDto>>>(resultEntities);
-            return result;
+            throw new System.NotImplementedException();
         }
 
-        public PagedResultDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto)
+        public List<LanguageViewDto> GetAllLanguages()
         {
             throw new System.NotImplementedException();
         }

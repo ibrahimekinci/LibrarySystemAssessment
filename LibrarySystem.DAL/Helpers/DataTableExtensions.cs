@@ -8,19 +8,17 @@ namespace LibrarySystem.DAL.Helpers
     {
         public static List<TDestination> ToList<TDestination>(this DataTable table) where TDestination : new()
         {
+
+
+            if (table == null)
+                return null;
+
             var list = new List<TDestination>();
-
-            if (table == null || table.Rows.Count == 0)
-                return list;
-
             foreach (DataRow row in table.Rows)
             {
                 var entity = new TDestination();
-                if (row != null)
-                {
-                    list.Add(entity); // Add default instance if row is null
+                if (row == null)
                     continue; // Skip to next iteration if row is null
-                }
 
                 var properties = typeof(TDestination).GetProperties();
 
@@ -35,7 +33,6 @@ namespace LibrarySystem.DAL.Helpers
                         }
                     }
                 }
-
 
                 list.Add(entity);
             }

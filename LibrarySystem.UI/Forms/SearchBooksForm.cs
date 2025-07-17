@@ -39,8 +39,8 @@ namespace LibrarySystem.UI.Forms
         private void BookSearchForm_Load(object sender, System.EventArgs e)
         {
 
-            var ds = masterDataService.GetAllCategories();
-            cbCategory.DataSource = ds.Items;
+            var categories = masterDataService.GetAllCategories();
+            cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CID";
         }

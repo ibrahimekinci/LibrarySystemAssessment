@@ -4,6 +4,6 @@
     {
         public string BookName { get; set; }
         public string AuthorName { get; set; }
-        public int? CategoryId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

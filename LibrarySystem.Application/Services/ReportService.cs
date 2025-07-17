@@ -6,17 +6,17 @@ namespace LibrarySystem.BLL.Services
 {
     public class ReportService : BaseService, IReportService
     {
-        public PagedResultDto<DataTable> GetBorrowedBooksByCategory(PagedRequestDto pagedRequestDto)
+
+        public DataTable GetBorrowedBooksByCategory()
         {
             throw new System.NotImplementedException();
         }
 
-        public PagedResultDto<DataTable> GetMostBorrowedBooks(PagedRequestDto pagedRequestDto)
+        public DataTable GetMostBorrowedBooks()
         {
             throw new System.NotImplementedException();
         }
-
-        public PagedResultDto<DataTable> GetOverdueBooks(PagedRequestDto pagedRequestDto)
+        public DataTable GetOverdueBooks()
         {
             throw new System.NotImplementedException();
         }

@@ -3382,28 +3382,20 @@ SELECT @@ROWCOUNT AS AffectedRows";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Author, AuthorName, BookName, Category, CategoryName, ISBN, Language, Lang" +
-                "uageName, Pages, PublishYear, Publisher FROM ViewBook WHERE (ISBN = @ISBN)";
+            this._commandCollection[1].CommandText = "SELECT        Author, AuthorName, BookName, Category, CategoryName, ISBN, Languag" +
+                "e, LanguageName, Pages, PublishYear, Publisher\r\nFROM            ViewBook\r\nWHERE " +
+                "       ISBN = @ISBN";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 13, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT [ISBN]
-      ,[BookName]
-      ,[CategoryName]
-      ,[Publisher]
-      ,[PublishYear]
-      ,[Pages]
-      ,[AuthorName]
-      ,[LanguageName]
-      ,[Author]
-      ,[Category]
-      ,[Language]
-FROM [librarysystem].[dbo].[ViewBookBorrowed]
-WHERE (@BookName  IS NULL OR BookName LIKE '%' + @BookName  + '%')
-  AND (@AuthorName  IS NULL OR AuthorName LIKE '%' + @AuthorName  + '%')
-  AND (@CategoryId IS NULL OR @CategoryId = 0 OR Category = @CategoryId)
- ";
+            this._commandCollection[2].CommandText = @"SELECT 
+   *
+FROM [librarysystem].[dbo].[ViewBook]
+WHERE 
+    (@BookName IS NULL OR LTRIM(RTRIM(@BookName)) = '' OR BookName LIKE '%' + @BookName + '%')
+    AND (@AuthorName IS NULL OR LTRIM(RTRIM(@AuthorName)) = '' OR AuthorName LIKE '%' + @AuthorName + '%')
+    AND (@CategoryId IS NULL OR @CategoryId = '0' OR Category = @CategoryId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "BookName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AuthorName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "AuthorName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

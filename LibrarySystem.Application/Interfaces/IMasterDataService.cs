@@ -5,9 +5,9 @@ namespace LibrarySystem.BLL.Interfaces
 {
     public interface IMasterDataService
     {
-        PagedResultDto<AuthorViewDto> GetAllAuthors(PagedRequestDto pagedRequestDto);
-        PagedResultDto<List<CategoryViewDto>> GetAllCategories(PagedRequestDto pagedRequestDto=null);
-        PagedResultDto<LanguageViewDto> GetAllLanguages(PagedRequestDto pagedRequestDto);
+        List<AuthorViewDto> GetAllAuthors();
+        List<List<CategoryViewDto>> GetAllCategories();
+        List<LanguageViewDto> GetAllLanguages();
 
         int AddAuthor(AuthorCreateDto author);
         int AddCategory(CategoryCreateDto category);
