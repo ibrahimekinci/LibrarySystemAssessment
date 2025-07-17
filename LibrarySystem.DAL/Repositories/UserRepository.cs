@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.DAL.DataSets.UserDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,33 +24,26 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Delete(int uid)
         {
-            return tableAdapter.DeleteById(uid) > 0;
+            return 0 < tableAdapter.DeleteById(uid);
         }
 
         public List<UserEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = Mapper.Map<List<UserEntity>>(table) ?? new List<UserEntity>();
-            return result;
+            return tableAdapter.GetData().ToList<UserEntity>();
         }
 
         public UserEntity GetById(int uid)
         {
-            var table = tableAdapter.GetById(uid);
-            var row = table.FirstOrDefault();
-            return row == null ? new UserEntity() : Mapper.Map<UserEntity>(row);
+            return tableAdapter.GetById(uid).ToList<UserEntity>().FirstOrDefault();
         }
 
         public UserEntity GetByUsername(string username)
         {
-            var table = tableAdapter.GetByUserName(username);
-            var row = table.FirstOrDefault();
-            var result = row == null ? new UserEntity() : Mapper.Map<UserEntity>(row);
-            return result;
+            return tableAdapter.GetByUserName(username).ToList<UserEntity>().FirstOrDefault();
         }
         public bool Update(UserEntity user)
         {
-            return tableAdapter.UpdateById(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel, user.UID) > 0;
+            return 0 < tableAdapter.UpdateById(user.UserName, user.Password, user.Phone, user.Email, (int)user.UserLevel, user.UID);
         }
     }
 }

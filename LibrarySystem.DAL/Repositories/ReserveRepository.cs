@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.DAL.DataSets.ReserveDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace LibrarySystem.DAL.Repositories
         private readonly TabReservedTableAdapter tableAdapter = new TabReservedTableAdapter();
         public int Add(ReserveEntity reserve)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, formatDateForDb(reserve.ReservedDate));
+            var effectedDbRows = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, reserve.ReservedDate.FormatForDb());
             if (effectedDbRows <= 0)
                 return 0;
 
@@ -21,21 +22,17 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Delete(int rid)
         {
-            return tableAdapter.DeleteById(rid) > 0;
+            return 0 < tableAdapter.DeleteById(rid);
         }
 
         public List<ReserveEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = Mapper.Map<List<ReserveEntity>>(table) ?? new List<ReserveEntity>();
-            return result;
+            return tableAdapter.GetData().ToList<ReserveEntity>();
         }
 
         public List<ReserveEntity> GetByUserId(int uid)
         {
-            var table = tableAdapter.GetByUserId(uid);
-            var result = Mapper.Map<List<ReserveEntity>>(table) ?? new List<ReserveEntity>();
-            return result;
+            return tableAdapter.GetByUserId(uid).ToList<ReserveEntity>();
         }
     }
 }

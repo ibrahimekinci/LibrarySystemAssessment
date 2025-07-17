@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.DAL.DataSets.AuthorDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.DAL.Helpers;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Linq;
 namespace LibrarySystem.DAL.Repositories
 {
     public class AuthorRepository : BaseRepository, IAuthorRepository
@@ -27,16 +28,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<AuthorEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = new List<AuthorEntity>();
-            foreach (DataRow row in table.Rows)
-            {
-                var entity = AutoMapperConfig.Mapper.Map<AuthorEntity>(row);
-                result.Add(entity);
-            }
-
-            //result = Mapper.Map<List<AuthorEntity>>(table);
-            return result;
+            return tableAdapter.GetData().ToList<AuthorEntity>();
         }
 
         public bool Update(AuthorEntity author)

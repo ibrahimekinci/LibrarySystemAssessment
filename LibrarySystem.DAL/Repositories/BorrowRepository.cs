@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public int Add(BarrowEntity borrow)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(borrow.UID,borrow.ISBN,formatDateForDb(borrow.BorrowDate), formatDateForDb(borrow.ReturnDate));
+            var effectedDbRows = tableAdapter.InsertCustom(borrow.UID, borrow.ISBN, borrow.BorrowDate.FormatForDb(), borrow.ReturnDate.FormatForDb());
             if (effectedDbRows <= 0)
                 return 0;
 
@@ -23,28 +24,23 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<BarrowEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = Mapper.Map<List<BarrowEntity>>(table) ?? new List<BarrowEntity>();
-            return result;
+            return tableAdapter.GetData().ToList<BarrowEntity>();
         }
 
         public List<BarrowEntity> GetAllByUserId(int uid)
         {
-            var table = tableAdapter.GetByUserId(uid);
-            var result = Mapper.Map<List<BarrowEntity>>(table) ?? new List<BarrowEntity>();
-            return result;
+            return tableAdapter.GetByUserId(uid).ToList<BarrowEntity>();
         }
 
         public BarrowEntity GetById(int bid)
         {
-            var table = tableAdapter.GetById(bid);
-            var row = table.FirstOrDefault();
-            return row == null ? new BarrowEntity() : Mapper.Map<BarrowEntity>(row);
+            return tableAdapter.GetById(bid).ToList<BarrowEntity>().FirstOrDefault();
+
         }
 
         public bool Return(int borrowId, DateTime actualReturnDate, decimal lateFee)
         {
-            return tableAdapter.UpdateActualReturn(formatDateForDb(actualReturnDate), lateFee, borrowId) > 0;
+            return 0 < tableAdapter.UpdateActualReturn(actualReturnDate.FormatForDb(), lateFee, borrowId);
         }
     }
 }

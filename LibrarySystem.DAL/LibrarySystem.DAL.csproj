@@ -63,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="DataSets\AuthorDataSet.cs">
       <DependentUpon>AuthorDataSet.xsd</DependentUpon>
     </Compile>
@@ -128,10 +127,10 @@
     <Compile Include="Entities\BookEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
     <Compile Include="Entities\LanguageEntity.cs" />
-    <Compile Include="DTOs\PagedRequestDto.cs" />
-    <Compile Include="DTOs\PagedResultDto.cs" />
     <Compile Include="Entities\ReserveEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Helpers\DataTableExtensions.cs" />
+    <Compile Include="Helpers\DateTimeExtensions.cs" />
     <Compile Include="Interfaces\IAuthorRepository.cs" />
     <Compile Include="Interfaces\IBookRepository.cs" />
     <Compile Include="Interfaces\IBorrowRepository.cs" />

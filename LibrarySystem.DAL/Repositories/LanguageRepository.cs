@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -22,19 +23,17 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Delete(int lid)
         {
-            return tableAdapter.DeleteById(lid) > 0;
+            return 0 < tableAdapter.DeleteById(lid);
         }
 
         public List<LanguageEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = Mapper.Map<List<LanguageEntity>>(table) ?? new List<LanguageEntity>();
-            return result;
+            return tableAdapter.GetData().ToList<LanguageEntity>();
         }
 
         public bool Update(LanguageEntity language)
         {
-            return tableAdapter.UpdateById(language.LanguageName, language.LID) > 0;
+            return 0 < tableAdapter.UpdateById(language.LanguageName, language.LID);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.DAL.DataSets.CategoryDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -21,19 +22,17 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Delete(int cid)
         {
-            return tableAdapter.DeleteById(cid) > 0;
+            return 0 < tableAdapter.DeleteById(cid);
         }
 
         public List<CategoryEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
-            var result = Mapper.Map<List<CategoryEntity>>(table) ?? new List<CategoryEntity>();
-            return result;
+            return tableAdapter.GetData().ToList<CategoryEntity>();
         }
 
         public bool Update(CategoryEntity category)
         {
-            return tableAdapter.UpdateById(category.CategoryName, category.CID) > 0;
+            return 0 < tableAdapter.UpdateById(category.CategoryName, category.CID);
         }
     }
 }
