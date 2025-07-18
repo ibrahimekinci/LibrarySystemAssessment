@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\AuditActionType.cs" />
+    <Compile Include="Enums\OperationTypeEnum.cs" />
     <Compile Include="Enums\UserLevelEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueObjects\Email.cs" />

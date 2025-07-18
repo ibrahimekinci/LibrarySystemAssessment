@@ -1,0 +1,57 @@
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.DAL.Entities;
+using System.Collections.Generic;
+
+namespace LibrarySystem.BLL.Services
+{
+    public class UserService : BaseService, IUserService
+    {
+        public UserService()
+        {
+        }
+
+        public UserViewDto Authenticate(string username, string password)
+        {
+            var user = UserRepository.GetByUsername(username);
+            if (user == null || user.Password != password)
+                return null;
+
+            return Mapper.Map<UserViewDto>(user);
+        }
+
+        public int Register(UserCreateDto dto)
+        {
+            var entity = Mapper.Map<UserEntity>(dto);
+            return UserRepository.Add(entity);
+        }
+
+        public bool UpdateUser(UserUpdateDto dto)
+        {
+            var entity = Mapper.Map<UserEntity>(dto);
+            return UserRepository.Update(entity);
+        }
+
+        public bool ResetPassword(UserPasswordUpdateDto dto)
+        {
+            var user = UserRepository.GetById(dto.UID);
+            if (user == null)
+                return false;
+
+            user.Password = dto.NewPassword;
+            return UserRepository.Update(user);
+        }
+
+        public List<UserViewDto> GetAllUsers()
+        {
+            var data = UserRepository.GetAll();
+            return data == null ? new List<UserViewDto>() : Mapper.Map<List<UserViewDto>>(data);
+        }
+
+        public UserViewDto GetById(int userId)
+        {
+            var user = UserRepository.GetById(userId);
+            return user == null ? null : Mapper.Map<UserViewDto>(user);
+        }
+    }
+}

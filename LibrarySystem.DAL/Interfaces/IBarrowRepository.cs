@@ -12,6 +12,7 @@ namespace LibrarySystem.DAL.Interfaces
         List<BarrowEntity> GetAllByUserId(int uid);
         BarrowEntity GetById(int bid);
         int Add(BarrowEntity borrow);
+        bool Delete(int bid);
         bool Return(int borrowId, System.DateTime actualReturnDate, decimal lateFee);
     }
 }
