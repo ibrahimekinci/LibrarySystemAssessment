@@ -65,8 +65,8 @@ namespace LibrarySystem.App.Forms.Author
                 UseColumnTextForButtonValue = true
             };
 
-            dgv.Columns.Add(editButton);
-            dgv.Columns.Add(deleteButton);
+            dgv.Columns.Insert(0, editButton);
+            dgv.Columns.Insert(1, deleteButton);
         }
         private void Dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -112,11 +112,6 @@ namespace LibrarySystem.App.Forms.Author
                     RefreshDgv();
                 }
             }
-        }
-
-        private void lnkTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
         }
     }
 }

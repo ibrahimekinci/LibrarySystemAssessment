@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.App.Forms.Author;
 using LibrarySystem.App.Forms.Book;
+using LibrarySystem.App.Forms.BookManage;
 using LibrarySystem.App.Forms.Category;
 using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Forms.Language;
@@ -50,9 +51,9 @@ namespace LibrarySystem.App.Forms.Abstracts
                 return;
             }
             if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Manager)
-                FormManager.ShowFormInMdi<ManagerDashboardForm>(this);
+                FormManager.ShowFormInMdi<ReserveBookForm>(this);
             else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Staff)
-                FormManager.ShowFormInMdi<StaffDashboardForm>(this);
+                FormManager.ShowFormInMdi<ReserveBookForm>(this);
             else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Student)
                 FormManager.ShowFormInMdi<StudentDashboardForm>(this);
         }
@@ -89,7 +90,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             //// 📚 BOOKS – Everyone
             var booksMenu = new ToolStripMenuItem("📚 Books");
             booksMenu.DropDownItems.Add("🔍 Search Books", null, (s, e) => FormManager.ShowFormInMdi<BookSearchForm>());
-            booksMenu.DropDownItems.Add("🔍 Browse Books", null, (s, e) => FormManager.ShowFormInMdi<BookBrowsingForm>());
+            booksMenu.DropDownItems.Add("📚 Browse Books", null, (s, e) => FormManager.ShowFormInMdi<BookBrowsingForm>());
             booksMenu.DropDownItems.Add("📌 Reserve a Book", null, (s, e) => FormManager.ShowFormInMdi<ReserveBookForm>());
             booksMenu.DropDownItems.Add("📤 Borrow a Book", null, (s, e) => FormManager.ShowFormInMdi<BarrowBookForm>());
             booksMenu.DropDownItems.Add("📥 Return a Book", null, (s, e) => FormManager.ShowFormInMdi<ReturnBookForm>());
@@ -115,7 +116,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             {
                 var adminMenu = new ToolStripMenuItem("🛠️ Admin");
                 adminMenu.DropDownItems.Add("👥 Manage Users", null, (s, e) => FormManager.ShowFormInMdi<UserForm>());
-                adminMenu.DropDownItems.Add("📘 Manage Books", null, (s, e) => FormManager.ShowFormInMdi<BookSearchForm>());
+                adminMenu.DropDownItems.Add("📘 Manage Books", null, (s, e) => FormManager.ShowFormInMdi<BookForm>());
                 adminMenu.DropDownItems.Add("🏷️ Manage Categories", null, (s, e) => FormManager.ShowFormInMdi<CategoryForm>());
                 adminMenu.DropDownItems.Add("👨‍💼 Manage Authors", null, (s, e) => FormManager.ShowFormInMdi<AuthorForm>());
                 adminMenu.DropDownItems.Add("🌐 Manage Languages", null, (s, e) => FormManager.ShowFormInMdi<LanguageForm>());

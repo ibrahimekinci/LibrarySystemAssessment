@@ -2,14 +2,7 @@
 using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Helpers;
 using LibrarySystem.Domain.Enums;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Dashboards
@@ -27,18 +20,32 @@ namespace LibrarySystem.App.Forms.Dashboards
         {
             InitializeComponent();
             lnkWelcome.Text = $"🙍 Hello {UserManager.CurrentUser.UserName}, How are you today ?";
-            lnkWelcome.Anchor = AnchorStyles.None; // Remove any anchors
+            lnkWelcome.Anchor = AnchorStyles.None;
             lnkWelcome.Left = (this.ClientSize.Width - lnkWelcome.Width) / 2;
         }
+        private void lnkSearchBooks_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormManager.ShowFormInMdi<BookSearchForm>();
+        }
 
-        private void lnkBooks_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkBrowseBooks_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FormManager.ShowFormInMdi<BookBrowsingForm>();
         }
 
-        private void lnkSearchBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkReverseBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<BookSearchForm>();
+            FormManager.ShowFormInMdi<ReserveBookForm>();
+        }
+
+        private void lnkBarrowBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormManager.ShowFormInMdi<BarrowBookForm>();
+        }
+
+        private void lnkReturnBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormManager.ShowFormInMdi<ReturnBookForm>();
         }
     }
 }

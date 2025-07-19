@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibrarySystem.App.Forms.Report
+namespace LibrarySystem.App.Forms.Book
 {
-    public partial class ReportForm : BaseForm
+    public partial class BookReservationsForm : BaseForm
     {
-        public ReportForm()
+        public BookReservationsForm()
         {
             InitializeComponent();
         }

@@ -4,17 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace LibrarySystem.App.Forms.Language
+namespace LibrarySystem.App.Forms.BookManage
 {
-    public partial class LanguageForm : BaseForm
+    public partial class BookForm : BaseForm
     {
-        public override string FormTitle => "Language";
+        public override string FormTitle => "Books";
         private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
         {
             UserLevelEnum.Manager, UserLevelEnum.Staff
         };
         protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => allowedUserLevels;
-        public LanguageForm()
+        public BookForm()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace LibrarySystem.App.Forms.Language
             dgv.CellContentClick += Dgv_CellContentClick;
             btnNew.Click += (s, e) =>
             {
-                using (var form = new LanguageManageForm(OperationType.LanguageCreate, RefreshDgv))
+                using (var form = new BookManageForm(OperationType.BookCreate, RefreshDgv))
                 {
                     form.ShowDialog();
                 }
@@ -34,7 +34,7 @@ namespace LibrarySystem.App.Forms.Language
         private void RefreshDgv()
         {
             dgv.Columns.Clear();
-            var result = LanguageService.GetAllLanguages();
+            var result = BookService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;
@@ -72,18 +72,18 @@ namespace LibrarySystem.App.Forms.Language
         {
             if (e.RowIndex < 0) return;
 
-            var id = Convert.ToInt32(dgv.Rows[e.RowIndex].Cells["LID"].Value);
+            string isbn = Convert.ToString(dgv.Rows[e.RowIndex].Cells["ISBN"].Value);
 
             if (dgv.Columns[e.ColumnIndex].Name == "btnDelete")
             {
-                var confirm = MessageBox.Show("Are you sure you want to delete this Language?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                var confirm = MessageBox.Show("Are you sure you want to delete this Book?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
                     var success = false;
 
                     try
                     {
-                        success = LanguageService.DeleteLanguage(id);
+                        success = BookService.DeleteBook(isbn);
                     }
                     catch (Exception ex)
                     {
@@ -93,22 +93,22 @@ namespace LibrarySystem.App.Forms.Language
                     if (success)
                         RefreshDgv();
                     else
-                        MessageBox.Show("Failed to delete Language. Make sure you have all deleted the records that are realated with this record.");
+                        MessageBox.Show("Failed to delete Book. Make sure you have all deleted the records that are realated with this record.");
                 }
             }
             else if (dgv.Columns[e.ColumnIndex].Name == "btnEdit")
             {
-                var selectedLanguage = LanguageService.GetById(id);
-                if (selectedLanguage != null)
+                var selectedBook = BookService.GetByISBN(isbn);
+                if (selectedBook != null)
                 {
-                    using (var form = new LanguageManageForm(OperationType.LanguageEdit, selectedLanguage, RefreshDgv))
+                    using (var form = new BookManageForm(OperationType.BookEdit, selectedBook, RefreshDgv))
                     {
                         form.ShowDialog();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Language not found.");
+                    MessageBox.Show("Book not found.");
                     RefreshDgv();
                 }
             }

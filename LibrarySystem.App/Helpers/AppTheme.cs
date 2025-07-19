@@ -182,6 +182,8 @@ namespace LibrarySystem.App.Helpers
             };
             dgv.AlternatingRowsDefaultCellStyle.BackColor = SecondaryColor;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.Dock = DockStyle.Fill;
+            dgv.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         }
 
         private static void StyleLabel(Label lbl)

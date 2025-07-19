@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
 {
-    public partial class ReturnBookForm : BaseForm
+    public partial class BookBarrowForm : BaseForm
     {
-        public ReturnBookForm()
+        public BookBarrowForm()
         {
             InitializeComponent();
         }

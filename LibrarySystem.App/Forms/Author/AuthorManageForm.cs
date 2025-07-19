@@ -4,7 +4,6 @@ using LibrarySystem.BLL.Helpers;
 using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Author
 {
@@ -40,6 +39,7 @@ namespace LibrarySystem.App.Forms.Author
                 throw new ArgumentNullException(nameof(autor), "Author cannot be null for edit operation");
 
             _operationType = operationType;
+            _formTitle = "Author Update Form";
             _autor = autor;
             BeforeFormClosing = beforeFormClosing;
             InitializeUIForEdit();
@@ -75,7 +75,7 @@ namespace LibrarySystem.App.Forms.Author
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = AuthorService.AddAuthor(new AuthorCreateDto() { AuthorName = txt.Text.Trim() });
+            var result = AuthorService.AddAuthor(dto);
             if (result > 0)
             {
                 ShowInformation("Author create successfully.", "Success");

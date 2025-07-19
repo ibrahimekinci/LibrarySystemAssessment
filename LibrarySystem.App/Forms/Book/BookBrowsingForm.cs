@@ -1,6 +1,9 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
+using LibrarySystem.App.Forms.Author;
 using LibrarySystem.Domain.Enums;
+using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
 {
@@ -18,7 +21,13 @@ namespace LibrarySystem.App.Forms.Book
         }
         protected override void LoadFormData()
         {
-            var result = BookService.GetAll();
+            lnkTitle.Text = FormTitle;
+            RefreshDgv();
+        }
+        private void RefreshDgv()
+        {
+            dgv.Columns.Clear();
+            var result = AuthorService.GetAllAuthors();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;
@@ -27,9 +36,6 @@ namespace LibrarySystem.App.Forms.Book
             else
             {
                 dgv.DataSource = result;
-                dgv.Columns[5].Visible = false;
-                dgv.Columns[6].Visible = false;
-                dgv.Columns[7].Visible = false;
                 lblMessage.Visible = false;
             }
         }
