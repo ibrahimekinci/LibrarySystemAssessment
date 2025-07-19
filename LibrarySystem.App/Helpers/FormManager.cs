@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
+using LibrarySystem.App.Forms.Report;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -32,7 +33,7 @@ namespace LibrarySystem.App.Helpers
 
             var existingForm = System.Windows.Forms.Application.OpenForms.OfType<T>().FirstOrDefault();
 
-            if (existingForm != null)
+            if (existingForm != null && !(existingForm is ReportDataForm))
             {
                 existingForm.BringToFront();
                 if (existingForm.WindowState == FormWindowState.Minimized)
@@ -108,7 +109,7 @@ namespace LibrarySystem.App.Helpers
                 formInstance = (BaseForm)Activator.CreateInstance(typeof(T), constructorArg);
             }
 
-            return formInstance.ShowDialog(); 
+            return formInstance.ShowDialog();
         }
         public static DialogResult ShowFormDialog<T>(object param1, object param2) where T : BaseForm
         {
@@ -116,7 +117,7 @@ namespace LibrarySystem.App.Helpers
 
             formInstance = (BaseForm)Activator.CreateInstance(typeof(T), param1, param2);
 
-            return formInstance.ShowDialog(); 
+            return formInstance.ShowDialog();
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.App.Forms.Profile;
-using LibrarySystem.App.Helpers;
 using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ namespace LibrarySystem.App.Forms.Author
 {
     public partial class AuthorForm : BaseForm
     {
-        public override string FormTitle => "Book Browsing";
+        public override string FormTitle => "Authors";
         private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
         {
             UserLevelEnum.Manager, UserLevelEnum.Staff
@@ -22,6 +20,7 @@ namespace LibrarySystem.App.Forms.Author
         }
         protected override void LoadFormData()
         {
+            lnkTitle.Text = FormTitle;
             dgv.CellContentClick += Dgv_CellContentClick;
             btnNew.Click += (s, e) =>
             {
@@ -113,6 +112,11 @@ namespace LibrarySystem.App.Forms.Author
                     RefreshDgv();
                 }
             }
+        }
+
+        private void lnkTitle_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

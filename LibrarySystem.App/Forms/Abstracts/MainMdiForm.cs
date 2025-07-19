@@ -161,9 +161,9 @@ namespace LibrarySystem.App.Forms.Abstracts
             if (currentUserRole == UserLevelEnum.Manager)
             {
                 var reportsMenu = new ToolStripMenuItem("📊 Reports");
-                reportsMenu.DropDownItems.Add("📈 Most Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>());
-                reportsMenu.DropDownItems.Add("⏰ Overdue Books", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>());
-                reportsMenu.DropDownItems.Add("📚 Borrowings by Category", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>());
+                reportsMenu.DropDownItems.Add("📈 Most Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>(OperationType.GetReportMostBorrowedBooks));
+                reportsMenu.DropDownItems.Add("⏰ Overdue Books", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>(OperationType.GetReportOverdueBooks));
+                reportsMenu.DropDownItems.Add("📚 Borrowings by Category", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>(OperationType.GetReportBorrowedBooksByCategory));
                 menuStrip.Items.Add(reportsMenu);
             }
 
