@@ -7,7 +7,6 @@ namespace LibrarySystem.BLL.Interfaces
     {
         List<BookViewDto> GetAll();
         BookViewDto GetByISBN(string isbn);
-        BookViewDto GetById(int id);
         int AddBook(BookDto book);
         bool UpdateBook(BookDto book);
         bool DeleteBook(string isbn);

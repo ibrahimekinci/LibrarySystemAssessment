@@ -6,8 +6,8 @@ namespace LibrarySystem.DAL.Interfaces
 {
     public interface ILanguageRepository
     {
-        //PagedResultDto<List<LanguageEntity>> GetAllPaged(PagedRequestDto request);
         List<LanguageEntity> GetAll();
+        LanguageEntity GetById(int lid);
         int Add(LanguageEntity language);
         bool Update(LanguageEntity language);
         bool Delete(int lid);

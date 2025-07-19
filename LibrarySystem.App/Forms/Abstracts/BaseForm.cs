@@ -1,7 +1,7 @@
 ﻿using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Application.Interfaces;
-using LibrarySystem.Application.Services;
+using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.BLL.Services;
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Enums;
@@ -15,6 +15,36 @@ namespace LibrarySystem.App.Forms.Abstracts
     public partial class BaseForm : Form
     {
         #region Services
+        private IAuthorService _authorService;
+        protected IAuthorService AuthorService
+        {
+            get
+            {
+                if (_authorService == null)
+                    _authorService = new AuthorService();
+                return _authorService;
+            }
+        }
+        private ICategoryService _categoryService;
+        protected ICategoryService CategoryService
+        {
+            get
+            {
+                if (_categoryService == null)
+                    _categoryService = new CategoryService();
+                return _categoryService;
+            }
+        }
+        private ILanguageService _languageService;
+        protected ILanguageService LanguageService
+        {
+            get
+            {
+                if (_languageService == null)
+                    _languageService = new LanguageService();
+                return _languageService;
+            }
+        }
         private IBookService _bookService;
         protected IBookService BookService
         {
@@ -67,17 +97,6 @@ namespace LibrarySystem.App.Forms.Abstracts
                 if (_userService == null)
                     _userService = new UserService();
                 return _userService;
-            }
-        }
-
-        private IMasterDataService _masterDataService;
-        protected IMasterDataService MasterDataService
-        {
-            get
-            {
-                if (_masterDataService == null)
-                    _masterDataService = new MasterDataService();
-                return _masterDataService;
             }
         }
         private ILogService _logService;
@@ -161,23 +180,21 @@ namespace LibrarySystem.App.Forms.Abstracts
         }
 
         private FormBorderStyle _previousBorderStyle;
-        private void Form_Resize(object sender, EventArgs e)
+        protected void Form_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                if (this.FormBorderStyle != FormBorderStyle.None)
-                {
-                    _previousBorderStyle = this.FormBorderStyle;
-                    this.FormBorderStyle = FormBorderStyle.None;
-                }
-            }
-            else
-            {
-                if (this.FormBorderStyle == FormBorderStyle.None)
-                {
-                    this.FormBorderStyle = _previousBorderStyle != 0 ? _previousBorderStyle : FormBorderStyle.Sizable;
-                }
-            }
+            FormResize();
+        }
+        protected virtual void FormResize()
+        {
+            //if (this.WindowState == FormWindowState.Maximized)
+            //{
+            //    _previousBorderStyle = this.FormBorderStyle;
+            //    this.FormBorderStyle = FormBorderStyle.None;
+            //}
+            //else if (this.WindowState == FormWindowState.Normal && _previousBorderStyle != FormBorderStyle.None)
+            //{
+            //    this.FormBorderStyle = _previousBorderStyle;
+            //}
         }
 
         private void InitializeFormBase()

@@ -5,13 +5,20 @@ using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace LibrarySystem.DAL.Repositories
 {
     public class LanguageRepository : BaseRepository, ILanguageRepository
     {
         private readonly TabLanguageTableAdapter tableAdapter = new TabLanguageTableAdapter();
-
+        public LanguageEntity GetById(int id)
+        {
+            var table = tableAdapter.GetById(id);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<LanguageEntity>().FirstOrDefault();
+        }
         public int Add(LanguageEntity language)
         {
             var effectedDbRows = tableAdapter.InsertCustom(language.LanguageName);

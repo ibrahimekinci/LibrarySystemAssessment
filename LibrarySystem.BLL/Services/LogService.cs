@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using LibrarySystem.Application.Interfaces;
+using LibrarySystem.BLL.Interfaces;
 
-namespace LibrarySystem.Application.Services
+namespace LibrarySystem.BLL.Services
 {
     public class LogService : ILogService
     {

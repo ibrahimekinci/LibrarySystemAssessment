@@ -15,7 +15,23 @@ namespace LibrarySystem.Tests.DAL
                 LanguageName = "TestLang_" + suffix
             };
         }
+        [Fact]
+        public void GetById_Should_Return_Correct_Entity()
+        {
+            // Arrange
+            var entity = CreateTestLanguage();
+            int id = _repo.Add(entity);
 
+            // Act
+            var result = _repo.GetById(id);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(entity.LanguageName, result.LanguageName);
+
+            // Cleanup
+            _repo.Delete(id);
+        }
         [Fact]
         public void Add_Should_Insert_Language_And_Return_Id()
         {

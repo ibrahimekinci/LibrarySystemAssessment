@@ -5,12 +5,20 @@ using LibrarySystem.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 namespace LibrarySystem.DAL.Repositories
 {
     public class CategoryRepository : BaseRepository, ICategoryRepository
     {
         private readonly TabCategoryTableAdapter tableAdapter = new TabCategoryTableAdapter();
 
+        public CategoryEntity GetById(int id)
+        {
+            var table = tableAdapter.GetById(id);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<CategoryEntity>().FirstOrDefault();
+        }
         public int Add(CategoryEntity category)
         {
             var effectedDbRows = tableAdapter.InsertCustom(category.CategoryName);

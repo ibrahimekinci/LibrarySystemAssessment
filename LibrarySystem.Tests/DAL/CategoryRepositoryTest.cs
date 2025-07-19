@@ -17,6 +17,23 @@ namespace LibrarySystem.Tests.DAL
         }
 
         [Fact]
+        public void GetById_Should_Return_Correct_Entity()
+        {
+            // Arrange
+            var entity = CreateTestCategory();
+            int id = _repo.Add(entity);
+
+            // Act
+            var result = _repo.GetById(id);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(entity.CategoryName, result.CategoryName);
+
+            // Cleanup
+            _repo.Delete(id);
+        }
+        [Fact]
         public void Add_Should_Insert_And_Return_New_Id()
         {
             // Arrange

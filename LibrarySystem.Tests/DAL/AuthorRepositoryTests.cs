@@ -1,5 +1,6 @@
-﻿using LibrarySystem.DAL.Repositories;
-using LibrarySystem.DAL.Entities;
+﻿using LibrarySystem.DAL.Entities;
+using LibrarySystem.DAL.Repositories;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace LibrarySystem.Tests.DAL
 {
@@ -25,6 +26,25 @@ namespace LibrarySystem.Tests.DAL
 
             // Cleanup
             _repo.Delete(newId);
+        }
+
+        [Fact]
+        public void GetById_Should_Return_Correct_Entity()
+        {
+            // Arrange
+            string testName = "TestAuthor_" + Guid.NewGuid().ToString("N").Substring(0, 6);
+            var author = new AuthorEntity { AuthorName = testName };
+            int id = _repo.Add(author);
+
+            // Act
+            var result = _repo.GetById(id);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(author.AuthorName, result.AuthorName);
+
+            // Cleanup
+            _repo.Delete(id);
         }
 
         [Fact]

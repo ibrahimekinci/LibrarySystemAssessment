@@ -1,5 +1,5 @@
-﻿using LibrarySystem.Application.DTOs;
-using LibrarySystem.Application.Interfaces;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;

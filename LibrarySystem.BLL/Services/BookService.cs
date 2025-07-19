@@ -23,13 +23,6 @@ namespace LibrarySystem.BLL.Services
             var entity = BookRepository.GetByISBN(isbn);
             return Mapper.Map<BookViewDto>(entity);
         }
-
-        public BookViewDto GetById(int id)
-        {
-            // ISBN is used as ID
-            return GetByISBN(id.ToString());
-        }
-
         public int AddBook(BookDto book)
         {
             var entity = Mapper.Map<BookEntity>(book);

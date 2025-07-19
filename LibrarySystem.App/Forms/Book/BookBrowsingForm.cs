@@ -21,15 +21,15 @@ namespace LibrarySystem.App.Forms.Book
             var result = BookService.GetAll();
             if (result == null || result.Count == 0)
             {
-                gvBooks.DataSource = null;
+                dgv.DataSource = null;
                 lblMessage.Visible = true;
             }
             else
             {
-                gvBooks.DataSource = result;
-                gvBooks.Columns[5].Visible = false;
-                gvBooks.Columns[6].Visible = false;
-                gvBooks.Columns[7].Visible = false;
+                dgv.DataSource = result;
+                dgv.Columns[5].Visible = false;
+                dgv.Columns[6].Visible = false;
+                dgv.Columns[7].Visible = false;
                 lblMessage.Visible = false;
             }
         }

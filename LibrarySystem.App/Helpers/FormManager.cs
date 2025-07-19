@@ -95,5 +95,28 @@ namespace LibrarySystem.App.Helpers
 
             ShowForm<T>(constructorArg);
         }
+        public static DialogResult ShowFormDialog<T>(object constructorArg = null) where T : BaseForm
+        {
+            BaseForm formInstance;
+
+            if (constructorArg == null)
+            {
+                formInstance = Activator.CreateInstance<T>();
+            }
+            else
+            {
+                formInstance = (BaseForm)Activator.CreateInstance(typeof(T), constructorArg);
+            }
+
+            return formInstance.ShowDialog(); 
+        }
+        public static DialogResult ShowFormDialog<T>(object param1, object param2) where T : BaseForm
+        {
+            BaseForm formInstance;
+
+            formInstance = (BaseForm)Activator.CreateInstance(typeof(T), param1, param2);
+
+            return formInstance.ShowDialog(); 
+        }
     }
 }

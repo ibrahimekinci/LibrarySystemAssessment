@@ -29,21 +29,21 @@ namespace LibrarySystem.App.Forms.Book
             };
 
             var result = BookService.Search(dto);
-            if (result == null || result.Count == 0 && gvBooks.Rows.Count > 0)
+            if (result == null || result.Count == 0 && dgv.Rows.Count > 0)
             {
-                gvBooks.DataSource = null;
+                dgv.DataSource = null;
             }
             else
             {
-                gvBooks.DataSource = BookService.Search(dto);
-                gvBooks.Columns[5].Visible = false;
-                gvBooks.Columns[6].Visible = false;
-                gvBooks.Columns[7].Visible = false;
+                dgv.DataSource = BookService.Search(dto);
+                dgv.Columns[5].Visible = false;
+                dgv.Columns[6].Visible = false;
+                dgv.Columns[7].Visible = false;
             }
         }
         protected override void LoadFormData()
         {
-            var categories = MasterDataService.GetAllCategories();
+            var categories = CategoryService.GetAllCategories();
             cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CID";

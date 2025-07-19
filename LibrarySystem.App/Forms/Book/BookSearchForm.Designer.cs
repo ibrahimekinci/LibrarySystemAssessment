@@ -38,8 +38,8 @@
             this.txtAuthorName = new System.Windows.Forms.TextBox();
             this.txtBookName = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.gvBooks = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).BeginInit();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -134,22 +134,22 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // gvBooks
+            // dgv
             // 
-            this.gvBooks.AllowUserToAddRows = false;
-            this.gvBooks.AllowUserToDeleteRows = false;
-            this.gvBooks.AllowUserToOrderColumns = true;
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gvBooks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.gvBooks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gvBooks.BackgroundColor = System.Drawing.Color.White;
-            this.gvBooks.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.BackgroundColor = System.Drawing.Color.White;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            this.gvBooks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.gvBooks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -157,16 +157,16 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvBooks.DefaultCellStyle = dataGridViewCellStyle3;
-            this.gvBooks.EnableHeadersVisualStyles = false;
-            this.gvBooks.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.gvBooks.Location = new System.Drawing.Point(12, 107);
-            this.gvBooks.Name = "gvBooks";
-            this.gvBooks.ReadOnly = true;
-            this.gvBooks.RowTemplate.Height = 28;
-            this.gvBooks.ShowCellToolTips = false;
-            this.gvBooks.Size = new System.Drawing.Size(776, 331);
-            this.gvBooks.TabIndex = 9;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv.EnableHeadersVisualStyles = false;
+            this.dgv.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dgv.Location = new System.Drawing.Point(12, 107);
+            this.dgv.Name = "dgv";
+            this.dgv.ReadOnly = true;
+            this.dgv.RowTemplate.Height = 28;
+            this.dgv.ShowCellToolTips = false;
+            this.dgv.Size = new System.Drawing.Size(776, 331);
+            this.dgv.TabIndex = 9;
             // 
             // BookSearchForm
             // 
@@ -180,10 +180,10 @@
             this.Controls.Add(this.txtAuthorName);
             this.Controls.Add(this.txtBookName);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.gvBooks);
+            this.Controls.Add(this.dgv);
             this.Name = "BookSearchForm";
             this.Text = "BookSearchForm";
-            ((System.ComponentModel.ISupportInitialize)(this.gvBooks)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,6 +198,6 @@
         private System.Windows.Forms.TextBox txtAuthorName;
         private System.Windows.Forms.TextBox txtBookName;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.DataGridView gvBooks;
+        private System.Windows.Forms.DataGridView dgv;
     }
 }

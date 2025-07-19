@@ -199,10 +199,17 @@
     <Compile Include="Helpers\AppTheme.cs" />
     <Compile Include="Helpers\FormManager.cs" />
     <Compile Include="Helpers\UserManager.cs" />
+    <Compile Include="Helpers\ValidationExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Abstracts\MainMdiForm.resx">
       <DependentUpon>MainMdiForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Author\AuthorForm.resx">
+      <DependentUpon>AuthorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Author\AuthorManageForm.resx">
+      <DependentUpon>AuthorManageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Book\BarrowBookForm.resx">
       <DependentUpon>BarrowBookForm.cs</DependentUpon>

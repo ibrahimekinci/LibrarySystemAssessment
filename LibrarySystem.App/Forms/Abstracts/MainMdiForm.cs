@@ -25,7 +25,16 @@ namespace LibrarySystem.App.Forms.Abstracts
         protected override void InitializeUIAdditional()
         {
             this.IsMdiContainer = true;
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = true;
+            this.ControlBox = true;
+            this.MinimizeBox = true;
             this.ShowIcon = true;
+            this.Resize -= Form_Resize;
+        }
+        protected override void FormResize()
+        {
         }
         public MainMdiForm()
         {

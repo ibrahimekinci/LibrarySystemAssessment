@@ -1,7 +1,7 @@
 ﻿using LibrarySystem.Domain.Enums;
 using System;
 
-namespace LibrarySystem.Application.DTOs
+namespace LibrarySystem.BLL.DTOs
 {
     public class AuditLogDto
     {

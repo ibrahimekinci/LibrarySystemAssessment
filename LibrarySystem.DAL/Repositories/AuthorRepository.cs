@@ -35,6 +35,15 @@ namespace LibrarySystem.DAL.Repositories
             return table.CopyToDataTable().ToList<AuthorEntity>();
         }
 
+        public AuthorEntity GetById(int aid)
+        {
+            var table = tableAdapter.GetById(aid);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<AuthorEntity>().FirstOrDefault();
+
+        }
+
         public bool Update(AuthorEntity author)
         {
             return tableAdapter.UpdateById(author.AuthorName, author.AID) > 0;

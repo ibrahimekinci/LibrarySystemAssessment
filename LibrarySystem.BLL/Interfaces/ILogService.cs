@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LibrarySystem.Application.Interfaces
+namespace LibrarySystem.BLL.Interfaces
 {
     public interface ILogService
     {
