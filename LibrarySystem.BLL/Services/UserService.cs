@@ -39,7 +39,7 @@ namespace LibrarySystem.BLL.Services
                 return false;
 
             user.Password = dto.NewPassword;
-            return UserRepository.Update(user);
+            return UserRepository.UpdatePasswordByUserId(dto.UID,dto.NewPassword);
         }
 
         public List<UserViewDto> GetAllUsers()
@@ -52,6 +52,11 @@ namespace LibrarySystem.BLL.Services
         {
             var user = UserRepository.GetById(userId);
             return user == null ? null : Mapper.Map<UserViewDto>(user);
+        }
+
+        public bool Delete(int userId)
+        {
+            return UserRepository.Delete(userId);
         }
     }
 }

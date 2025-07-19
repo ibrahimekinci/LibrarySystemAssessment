@@ -2,6 +2,8 @@
 {
     public enum OperationType
     {
+        Unknown = -1,
+
         // Authentication
         Login,
         Logout,
@@ -20,6 +22,8 @@
         // User Operations
         UserCreate,
         UserUpdate,
+        ProfileUpdate,
+
         UserResetPassword,
         UserViewAll,
 

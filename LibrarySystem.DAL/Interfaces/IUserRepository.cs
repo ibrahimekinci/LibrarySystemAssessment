@@ -13,5 +13,6 @@ namespace LibrarySystem.DAL.Interfaces
         int Add(UserEntity user);
         bool Delete(int uid);
         bool Update(UserEntity user);
+        bool UpdatePasswordByUserId(int userId, string password);
     }
 }

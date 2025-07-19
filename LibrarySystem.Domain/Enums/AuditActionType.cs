@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LibrarySystem.Domain.Enums
+﻿namespace LibrarySystem.Domain.Enums
 {
     public enum AuditActionType
     {
+        Unknown = -1,
+
         ApplicationException,
         ApplicationStarted,
         ApplicationEnded,
@@ -29,8 +25,7 @@ namespace LibrarySystem.Domain.Enums
         ManageUsers,
         ManageAuthors,
         ManageCategories,
-        ManageLanguages,
-        Unknown
+        ManageLanguages
     }
 
 }

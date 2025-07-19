@@ -4,7 +4,6 @@ using LibrarySystem.App.Forms.BookManage;
 using LibrarySystem.App.Forms.Category;
 using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Forms.Language;
-using LibrarySystem.App.Forms.Profile;
 using LibrarySystem.App.Forms.Report;
 using LibrarySystem.App.Forms.User;
 using LibrarySystem.App.Helpers;
@@ -167,8 +166,7 @@ namespace LibrarySystem.App.Forms.Abstracts
 
             //// ⚙️ PROFILE – Shared by All Users
             var profileMenu = new ToolStripMenuItem("⚙️ Profile");
-            profileMenu.DropDownItems.Add("✏️ Update My Info", null, (s, e) => FormManager.ShowFormInMdi<UpdateProfileForm>());
-            profileMenu.DropDownItems.Add("🔒 Change Password", null, (s, e) => FormManager.ShowFormInMdi<ChangePasswordForm>());
+            profileMenu.DropDownItems.Add("✏️ Update My Info", null, (s, e) => FormManager.ShowFormInMdi<UserManageForm>(OperationType.ProfileUpdate));
             menuStrip.Items.Add(profileMenu);
 
             // 🪟 WINDOWS – Always

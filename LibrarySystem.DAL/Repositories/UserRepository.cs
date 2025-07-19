@@ -51,9 +51,13 @@ namespace LibrarySystem.DAL.Repositories
                 return null;
             return table.CopyToDataTable().ToList<UserEntity>().FirstOrDefault();
         }
+        public bool UpdatePasswordByUserId(int userId, string password)
+        {
+            return 0 < tableAdapter.UpdatePasswordByUserId(password, userId);
+        }
         public bool Update(UserEntity user)
         {
-            return 0 < tableAdapter.UpdateById(user.UserName, user.Password, user.PhoneNumber, user.Email, (int)user.UserLevel, user.UID);
+            return 0 < tableAdapter.UpdateById(user.UserName, user.PhoneNumber, user.Email, (int)user.UserLevel, user.UID);
         }
     }
 }

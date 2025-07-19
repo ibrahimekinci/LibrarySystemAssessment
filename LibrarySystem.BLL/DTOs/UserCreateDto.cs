@@ -8,6 +8,8 @@ namespace LibrarySystem.BLL.DTOs
 
         [Required, StringLength(8)]
         public string UserName { get; set; }
+        [Required, StringLength(20)]
+        public string Password { get; set; }
 
         [EmailAddress]
         [Required]
@@ -17,6 +19,7 @@ namespace LibrarySystem.BLL.DTOs
         public string PhoneNumber { get; set; }
       
         [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "UserLevel selection is required.")]
         public UserLevelEnum UserLevel { get; set; }
     }
 }
