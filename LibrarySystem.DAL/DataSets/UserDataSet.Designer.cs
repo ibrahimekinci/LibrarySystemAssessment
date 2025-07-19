@@ -907,7 +907,7 @@ namespace LibrarySystem.DAL.DataSets.UserDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TabUser] ([UserName], [Password], [PhoneNumber], [Email], [UserLevel]) VALUES (@UserName, @Password, @PhoneNumber, @Email, @UserLevel);
-SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE (UID = SCOPE_IDENTITY())";
+SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE (UID = SCOPE_IDENTITY()) ORDER BY UID DESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -917,7 +917,7 @@ SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TabUser] SET [UserName] = @UserName, [Password] = @Password, [PhoneNumber] = @PhoneNumber, [Email] = @Email, [UserLevel] = @UserLevel WHERE (([UID] = @Original_UID) AND ([UserName] = @Original_UserName) AND ([Password] = @Original_Password) AND ((@IsNull_PhoneNumber = 1 AND [PhoneNumber] IS NULL) OR ([PhoneNumber] = @Original_PhoneNumber)) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([UserLevel] = @Original_UserLevel));
-SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE (UID = @UID)";
+SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE (UID = @UID) ORDER BY UID DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -948,7 +948,8 @@ SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM dbo.TabUser";
+            this._commandCollection[0].CommandText = "SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM dbo.TabUser OR" +
+                "DER by 1 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -958,14 +959,14 @@ SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM TabUser WHERE
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM dbo.TabUser\r\nw" +
-                "here UID = @UID";
+            this._commandCollection[2].CommandText = "SELECT Email, Password, PhoneNumber, UID, UserLevel, UserName FROM TabUser WHERE " +
+                "(UID = @UID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT UID, UserName, Password, PhoneNumber, Email, UserLevel FROM dbo.TabUser wh" +
-                "ere UserName = @UserName";
+            this._commandCollection[3].CommandText = "SELECT Email, Password, PhoneNumber, UID, UserLevel, UserName FROM TabUser WHERE " +
+                "(UserName = @UserName)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserName", global::System.Data.SqlDbType.VarChar, 8, global::System.Data.ParameterDirection.Input, 0, 0, "UserName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();

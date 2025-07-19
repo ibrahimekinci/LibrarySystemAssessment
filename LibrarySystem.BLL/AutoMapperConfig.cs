@@ -42,7 +42,7 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<UserCreateDto, UserEntity>();
 
                 cfg.CreateMap<AuthorUpdateDto, AuthorEntity>();
-                cfg.CreateMap<BarrowUpdateDto, BarrowEntity>();
+                cfg.CreateMap<BarrowReturnDto, BarrowEntity>();
                 cfg.CreateMap<CategoryUpdateDto, CategoryEntity>();
                 cfg.CreateMap<LanguageUpdateDto, LanguageEntity>();
                 cfg.CreateMap<ReserveUpdateDto, ReserveEntity>();

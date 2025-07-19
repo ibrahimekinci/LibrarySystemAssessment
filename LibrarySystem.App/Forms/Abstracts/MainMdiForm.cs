@@ -32,10 +32,6 @@ namespace LibrarySystem.App.Forms.Abstracts
             this.ControlBox = true;
             this.MinimizeBox = true;
             this.ShowIcon = true;
-            this.Resize -= Form_Resize;
-        }
-        protected override void FormResize()
-        {
         }
         public MainMdiForm()
         {
@@ -50,11 +46,12 @@ namespace LibrarySystem.App.Forms.Abstracts
                 RiderectToLoginPage();
                 return;
             }
-            if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Manager)
-                FormManager.ShowFormInMdi<ReserveBookForm>(this);
-            else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Staff)
-                FormManager.ShowFormInMdi<ReserveBookForm>(this);
-            else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Student)
+
+            if (UserManager.IsloggedInAsManager())
+                FormManager.ShowFormInMdi<BookLoanForm>(this, OperationType.ViewAllBookLoans);
+            else if (UserManager.IsloggedInAsStaff())
+                FormManager.ShowFormInMdi<BookLoanForm>(this, OperationType.ViewAllBookLoans);
+            else if (UserManager.IsloggedInAsStudent())
                 FormManager.ShowFormInMdi<StudentDashboardForm>(this);
         }
         #region Menu
@@ -91,23 +88,23 @@ namespace LibrarySystem.App.Forms.Abstracts
             var booksMenu = new ToolStripMenuItem("📚 Books");
             booksMenu.DropDownItems.Add("🔍 Search Books", null, (s, e) => FormManager.ShowFormInMdi<BookSearchForm>());
             booksMenu.DropDownItems.Add("📚 Browse Books", null, (s, e) => FormManager.ShowFormInMdi<BookBrowsingForm>());
-            booksMenu.DropDownItems.Add("📌 Reserve a Book", null, (s, e) => FormManager.ShowFormInMdi<ReserveBookForm>());
-            booksMenu.DropDownItems.Add("📤 Borrow a Book", null, (s, e) => FormManager.ShowFormInMdi<BarrowBookForm>());
-            booksMenu.DropDownItems.Add("📥 Return a Book", null, (s, e) => FormManager.ShowFormInMdi<ReturnBookForm>());
+            booksMenu.DropDownItems.Add("📌 Reserve a Book", null, (s, e) => FormManager.ShowFormInMdi<BookReserveForm>());
+            booksMenu.DropDownItems.Add("📤 Borrow a Book", null, (s, e) => FormManager.ShowFormInMdi<BookBarrowForm>());
+            booksMenu.DropDownItems.Add("📥 Return a Book", null, (s, e) => FormManager.ShowFormInMdi<BookReturnForm>());
             menuStrip.Items.Add(booksMenu);
 
             //// 📖 MY ACTIVITY – Everyone
             var myActivityMenu = new ToolStripMenuItem("📖 My Activity");
-            myActivityMenu.DropDownItems.Add("📚 My Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<BarrowBookForm>());
-            myActivityMenu.DropDownItems.Add("📌 My Reservations", null, (s, e) => FormManager.ShowFormInMdi<ReserveBookForm>());
+            myActivityMenu.DropDownItems.Add("📚 My Book loans", null, (s, e) => FormManager.ShowFormInMdi<BookLoanForm>(OperationType.ViewMyBookLoans));
+            myActivityMenu.DropDownItems.Add("📌 My Reservations", null, (s, e) => FormManager.ShowFormInMdi<BookReservationsForm>(OperationType.ViewMyReservations));
             menuStrip.Items.Add(myActivityMenu);
 
             //// 📖 Student ACTIVITY – For Staff and Manager
             if (currentUserRole == UserLevelEnum.Staff || currentUserRole == UserLevelEnum.Manager)
             {
                 var StudentActivityMenu = new ToolStripMenuItem("📖 Student Activity");
-                StudentActivityMenu.DropDownItems.Add("📚 Student Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<BarrowBookForm>());
-                StudentActivityMenu.DropDownItems.Add("📌 Student Reservations", null, (s, e) => FormManager.ShowFormInMdi<ReserveBookForm>());
+                StudentActivityMenu.DropDownItems.Add("📚 Student Book Loans", null, (s, e) => FormManager.ShowFormInMdi<BookLoanForm>(OperationType.ViewAllBookLoans));
+                StudentActivityMenu.DropDownItems.Add("📌 Student Reservations", null, (s, e) => FormManager.ShowFormInMdi<BookReservationsForm>(OperationType.ViewAllReservations));
                 menuStrip.Items.Add(StudentActivityMenu);
             }
 

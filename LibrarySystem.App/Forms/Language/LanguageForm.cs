@@ -33,6 +33,7 @@ namespace LibrarySystem.App.Forms.Language
         }
         private void RefreshDgv()
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
             var result = LanguageService.GetAllLanguages();
             if (result == null || result.Count == 0)

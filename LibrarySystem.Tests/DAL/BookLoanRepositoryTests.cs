@@ -3,9 +3,9 @@ using LibrarySystem.DAL.Repositories;
 
 namespace LibrarySystem.Tests.DAL
 {
-    public class BarrowRepositoryTests : IDisposable
+    public class BookLoanRepositoryTests : IDisposable
     {
-        private readonly BarrowRepository _repo = new();
+        private readonly BookLoanRepository _repo = new();
         private readonly BookRepository _bookRepo = new();
 
         private readonly List<int> _createdIds = new();

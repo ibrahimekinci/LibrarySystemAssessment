@@ -1,21 +1,78 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
+using LibrarySystem.App.Helpers;
+using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
 {
     public partial class BookLoanForm : BaseForm
     {
-        public BookLoanForm()
+        private readonly string _formTitle = "Book Loans";
+        public override string FormTitle => _formTitle;
+        private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
+        {
+            UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student
+        };
+        protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => allowedUserLevels;
+        private Action RefreshDgv;
+        public BookLoanForm(OperationType operationType)
         {
             InitializeComponent();
+            if (operationType == OperationType.ViewAllBookLoans)
+            {
+                if (!UserManager.IsloggedInAsManager() && !UserManager.IsloggedInAsStaff())
+                    RiderectToUnauthorizedPage();
+                RefreshDgv = AdminDgvRefresh;
+                _formTitle = "All Book Loans";
+            }
+            else if (operationType == OperationType.ViewMyBookLoans)
+            {
+                RefreshDgv = UserDgvRefresh;
+                _formTitle = "My Book Loans";
+            }
+            else
+            {
+                throw new ArgumentException("Invalid operation type for BookLoanForm", nameof(operationType));
+
+            }
+        }
+        protected override void LoadFormData()
+        {
+            lnkTitle.Text = FormTitle;
+            RefreshDgv();
+        }
+        private void AdminDgvRefresh()
+        {
+            dgv.Width = this.Width - 40;
+            dgv.Columns.Clear();
+            var result = BookLoanService.GetAllLoans();
+            if (result == null || result.Rows.Count == 0)
+            {
+                dgv.DataSource = null;
+                lblMessage.Visible = true;
+            }
+            else
+            {
+                dgv.DataSource = result;
+                lblMessage.Visible = false;
+            }
+        }
+        private void UserDgvRefresh()
+        {
+            dgv.Width = this.Width - 40;
+            dgv.Columns.Clear();
+            var result = BookLoanService.GetLoansByUserId(UserManager.CurrentUser.UID);
+            if (result == null || result.Rows.Count == 0)
+            {
+                dgv.DataSource = null;
+                lblMessage.Visible = true;
+            }
+            else
+            {
+                dgv.DataSource = result;
+                lblMessage.Visible = false;
+            }
         }
     }
 }

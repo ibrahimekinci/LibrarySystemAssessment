@@ -1,7 +1,6 @@
-﻿using LibrarySystem.App.Forms.Dashboards;
+﻿using LibrarySystem.App.Forms.Book;
+using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.BLL.Interfaces;
-using LibrarySystem.BLL.Services;
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Enums;
@@ -56,14 +55,14 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
         }
 
-        private IBarrowService _barrowService;
-        protected IBarrowService BarrowService
+        private IBookLoanService _bookLoanService;
+        protected IBookLoanService BookLoanService
         {
             get
             {
-                if (_barrowService == null)
-                    _barrowService = new BarrowService();
-                return _barrowService;
+                if (_bookLoanService == null)
+                    _bookLoanService = new BookLoanService();
+                return _bookLoanService;
             }
         }
 
@@ -179,24 +178,6 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
         }
 
-        private FormBorderStyle _previousBorderStyle;
-        protected void Form_Resize(object sender, EventArgs e)
-        {
-            FormResize();
-        }
-        protected virtual void FormResize()
-        {
-            //if (this.WindowState == FormWindowState.Maximized)
-            //{
-            //    _previousBorderStyle = this.FormBorderStyle;
-            //    this.FormBorderStyle = FormBorderStyle.None;
-            //}
-            //else if (this.WindowState == FormWindowState.Normal && _previousBorderStyle != FormBorderStyle.None)
-            //{
-            //    this.FormBorderStyle = _previousBorderStyle;
-            //}
-        }
-
         private void InitializeFormBase()
         {
             InitializeUI();
@@ -213,7 +194,6 @@ namespace LibrarySystem.App.Forms.Abstracts
 
             this.Load += (sender, e) => AppTheme.StyleControl(this);
             this.ControlAdded += (sender, e) => AppTheme.StyleControl(e.Control);
-            this.Resize += Form_Resize;
         }
         #endregion
 
@@ -225,11 +205,12 @@ namespace LibrarySystem.App.Forms.Abstracts
                 RiderectToLoginPage();
                 return;
             }
-            if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Manager)
-                FormManager.ShowFormOnly<ManagerDashboardForm>();
-            else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Staff)
-                FormManager.ShowFormOnly<StaffDashboardForm>();
-            else if (UserManager.CurrentUser.UserLevel == UserLevelEnum.Student)
+
+            if (UserManager.IsloggedInAsManager())
+                FormManager.ShowFormOnly<BookLoanForm>(OperationType.ViewAllBookLoans);
+            else if (UserManager.IsloggedInAsStaff())
+                FormManager.ShowFormOnly<BookLoanForm>(OperationType.ViewAllBookLoans);
+            else if (UserManager.IsloggedInAsStudent())
                 FormManager.ShowFormOnly<StudentDashboardForm>();
         }
 

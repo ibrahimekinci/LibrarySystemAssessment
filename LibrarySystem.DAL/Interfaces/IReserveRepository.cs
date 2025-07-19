@@ -1,6 +1,6 @@
-﻿using LibrarySystem.DAL.DTOs;
-using LibrarySystem.DAL.Entities;
+﻿using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
+using System.Data;
 
 namespace LibrarySystem.DAL.Interfaces
 {
@@ -8,8 +8,10 @@ namespace LibrarySystem.DAL.Interfaces
     {
         //PagedResultDto<List<ReserveEntity>> GetAllPaged(PagedRequestDto request);
         //PagedResultDto<List<ReserveEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
-        List<ReserveEntity> GetAll();
-        List<ReserveEntity> GetByUserId(int uid);
+        DataTable GetAll();
+        DataTable GetAllByUserId(int userId);
+        //List<ReserveEntity> GetByUserId(int uid);
+        ReserveEntity GetById(int id);
         int Add(ReserveEntity reserve);
         bool Delete(int rid);
 

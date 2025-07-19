@@ -75,7 +75,7 @@ namespace LibrarySystem.App.Forms.Author
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = AuthorService.AddAuthor(dto);
+            var result = AuthorService.Add(dto);
             if (result > 0)
             {
                 ShowInformation("Author create successfully.", "Success");
@@ -97,7 +97,7 @@ namespace LibrarySystem.App.Forms.Author
                 return;
             }
 
-            var result = AuthorService.UpdateAuthor(dto);
+            var result = AuthorService.Update(dto);
             if (result)
             {
                 ShowInformation("Author updated successfully.", "Success");

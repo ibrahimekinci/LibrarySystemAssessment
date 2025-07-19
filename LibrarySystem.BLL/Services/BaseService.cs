@@ -9,7 +9,7 @@ namespace LibrarySystem.BLL.Services
         private static IMapper _mapper;
         private IBookRepository _bookRepository;
         private IUserRepository _userRepository;
-        private IBarrowRepository _barrowRepository;
+        private IBookLoanRepository _bookLoanRepository;
         private IReserveRepository _reserveRepository;
         private ICategoryRepository _categoryRepository;
         private IAuthorRepository _authorRepository;
@@ -48,13 +48,13 @@ namespace LibrarySystem.BLL.Services
             }
         }
 
-        protected IBarrowRepository BarrowRepository
+        protected IBookLoanRepository BookLoanRepository
         {
             get
             {
-                if (_barrowRepository == null)
-                    _barrowRepository = new BarrowRepository();
-                return _barrowRepository;
+                if (_bookLoanRepository == null)
+                    _bookLoanRepository = new BookLoanRepository();
+                return _bookLoanRepository;
             }
         }
 

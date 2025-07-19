@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
+using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Forms.Report;
 using System;
 using System.Linq;
@@ -33,12 +34,9 @@ namespace LibrarySystem.App.Helpers
 
             var existingForm = System.Windows.Forms.Application.OpenForms.OfType<T>().FirstOrDefault();
 
-            if (existingForm != null && !(existingForm is ReportDataForm))
+            if (existingForm != null)
             {
-                existingForm.BringToFront();
-                if (existingForm.WindowState == FormWindowState.Minimized)
-                    existingForm.WindowState = FormWindowState.Maximized;
-                return;
+                existingForm.Close();
             }
 
             BaseForm formInstance;

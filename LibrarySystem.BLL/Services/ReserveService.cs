@@ -2,6 +2,7 @@
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
+using System.Data;
 
 namespace LibrarySystem.BLL.Services
 {
@@ -27,16 +28,24 @@ namespace LibrarySystem.BLL.Services
             var newEntity = Mapper.Map<ReserveEntity>(reserveRecordDto);
             return ReserveRepository.Add(newEntity) > 0;
         }
-
-        public List<ReserveViewDto> GetReservationsByUser(int userId)
-        {
-            var data = ReserveRepository.GetByUserId(userId);
-            return data == null ? new List<ReserveViewDto>() : Mapper.Map<List<ReserveViewDto>>(data);
-        }
-
         public bool CancelReservation(int reservationId)
         {
             return ReserveRepository.Delete(reservationId);
+        }
+
+        public DataTable GetAll()
+        {
+            return ReserveRepository.GetAll();
+        }
+
+        public DataTable GetAllByUserId(int userId)
+        {
+            return ReserveRepository.GetAllByUserId(userId);
+        }
+        public ReserveViewDto GetById(int id)
+        {
+            var entity = ReserveRepository.GetById(id);
+            return Mapper.Map<ReserveViewDto>(entity);
         }
     }
 }

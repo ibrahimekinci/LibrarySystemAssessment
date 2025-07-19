@@ -33,6 +33,7 @@ namespace LibrarySystem.App.Forms.BookManage
         }
         private void RefreshDgv()
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
             var result = BookService.GetAll();
             if (result == null || result.Count == 0)
@@ -83,7 +84,7 @@ namespace LibrarySystem.App.Forms.BookManage
 
                     try
                     {
-                        success = BookService.DeleteBook(isbn);
+                        success = BookService.Delete(isbn);
                     }
                     catch (Exception ex)
                     {

@@ -1600,6 +1600,8 @@ namespace LibrarySystem.DAL.DataSets {
             
             private global::System.Data.DataColumn columnLanguage;
             
+            private global::System.Data.DataColumn columnUID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ViewBookBorrowedDataTable() {
@@ -1723,6 +1725,14 @@ namespace LibrarySystem.DAL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn UIDColumn {
+                get {
+                    return this.columnUID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1758,7 +1768,7 @@ namespace LibrarySystem.DAL.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ViewBookBorrowedRow AddViewBookBorrowedRow(string ISBN, string BookName, string CategoryName, string Publisher, int PublishYear, int Pages, string AuthorName, string LanguageName, int Author, int Category, int Language) {
+            public ViewBookBorrowedRow AddViewBookBorrowedRow(string ISBN, string BookName, string CategoryName, string Publisher, int PublishYear, int Pages, string AuthorName, string LanguageName, int Author, int Category, int Language, int UID) {
                 ViewBookBorrowedRow rowViewBookBorrowedRow = ((ViewBookBorrowedRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ISBN,
@@ -1771,7 +1781,8 @@ namespace LibrarySystem.DAL.DataSets {
                         LanguageName,
                         Author,
                         Category,
-                        Language};
+                        Language,
+                        UID};
                 rowViewBookBorrowedRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewBookBorrowedRow);
                 return rowViewBookBorrowedRow;
@@ -1812,6 +1823,7 @@ namespace LibrarySystem.DAL.DataSets {
                 this.columnAuthor = base.Columns["Author"];
                 this.columnCategory = base.Columns["Category"];
                 this.columnLanguage = base.Columns["Language"];
+                this.columnUID = base.Columns["UID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1839,6 +1851,8 @@ namespace LibrarySystem.DAL.DataSets {
                 base.Columns.Add(this.columnCategory);
                 this.columnLanguage = new global::System.Data.DataColumn("Language", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLanguage);
+                this.columnUID = new global::System.Data.DataColumn("UID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnISBN}, true));
                 this.columnISBN.AllowDBNull = false;
@@ -2494,6 +2508,34 @@ namespace LibrarySystem.DAL.DataSets {
                     this[this.tableViewBookBorrowed.LanguageColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int UID {
+                get {
+                    try {
+                        return ((int)(this[this.tableViewBookBorrowed.UIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UID\' in table \'ViewBookBorrowed\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableViewBookBorrowed.UIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsUIDNull() {
+                return this.IsNull(this.tableViewBookBorrowed.UIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetUIDNull() {
+                this[this.tableViewBookBorrowed.UIDColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -2781,7 +2823,7 @@ namespace LibrarySystem.DAL.DataSets.BookDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[TabBook] ([ISBN], [BookName], [Author], [Category], [Language], [PublishYear], [Pages], [Publisher]) VALUES (@ISBN, @BookName, @Author, @Category, @Language, @PublishYear, @Pages, @Publisher);
-SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher FROM TabBook WHERE (ISBN = @ISBN)";
+SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher FROM TabBook WHERE (ISBN = @ISBN) ORDER BY ISBN DESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2794,7 +2836,7 @@ SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[TabBook] SET [ISBN] = @ISBN, [BookName] = @BookName, [Author] = @Author, [Category] = @Category, [Language] = @Language, [PublishYear] = @PublishYear, [Pages] = @Pages, [Publisher] = @Publisher WHERE (([ISBN] = @Original_ISBN) AND ([BookName] = @Original_BookName) AND ([Author] = @Original_Author) AND ([Category] = @Original_Category) AND ([Language] = @Original_Language) AND ([PublishYear] = @Original_PublishYear) AND ([Pages] = @Original_Pages) AND ([Publisher] = @Original_Publisher));
-SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher FROM TabBook WHERE (ISBN = @ISBN)";
+SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher FROM TabBook WHERE (ISBN = @ISBN) ORDER BY ISBN DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BookName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -2828,7 +2870,7 @@ SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ISBN, BookName, Author, Category, Language, PublishYear, Pages, Publisher " +
-                "FROM dbo.TabBook";
+                "FROM dbo.TabBook  ORDER by 1 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -3378,24 +3420,42 @@ SELECT @@ROWCOUNT AS AffectedRows";
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ISBN, BookName, Publisher, PublishYear, Pages, AuthorName, CategoryName, L" +
-                "anguageName, Author, Category, Language FROM dbo.ViewBook";
+                "anguageName, Author, Category, Language FROM dbo.ViewBook ORDER by 1 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        Author, AuthorName, BookName, Category, CategoryName, ISBN, Languag" +
-                "e, LanguageName, Pages, PublishYear, Publisher\r\nFROM            ViewBook\r\nWHERE " +
-                "       ISBN = @ISBN";
+            this._commandCollection[1].CommandText = "SELECT Author, AuthorName, BookName, Category, CategoryName, ISBN, Language, Lang" +
+                "uageName, Pages, PublishYear, Publisher FROM ViewBook WHERE (ISBN = @ISBN)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 13, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT 
-   *
-FROM [librarysystem].[dbo].[ViewBook]
-WHERE 
-    (@BookName IS NULL OR LTRIM(RTRIM(@BookName)) = '' OR BookName LIKE '%' + @BookName + '%')
-    AND (@AuthorName IS NULL OR LTRIM(RTRIM(@AuthorName)) = '' OR AuthorName LIKE '%' + @AuthorName + '%')
-    AND (@CategoryId IS NULL OR @CategoryId = '0' OR Category = @CategoryId)";
+            this._commandCollection[2].CommandText = "SELECT Author, AuthorName, BookName, Category, CategoryName, ISBN, Language, Lang" +
+                "uageName, Pages, PublishYear, Publisher FROM ViewBook WHERE (@BookName IS NULL) " +
+                "AND (@AuthorName IS NULL) AND (@CategoryId IS NULL OR @CategoryId = \'0\') OR (@Bo" +
+                "okName IS NULL) AND (@CategoryId IS NULL OR @CategoryId = \'0\') AND (LTRIM(RTRIM(" +
+                "@AuthorName)) = \'\') OR (@BookName IS NULL) AND (@CategoryId IS NULL OR @Category" +
+                "Id = \'0\') AND (AuthorName LIKE \'%\' + @AuthorName + \'%\') OR (@AuthorName IS NULL)" +
+                " AND (@CategoryId IS NULL OR @CategoryId = \'0\') AND (LTRIM(RTRIM(@BookName)) = \'" +
+                "\') OR (@CategoryId IS NULL OR @CategoryId = \'0\') AND (LTRIM(RTRIM(@AuthorName)) " +
+                "= \'\') AND (LTRIM(RTRIM(@BookName)) = \'\') OR (@CategoryId IS NULL OR @CategoryId " +
+                "= \'0\') AND (AuthorName LIKE \'%\' + @AuthorName + \'%\') AND (LTRIM(RTRIM(@BookName)" +
+                ") = \'\') OR (@AuthorName IS NULL) AND (@CategoryId IS NULL OR @CategoryId = \'0\') " +
+                "AND (BookName LIKE \'%\' + @BookName + \'%\') OR (@CategoryId IS NULL OR @CategoryId" +
+                " = \'0\') AND (LTRIM(RTRIM(@AuthorName)) = \'\') AND (BookName LIKE \'%\' + @BookName " +
+                "+ \'%\') OR (@CategoryId IS NULL OR @CategoryId = \'0\') AND (AuthorName LIKE \'%\' + " +
+                "@AuthorName + \'%\') AND (BookName LIKE \'%\' + @BookName + \'%\') OR (@BookName IS NU" +
+                "LL) AND (@AuthorName IS NULL) AND (Category = @CategoryId) OR (@BookName IS NULL" +
+                ") AND (LTRIM(RTRIM(@AuthorName)) = \'\') AND (Category = @CategoryId) OR (@BookNam" +
+                "e IS NULL) AND (AuthorName LIKE \'%\' + @AuthorName + \'%\') AND (Category = @Catego" +
+                "ryId) OR (@AuthorName IS NULL) AND (LTRIM(RTRIM(@BookName)) = \'\') AND (Category " +
+                "= @CategoryId) OR (LTRIM(RTRIM(@AuthorName)) = \'\') AND (LTRIM(RTRIM(@BookName)) " +
+                "= \'\') AND (Category = @CategoryId) OR (AuthorName LIKE \'%\' + @AuthorName + \'%\') " +
+                "AND (LTRIM(RTRIM(@BookName)) = \'\') AND (Category = @CategoryId) OR (@AuthorName " +
+                "IS NULL) AND (BookName LIKE \'%\' + @BookName + \'%\') AND (Category = @CategoryId) " +
+                "OR (LTRIM(RTRIM(@AuthorName)) = \'\') AND (BookName LIKE \'%\' + @BookName + \'%\') AN" +
+                "D (Category = @CategoryId) OR (AuthorName LIKE \'%\' + @AuthorName + \'%\') AND (Boo" +
+                "kName LIKE \'%\' + @BookName + \'%\') AND (Category = @CategoryId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BookName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "BookName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AuthorName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "AuthorName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3605,12 +3665,20 @@ WHERE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ISBN, BookName, CategoryName, Publisher, PublishYear, Pages, AuthorName, L" +
-                "anguageName, Author, Category, Language FROM dbo.ViewBookAvailable";
+                "anguageName, Author, Category, Language FROM dbo.ViewBookAvailable ORDER by 1 DE" +
+                "SC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT Author, AuthorName, BookName, Category, CategoryName, ISBN, Language, Lang" +
+                "uageName, Pages, PublishYear, Publisher FROM ViewBookAvailable WHERE (ISBN = @IS" +
+                "BN) ORDER BY ISBN DESC";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 13, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3632,6 +3700,23 @@ WHERE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual BookDataSet.ViewBookAvailableDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            BookDataSet.ViewBookAvailableDataTable dataTable = new BookDataSet.ViewBookAvailableDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual BookDataSet.ViewBookAvailableDataTable GetByISBN(string ISBN) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((ISBN == null)) {
+                throw new global::System.ArgumentNullException("ISBN");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(ISBN));
+            }
             BookDataSet.ViewBookAvailableDataTable dataTable = new BookDataSet.ViewBookAvailableDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3770,6 +3855,7 @@ WHERE
             tableMapping.ColumnMappings.Add("Author", "Author");
             tableMapping.ColumnMappings.Add("Category", "Category");
             tableMapping.ColumnMappings.Add("Language", "Language");
+            tableMapping.ColumnMappings.Add("UID", "UID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -3783,25 +3869,18 @@ WHERE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ISBN, BookName, CategoryName, Publisher, PublishYear, Pages, AuthorName, L" +
-                "anguageName, Author, Category, Language FROM dbo.ViewBookBorrowed";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.ViewBookBorrowed\r\nORDER by UID,ISBN DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BookDataSet.ViewBookBorrowedDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT * FROM dbo.ViewBookBorrowed\r\nwhere UID = @UID AND ISBN = @ISBN\r\nORDER by U" +
+                "ID,ISBN DESC ";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "UID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ISBN", global::System.Data.SqlDbType.VarChar, 13, global::System.Data.ParameterDirection.Input, 0, 0, "ISBN", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3810,6 +3889,29 @@ WHERE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual BookDataSet.ViewBookBorrowedDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            BookDataSet.ViewBookBorrowedDataTable dataTable = new BookDataSet.ViewBookBorrowedDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual BookDataSet.ViewBookBorrowedDataTable GetByUserIdAndISBN(global::System.Nullable<int> UID, string ISBN) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((UID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((ISBN == null)) {
+                throw new global::System.ArgumentNullException("ISBN");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ISBN));
+            }
             BookDataSet.ViewBookBorrowedDataTable dataTable = new BookDataSet.ViewBookBorrowedDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

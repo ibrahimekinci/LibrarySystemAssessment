@@ -63,6 +63,7 @@ namespace LibrarySystem.App.Forms.Report
         }
         private void RefreshDgv(DataTable result)
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
             if (result == null || result.Rows.Count == 0)
             {

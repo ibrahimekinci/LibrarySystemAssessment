@@ -35,6 +35,7 @@ namespace LibrarySystem.App.Forms.Book
             }
             else
             {
+                dgv.Width = this.Width - 40;
                 dgv.DataSource = BookService.Search(dto);
                 dgv.Columns[5].Visible = false;
                 dgv.Columns[6].Visible = false;

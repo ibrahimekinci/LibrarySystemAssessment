@@ -33,8 +33,9 @@ namespace LibrarySystem.App.Forms.Author
         }
         private void RefreshDgv()
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = AuthorService.GetAllAuthors();
+            var result = AuthorService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;
@@ -83,7 +84,7 @@ namespace LibrarySystem.App.Forms.Author
 
                     try
                     {
-                        success = AuthorService.DeleteAuthor(id);
+                        success = AuthorService.Delete(id);
                     }
                     catch (Exception ex)
                     {
@@ -98,7 +99,7 @@ namespace LibrarySystem.App.Forms.Author
             }
             else if (dgv.Columns[e.ColumnIndex].Name == "btnEdit")
             {
-                var selectedAuthor = AuthorService.GetAuthorById(id);
+                var selectedAuthor = AuthorService.GetById(id);
                 if (selectedAuthor != null)
                 {
                     using (var form = new AuthorManageForm(OperationType.AuthorEdit, selectedAuthor, RefreshDgv))

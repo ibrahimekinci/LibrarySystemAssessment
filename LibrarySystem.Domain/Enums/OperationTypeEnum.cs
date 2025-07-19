@@ -44,14 +44,16 @@
         // Borrowing & Returning
         BorrowBook,
         ReturnBook,
-        //DeleteBorrowRecord,
-        //ViewBorrowedBooksByUser,
+        DeleteBookLoan,
+        ViewMyBookLoans,
+        ViewAllBookLoans,
 
         // Reservation
         ReserveBook,
         UpdateReservation,
-        CancelReservation,
-        ViewUserReservations,
+        DeleteReservation,
+        ViewMyReservations,
+        ViewAllReservations,
 
         // Reports
         GetReportMostBorrowedBooks,

@@ -10,7 +10,7 @@ namespace LibrarySystem.Tests.DAL
         private readonly ReportRepository _reportRepo = new();
         private readonly UserRepository _userRepo = new();
         private readonly BookRepository _bookRepo = new();
-        private readonly BarrowRepository _barrowRepo = new();
+        private readonly BookLoanRepository _barrowRepo = new();
 
         private string _testIsbn;
         private int _testUserId;

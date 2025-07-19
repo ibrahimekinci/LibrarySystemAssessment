@@ -759,14 +759,15 @@ namespace LibrarySystem.DAL.DataSets.CategoryDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TabCategory] ([CategoryName]) VALUES (@CategoryName);\r\nSELECT " +
-                "CID, CategoryName FROM TabCategory WHERE (CID = SCOPE_IDENTITY())";
+                "CID, CategoryName FROM TabCategory WHERE (CID = SCOPE_IDENTITY()) ORDER BY CID D" +
+                "ESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TabCategory] SET [CategoryName] = @CategoryName WHERE (([CID] = @Or" +
                 "iginal_CID) AND ([CategoryName] = @Original_CategoryName));\r\nSELECT CID, Categor" +
-                "yName FROM TabCategory WHERE (CID = @CID)";
+                "yName FROM TabCategory WHERE (CID = @CID) ORDER BY CID DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -787,7 +788,7 @@ namespace LibrarySystem.DAL.DataSets.CategoryDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT CID, CategoryName FROM dbo.TabCategory";
+            this._commandCollection[0].CommandText = "SELECT CID, CategoryName FROM dbo.TabCategory ORDER by 1 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -797,7 +798,7 @@ namespace LibrarySystem.DAL.DataSets.CategoryDataSetTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT CID, CategoryName FROM dbo.TabCategory where CID = @CID";
+            this._commandCollection[2].CommandText = "SELECT CID, CategoryName FROM TabCategory WHERE (CID = @CID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();

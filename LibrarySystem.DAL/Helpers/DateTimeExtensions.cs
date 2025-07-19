@@ -6,7 +6,7 @@ namespace LibrarySystem.DAL.Helpers
     {
         public static string FormatForDb(this DateTime date)
         {
-            return date.ToString("yyyy-MM-dd HH:mm:ss");
+            return date.ToString("yyyy-MM-dd");
         }
     }
 }

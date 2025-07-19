@@ -35,17 +35,17 @@ namespace LibrarySystem.App.Forms.Dashboards
 
         private void lnkReverseBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<ReserveBookForm>();
+            FormManager.ShowFormInMdi<BookReserveForm>();
         }
 
         private void lnkBarrowBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<BarrowBookForm>();
+            FormManager.ShowFormInMdi<BookBarrowForm>();
         }
 
         private void lnkReturnBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<ReturnBookForm>();
+            FormManager.ShowFormInMdi<BookReturnForm>();
         }
     }
 }

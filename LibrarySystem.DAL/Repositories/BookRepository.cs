@@ -70,5 +70,21 @@ namespace LibrarySystem.DAL.Repositories
         {
             return 0 < tableAdapter.DeleteByISBN(isbn);
         }
+
+        public BookEntity GetAvailableBookByISBN(string isbn)
+        {
+            var table = _viewBookAvailableAdapter.GetByISBN(isbn);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();
+        }
+
+        public BookEntity GetBorrowedBookByUserIdAndISBN(int userId, string isbn)
+        {
+            var table = _viewBookBorrowedAdapter.GetByUserIdAndISBN(userId, isbn);
+            if (table == null || table.Rows.Count == 0)
+                return null;
+            return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();
+        }
     }
 }

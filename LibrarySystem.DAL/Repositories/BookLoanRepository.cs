@@ -9,9 +9,10 @@ using System.Linq;
 
 namespace LibrarySystem.DAL.Repositories
 {
-    public class BarrowRepository : BaseRepository, IBarrowRepository
+    public class BookLoanRepository : BaseRepository, IBookLoanRepository
     {
         private readonly TabBorrowTableAdapter tableAdapter = new TabBorrowTableAdapter();
+        private readonly ViewBookLoansTableAdapter viewAdapter = new ViewBookLoansTableAdapter();
 
         public int Add(BarrowEntity borrow)
         {
@@ -49,12 +50,27 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Return(int borrowId, DateTime actualReturnDate, decimal lateFee)
         {
-            return 0 < tableAdapter.UpdateActualReturn(actualReturnDate.FormatForDb(), lateFee, borrowId);
+            return 0 < tableAdapter.ReturnBook(actualReturnDate.FormatForDb(), lateFee, borrowId);
         }
 
         public bool Delete(int bid)
         {
             return 0 < tableAdapter.DeleteById(bid);
+        }
+
+        public DataTable GetUnreturnedLoansByUserId(int UID)
+        {
+            return viewAdapter.GetUnReturnedBooks(UID);
+        }
+
+        public DataTable GetAllLoans()
+        {
+            return viewAdapter.GetAll();
+        }
+
+        public DataTable GetLoansByUserId(int uid)
+        {
+            return viewAdapter.GetLoansByUserId(uid);
         }
     }
 }

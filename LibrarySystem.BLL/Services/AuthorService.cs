@@ -1,6 +1,5 @@
-﻿using LibrarySystem.BLL.Interfaces;
-using LibrarySystem.BLL.DTOs;
-using LibrarySystem.BLL.Services;
+﻿using LibrarySystem.BLL.DTOs;
+using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
 
@@ -8,30 +7,30 @@ namespace LibrarySystem.BLL.Services
 {
     public class AuthorService : BaseService, IAuthorService
     {
-        public int AddAuthor(AuthorCreateDto author)
+        public int Add(AuthorCreateDto author)
         {
             var entity = Mapper.Map<AuthorEntity>(author);
             return AuthorRepository.Add(entity);
         }
 
-        public bool UpdateAuthor(AuthorUpdateDto author)
+        public bool Update(AuthorUpdateDto author)
         {
             var entity = Mapper.Map<AuthorEntity>(author);
             return AuthorRepository.Update(entity);
         }
 
-        public bool DeleteAuthor(int authorId)
+        public bool Delete(int authorId)
         {
             return AuthorRepository.Delete(authorId);
         }
 
-        public List<AuthorViewDto> GetAllAuthors()
+        public List<AuthorViewDto> GetAll()
         {
             var list = AuthorRepository.GetAll();
             return Mapper.Map<List<AuthorViewDto>>(list);
         }
 
-        public AuthorViewDto GetAuthorById(int id)
+        public AuthorViewDto GetById(int id)
         {
             var entity = AuthorRepository.GetById(id);
             return Mapper.Map<AuthorViewDto>(entity);

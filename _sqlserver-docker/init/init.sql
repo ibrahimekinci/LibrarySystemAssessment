@@ -156,19 +156,35 @@ GROUP BY TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publi
 HAVING	(MIN(TabBorrow.ActualReturnDate) > CONVERT(DATETIME, '2001-01-01 00:00:00', 102)) OR
 	(MIN(TabBorrow.ActualReturnDate) IS NULL);
 go
+
 CREATE VIEW ViewBookBorrowed AS 
-SELECT	TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publisher, TabBook.PublishYear, TabBook.Pages, 
+SELECT TabBorrow.UID,TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publisher, TabBook.PublishYear, TabBook.Pages, 
 	TabAuthor.AuthorName, TabLanguage.LanguageName, TabBook.Author, TabBook.Category, TabBook.Language
 FROM	TabAuthor INNER JOIN
 	TabBook ON TabAuthor.AID = TabBook.Author INNER JOIN
 	TabCategory ON TabBook.Category = TabCategory.CID INNER JOIN
 	TabLanguage ON TabBook.Language = TabLanguage.LID LEFT OUTER JOIN
 	TabBorrow ON TabBook.ISBN = TabBorrow.ISBN
-GROUP BY TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publisher, TabBook.PublishYear, TabBook.Pages, 
+GROUP BY TabBorrow.UID, TabBook.ISBN, TabBook.ISBN, TabBook.BookName, TabCategory.CategoryName, TabBook.Publisher, TabBook.PublishYear, TabBook.Pages, 
 	TabAuthor.AuthorName, TabBook.ISBN, TabLanguage.LanguageName, TabBook.Author, TabBook.Category, TabBook.Language
 HAVING	(MIN(dbo.TabBorrow.ActualReturnDate) <= CONVERT(DATETIME, '2001-01-01 00:00:00', 102));
-
 go
+
+create view ViewBookLoans
+as
+select BID,TabBorrow.UID , UserName, BorrowDate, ReturnDate,ActualReturnDate,LateFee, TabBorrow.ISBN,BookName,Publisher,PublishYear 
+from TabBorrow  
+inner join TabBook  on TabBorrow.ISBN = TabBook.ISBN
+inner join TabUser  on TabBorrow.UID = TabUser.UID
+GO
+
+create view ViewReservations
+as
+select  RID,  ReservedDate, TabReserved.ISBN,BookName,Publisher,PublishYear ,TabReserved.UID, UserName
+from TabReserved  
+inner join TabBook  on TabReserved.ISBN = TabBook.ISBN
+inner join TabUser  on TabReserved.UID = TabUser.UID
+GO
 
 -- 1. Most Borrowed Books View
 CREATE VIEW ViewReportMostBorrowedBooks AS

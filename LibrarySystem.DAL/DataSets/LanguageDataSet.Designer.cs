@@ -759,14 +759,15 @@ namespace LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters {
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[TabLanguage] ([LanguageName]) VALUES (@LanguageName);\r\nSELECT " +
-                "LID, LanguageName FROM TabLanguage WHERE (LID = SCOPE_IDENTITY())";
+                "LID, LanguageName FROM TabLanguage WHERE (LID = SCOPE_IDENTITY()) ORDER BY LID D" +
+                "ESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[TabLanguage] SET [LanguageName] = @LanguageName WHERE (([LID] = @Or" +
                 "iginal_LID) AND ([LanguageName] = @Original_LanguageName));\r\nSELECT LID, Languag" +
-                "eName FROM TabLanguage WHERE (LID = @LID)";
+                "eName FROM TabLanguage WHERE (LID = @LID) ORDER BY LID DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LanguageName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LanguageName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -787,7 +788,7 @@ namespace LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT LID, LanguageName FROM dbo.TabLanguage";
+            this._commandCollection[0].CommandText = "SELECT LID, LanguageName FROM dbo.TabLanguage ORDER by 1 DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -797,7 +798,7 @@ namespace LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT LID, LanguageName FROM dbo.TabLanguage where LID = @LID";
+            this._commandCollection[2].CommandText = "SELECT LID, LanguageName FROM TabLanguage WHERE (LID = @LID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();

@@ -14,5 +14,8 @@ namespace LibrarySystem.BLL.DTOs
 
         [Required]
         public DateTime ReturnDate { get; set; }
+
+        [Required]
+        public DateTime BorrowDate { get; set; }
     }
 }

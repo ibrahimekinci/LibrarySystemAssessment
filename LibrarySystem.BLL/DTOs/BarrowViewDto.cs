@@ -10,7 +10,6 @@ namespace LibrarySystem.BLL.DTOs
         public DateTime ActualReturnDate { get; set; }
         public decimal LateFee { get; set; }
         public DateTime BorrowDate { get; set; }
-
         public string BookName { get; set; }
     }
 }

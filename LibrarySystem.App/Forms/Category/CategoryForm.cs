@@ -33,6 +33,7 @@ namespace LibrarySystem.App.Forms.Category
         }
         private void RefreshDgv()
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
             var result = CategoryService.GetAllCategories();
             if (result == null || result.Count == 0)

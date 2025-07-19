@@ -12,6 +12,8 @@ namespace LibrarySystem.DAL.Interfaces
         List<BookEntity> GetAllBookAvailable();
         List<BookEntity> Search(BookSearchCriteriaDto dto);
         BookEntity GetByISBN(string isbn);
+        BookEntity GetAvailableBookByISBN(string isbn);
+        BookEntity GetBorrowedBookByUserIdAndISBN(int userId, string isbn);
         string Add(BookEntity book);
         bool Update(BookEntity book);
         bool Delete(string isbn);

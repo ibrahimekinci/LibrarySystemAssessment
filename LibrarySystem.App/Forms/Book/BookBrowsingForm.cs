@@ -1,9 +1,6 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.App.Forms.Author;
 using LibrarySystem.Domain.Enums;
-using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
 {
@@ -26,8 +23,9 @@ namespace LibrarySystem.App.Forms.Book
         }
         private void RefreshDgv()
         {
+            dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = AuthorService.GetAllAuthors();
+            var result = BookService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;

@@ -100,7 +100,7 @@ namespace LibrarySystem.App.Forms.BookManage
         }
         private void LoadAuthors()
         {
-            var authors = AuthorService.GetAllAuthors();
+            var authors = AuthorService.GetAll();
             cbAuthor.DataSource = authors;
             cbAuthor.DisplayMember = "AuthorName";
             cbAuthor.ValueMember = "AID";
@@ -131,7 +131,7 @@ namespace LibrarySystem.App.Forms.BookManage
                 return;
             }
 
-            var result = BookService.AddBook(dto);
+            var result = BookService.Add(dto);
             if (result > 0)
             {
                 ShowInformation("Book create successfully.", "Success");
@@ -163,7 +163,7 @@ namespace LibrarySystem.App.Forms.BookManage
                 return;
             }
 
-            var result = BookService.UpdateBook(dto);
+            var result = BookService.Update(dto);
             if (result)
             {
                 ShowInformation("Book updated successfully.", "Success");

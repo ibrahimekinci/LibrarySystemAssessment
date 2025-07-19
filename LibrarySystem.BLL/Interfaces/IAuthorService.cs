@@ -5,10 +5,10 @@ namespace LibrarySystem.BLL.Interfaces
 {
     public interface IAuthorService
     {
-        List<AuthorViewDto> GetAllAuthors();
-        AuthorViewDto GetAuthorById(int id);
-        int AddAuthor(AuthorCreateDto author);
-        bool UpdateAuthor(AuthorUpdateDto author);
-        bool DeleteAuthor(int id);
+        List<AuthorViewDto> GetAll();
+        AuthorViewDto GetById(int id);
+        int Add(AuthorCreateDto author);
+        bool Update(AuthorUpdateDto author);
+        bool Delete(int id);
     }
 }
