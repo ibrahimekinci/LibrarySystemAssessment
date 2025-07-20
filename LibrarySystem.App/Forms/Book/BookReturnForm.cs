@@ -84,7 +84,7 @@ namespace LibrarySystem.App.Forms.Book
 
                         try
                         {
-                            success = BookLoanService.ReturnBook(dto);
+                            success = BookLoanService.Return(dto);
                         }
                         catch (Exception ex)
                         {

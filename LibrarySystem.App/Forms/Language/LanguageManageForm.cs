@@ -75,7 +75,7 @@ namespace LibrarySystem.App.Forms.Language
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = LanguageService.AddLanguage(dto);
+            var result = LanguageService.Add(dto);
             if (result > 0)
             {
                 ShowInformation("Language create successfully.", "Success");
@@ -97,7 +97,7 @@ namespace LibrarySystem.App.Forms.Language
                 return;
             }
 
-            var result = LanguageService.UpdateLanguage(dto);
+            var result = LanguageService.Update(dto);
             if (result)
             {
                 ShowInformation("Language updated successfully.", "Success");

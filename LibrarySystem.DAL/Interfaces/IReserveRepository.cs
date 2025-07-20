@@ -10,7 +10,6 @@ namespace LibrarySystem.DAL.Interfaces
         //PagedResultDto<List<ReserveEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
         DataTable GetAll();
         DataTable GetAllByUserId(int userId);
-        //List<ReserveEntity> GetByUserId(int uid);
         ReserveEntity GetById(int id);
         int Add(ReserveEntity reserve);
         bool Delete(int rid);

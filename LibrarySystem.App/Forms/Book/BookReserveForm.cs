@@ -78,7 +78,7 @@ namespace LibrarySystem.App.Forms.Book
                             UID = UserManager.CurrentUser.UID
                         };
 
-                        success = 0 < ReserveService.ReserveBook(dto);
+                        success = 0 < BookReservationService.Reserve(dto);
                     }
                     else
                     {

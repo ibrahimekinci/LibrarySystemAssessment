@@ -8,7 +8,7 @@ using System.IO;
 public class AuditLogService : IAuditLogService
 {
     private static readonly string LogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "AuditLog.txt");
-    public void Log(AuditActionType actionType, int userId, string details)
+    public void Log(AuditActionType actionType, int userId = -1, string details = null)
     {
         var logDto = new AuditLogDto
         {

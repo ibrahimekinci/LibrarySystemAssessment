@@ -35,7 +35,7 @@ namespace LibrarySystem.App.Forms.Category
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = CategoryService.GetAllCategories();
+            var result = CategoryService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;
@@ -84,7 +84,7 @@ namespace LibrarySystem.App.Forms.Category
 
                     try
                     {
-                        success = CategoryService.DeleteCategory(id);
+                        success = CategoryService.Delete(id);
                     }
                     catch (Exception ex)
                     {

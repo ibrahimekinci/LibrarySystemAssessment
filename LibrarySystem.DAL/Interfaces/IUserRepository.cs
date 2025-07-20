@@ -1,5 +1,4 @@
-﻿using LibrarySystem.DAL.DTOs;
-using LibrarySystem.DAL.Entities;
+﻿using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
 
 namespace LibrarySystem.DAL.Interfaces

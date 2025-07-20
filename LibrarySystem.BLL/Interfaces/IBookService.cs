@@ -13,8 +13,6 @@ namespace LibrarySystem.BLL.Interfaces
         List<BookViewDto> Search(BookSearchCriteriaDto dto);
 
         List<BookViewDto> GetAvailableBooks();
-        List<BookViewDto> GetBorrowedBooks();
-
         BookViewDto GetAvailableBookByISBN(string ISBN);
         BookViewDto GetBorrowedBookByUserIdAndISBN(int UID, string ISBN);
     }

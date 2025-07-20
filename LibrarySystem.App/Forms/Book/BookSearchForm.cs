@@ -44,7 +44,7 @@ namespace LibrarySystem.App.Forms.Book
         }
         protected override void LoadFormData()
         {
-            var categories = CategoryService.GetAllCategories();
+            var categories = CategoryService.GetAll();
             cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CID";

@@ -42,7 +42,7 @@ namespace LibrarySystem.BLL.Services
             return UserRepository.UpdatePasswordByUserId(dto.UID,dto.NewPassword);
         }
 
-        public List<UserViewDto> GetAllUsers()
+        public List<UserViewDto> GetAll()
         {
             var data = UserRepository.GetAll();
             return data == null ? new List<UserViewDto>() : Mapper.Map<List<UserViewDto>>(data);

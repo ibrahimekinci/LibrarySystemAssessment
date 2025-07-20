@@ -9,7 +9,7 @@ namespace LibrarySystem.BLL.Interfaces
         int Register(UserCreateDto dto); // Used by Manager to add Staff or Student
         bool UpdateUser(UserUpdateDto dto);
         bool ResetPassword(UserPasswordUpdateDto dto); // Manager can reset password
-        List<UserViewDto> GetAllUsers();
+        List<UserViewDto> GetAll();
         UserViewDto GetById(int userId);
         bool Delete(int userId);
     }

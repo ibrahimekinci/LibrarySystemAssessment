@@ -75,7 +75,7 @@ namespace LibrarySystem.App.Forms.Category
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = CategoryService.AddCategory(dto);
+            var result = CategoryService.Add(dto);
             if (result > 0)
             {
                 ShowInformation("Category create successfully.", "Success");
@@ -97,7 +97,7 @@ namespace LibrarySystem.App.Forms.Category
                 return;
             }
 
-            var result = CategoryService.UpdateCategory(dto);
+            var result = CategoryService.Update(dto);
             if (result)
             {
                 ShowInformation("Category updated successfully.", "Success");

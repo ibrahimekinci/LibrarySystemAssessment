@@ -48,11 +48,6 @@ namespace LibrarySystem.BLL.Services
             var entities = BookRepository.GetAllBookAvailable();
             return Mapper.Map<List<BookViewDto>>(entities);
         }
-        public List<BookViewDto> GetBorrowedBooks()
-        {
-            var entities = BookRepository.GetAllBookBorrowed();
-            return Mapper.Map<List<BookViewDto>>(entities);
-        }
         public BookViewDto GetAvailableBookByISBN(string isbn)
         {
             var entity = BookRepository.GetAvailableBookByISBN(isbn);

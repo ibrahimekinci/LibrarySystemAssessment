@@ -37,7 +37,7 @@ namespace LibrarySystem.App.Forms.User
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = UserService.GetAllUsers();
+            var result = UserService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;

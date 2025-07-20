@@ -8,7 +8,7 @@ namespace LibrarySystem.BLL.Services
 {
     public class LanguageService : BaseService, ILanguageService
     {
-        public List<LanguageViewDto> GetAllLanguages()
+        public List<LanguageViewDto> GetAll()
         {
             var list = LanguageRepository.GetAll();
             return Mapper.Map<List<LanguageViewDto>>(list);
@@ -18,19 +18,19 @@ namespace LibrarySystem.BLL.Services
             var entity = LanguageRepository.GetById(id);
             return Mapper.Map<LanguageViewDto>(entity);
         }
-        public int AddLanguage(LanguageCreateDto language)
+        public int Add(LanguageCreateDto language)
         {
             var entity = Mapper.Map<LanguageEntity>(language);
             return LanguageRepository.Add(entity);
         }
 
-        public bool UpdateLanguage(LanguageUpdateDto language)
+        public bool Update(LanguageUpdateDto language)
         {
             var entity = Mapper.Map<LanguageEntity>(language);
             return LanguageRepository.Update(entity);
         }
 
-        public bool DeleteLanguage(int languageId)
+        public bool Delete(int languageId)
         {
             return LanguageRepository.Delete(languageId);
         }

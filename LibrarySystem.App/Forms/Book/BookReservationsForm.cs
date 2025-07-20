@@ -46,7 +46,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = ReserveService.GetAll();
+            var result = BookReservationService.GetAll();
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;
@@ -62,7 +62,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = ReserveService.GetAllByUserId(UserManager.CurrentUser.UID);
+            var result = BookReservationService.GetAllByUserId(UserManager.CurrentUser.UID);
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;

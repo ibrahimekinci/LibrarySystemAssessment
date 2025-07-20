@@ -86,14 +86,14 @@ namespace LibrarySystem.App.Forms.BookManage
         }
         private void LoadCategories()
         {
-            var categories = CategoryService.GetAllCategories();
+            var categories = CategoryService.GetAll();
             cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CID";
         }
         private void LoadLanguages()
         {
-            var languages = LanguageService.GetAllLanguages();
+            var languages = LanguageService.GetAll();
             cbLanguage.DataSource = languages;
             cbLanguage.DisplayMember = "LanguageName";
             cbLanguage.ValueMember = "LID";

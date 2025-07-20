@@ -1,13 +1,12 @@
 ﻿using LibrarySystem.BLL.DTOs;
-using System.Collections.Generic;
 using System.Data;
 
 namespace LibrarySystem.BLL.Interfaces
 {
-    public interface IReserveService
+    public interface IBookReservationService
     {
-        int ReserveBook(ReserveCreateDto reserveRecordDto);
-        bool UpdateBookReservation(ReserveUpdateDto reserveRecordDto);
+        int Reserve(ReserveCreateDto reserveRecordDto);
+        bool UpdateReservation(ReserveUpdateDto reserveRecordDto);
         ReserveViewDto GetById(int id);
         DataTable GetAll();
         DataTable GetAllByUserId(int userId);

@@ -35,7 +35,7 @@ namespace LibrarySystem.App.Forms.Language
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = LanguageService.GetAllLanguages();
+            var result = LanguageService.GetAll();
             if (result == null || result.Count == 0)
             {
                 dgv.DataSource = null;
@@ -84,7 +84,7 @@ namespace LibrarySystem.App.Forms.Language
 
                     try
                     {
-                        success = LanguageService.DeleteLanguage(id);
+                        success = LanguageService.Delete(id);
                     }
                     catch (Exception ex)
                     {

@@ -5,10 +5,10 @@ namespace LibrarySystem.BLL.Interfaces
 {
     public interface ICategoryService
     {
-        List<CategoryViewDto> GetAllCategories();
+        List<CategoryViewDto> GetAll();
         CategoryViewDto GetById(int id);
-        int AddCategory(CategoryCreateDto category);
-        bool UpdateCategory(CategoryUpdateDto category);
-        bool DeleteCategory(int categoryId);
+        int Add(CategoryCreateDto category);
+        bool Update(CategoryUpdateDto category);
+        bool Delete(int categoryId);
     }
 }

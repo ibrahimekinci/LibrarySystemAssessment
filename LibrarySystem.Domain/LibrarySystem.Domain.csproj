@@ -49,9 +49,6 @@
     <Compile Include="Enums\OperationTypeEnum.cs" />
     <Compile Include="Enums\UserLevelEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueObjects\Email.cs" />
-    <Compile Include="ValueObjects\AustralianPhoneNumber.cs" />
-    <Compile Include="ValueObjects\ValidationResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

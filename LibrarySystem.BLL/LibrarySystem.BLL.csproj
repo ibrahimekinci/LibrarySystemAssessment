@@ -59,7 +59,7 @@
     <Compile Include="Interfaces\ILanguageService.cs" />
     <Compile Include="Interfaces\ILogService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
-    <Compile Include="Interfaces\IReserveService.cs" />
+    <Compile Include="Interfaces\IBookReservationService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="DTOs\AuthorCreateDto.cs" />
     <Compile Include="DTOs\AuthorUpdateDto.cs" />
@@ -93,7 +93,7 @@
     <Compile Include="Services\LanguageService.cs" />
     <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\ReportService.cs" />
-    <Compile Include="Services\ReserveService.cs" />
+    <Compile Include="Services\BookReservationService.cs" />
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>

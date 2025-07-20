@@ -8,7 +8,7 @@ namespace LibrarySystem.BLL.Services
 {
     public class CategoryService : BaseService, ICategoryService
     {
-        public List<CategoryViewDto> GetAllCategories()
+        public List<CategoryViewDto> GetAll()
         {
             var list = CategoryRepository.GetAll();
             return Mapper.Map<List<CategoryViewDto>>(list);
@@ -18,19 +18,19 @@ namespace LibrarySystem.BLL.Services
             var entity = CategoryRepository.GetById(id);
             return Mapper.Map<CategoryViewDto>(entity);
         }
-        public int AddCategory(CategoryCreateDto category)
+        public int Add(CategoryCreateDto category)
         {
             var entity = Mapper.Map<CategoryEntity>(category);
             return CategoryRepository.Add(entity);
         }
 
-        public bool UpdateCategory(CategoryUpdateDto category)
+        public bool Update(CategoryUpdateDto category)
         {
             var entity = Mapper.Map<CategoryEntity>(category);
             return CategoryRepository.Update(entity);
         }
 
-        public bool DeleteCategory(int categoryId)
+        public bool Delete(int categoryId)
         {
             return CategoryRepository.Delete(categoryId);
         }

@@ -46,7 +46,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetAllLoans();
+            var result = BookLoanService.GetAll();
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;
@@ -62,7 +62,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetLoansByUserId(UserManager.CurrentUser.UID);
+            var result = BookLoanService.GetAllByUserId(UserManager.CurrentUser.UID);
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;

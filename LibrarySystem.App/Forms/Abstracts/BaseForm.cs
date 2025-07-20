@@ -1,12 +1,13 @@
 ﻿using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Forms.Dashboards;
+using LibrarySystem.App.Forms.Messages;
 using LibrarySystem.App.Helpers;
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Abstracts
@@ -66,14 +67,14 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
         }
 
-        private IReserveService _reserveService;
-        protected IReserveService ReserveService
+        private IBookReservationService _bookReservationService;
+        protected IBookReservationService BookReservationService
         {
             get
             {
-                if (_reserveService == null)
-                    _reserveService = new ReserveService();
-                return _reserveService;
+                if (_bookReservationService == null)
+                    _bookReservationService = new BookReservationService();
+                return _bookReservationService;
             }
         }
 
@@ -130,6 +131,10 @@ namespace LibrarySystem.App.Forms.Abstracts
             LoadFormData();
         }
         protected virtual void InitializeUIAdditional() { }
+        protected virtual AuditActionType GetAuditActionForOpen()
+        {
+            return AuditActionType.Unknown; // Override in derived form
+        }
         #endregion
 
         #region Authorization
@@ -158,31 +163,26 @@ namespace LibrarySystem.App.Forms.Abstracts
         #region Constructor 
         protected BaseForm()
         {
-            if (!AuthorizetionCheck())
-                return;
             InitializeFormBase();
+            if (!AuthorizetionCheck())
+            {
+                // FormManager.ShowFormInMdi<UnauthorizedMessageForm>();
+                return;
+            }
         }
 
         protected override void OnLoad(EventArgs e)
         {
-            try
-            {
-                base.OnLoad(e);
-                if (this.MdiParent != null)
-                    AppTheme.StyleMdiChildForm(this);
-                InitializeForm();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+            base.OnLoad(e);
+            if (this.MdiParent != null)
+                AppTheme.StyleMdiChildForm(this);
+            InitializeForm();
         }
 
         private void InitializeFormBase()
         {
             InitializeUI();
             InitializeUIAdditional();
-            InitializeExceptionHandling();
         }
 
         private void InitializeUI()
@@ -242,43 +242,6 @@ namespace LibrarySystem.App.Forms.Abstracts
 
         #region Exception Handling
 
-        private void InitializeExceptionHandling()
-        {
-            try
-            {
-                // Prevent duplicate event handler registrations
-                System.Windows.Forms.Application.ThreadException -= HandleThreadException;
-                System.Windows.Forms.Application.ThreadException += HandleThreadException;
-
-                AppDomain.CurrentDomain.UnhandledException -= HandleUnhandledException;
-                AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
-
-                TaskScheduler.UnobservedTaskException -= HandleUnobservedTaskException;
-                TaskScheduler.UnobservedTaskException += HandleUnobservedTaskException;
-            }
-            catch (Exception ex)
-            {
-                LogService?.LogException(ex);
-            }
-        }
-
-
-        private void HandleUnobservedTaskException(object sender, UnobservedTaskExceptionEventArgs e)
-        {
-            HandleException(e.Exception);
-        }
-
-
-        protected void HandleThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
-            HandleException(e.Exception);
-        }
-
-        protected void HandleUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            HandleException(e.ExceptionObject as Exception);
-        }
-
         protected void HandleException(Exception ex)
         {
             try
@@ -288,7 +251,12 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
             catch (Exception logEx)
             {
-                ShowError(LogService.GetUserFriendlyMessage(logEx), "An internal error occurred while handling another error." + LogService.GetErrorTitle(ex));
+                // If logging fails, we still want to show the error form
+                Debug.WriteLine($"[LOGGING EXCEPTION]: {logEx.Message}");
+            }
+            finally
+            {
+                Debug.WriteLine($"[EXCEPTION]: {ex.Message}");
             }
         }
         #endregion

@@ -135,7 +135,7 @@ namespace LibrarySystem.App.Forms.User
                 PhoneNumber = txtPhone.Text.Trim(),
                 Email = txtEmail.Text.Trim(),
                 // Ensure a valid value is selected
-                UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? -1)
+                UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? 0)
             };
 
             var errors = dto.ValidateAndGetErrors();
@@ -164,7 +164,7 @@ namespace LibrarySystem.App.Forms.User
                 PhoneNumber = txtPhone.Text.Trim(),
                 Email = txtEmail.Text.Trim(),
                 // Ensure a valid value is selected
-                UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? -1)
+                UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? 0)
             };
 
             var errors = dto.ValidateAndGetErrors();

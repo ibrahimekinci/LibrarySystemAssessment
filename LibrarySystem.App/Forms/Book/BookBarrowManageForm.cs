@@ -61,7 +61,7 @@ namespace LibrarySystem.App.Forms.Book
                 return;
             }
 
-            var result = BookLoanService.BorrowBook(dto);
+            var result = BookLoanService.Borrow(dto);
             if (result > 0)
             {
                 ShowInformation("You have successfully borrowed the book.", "Success");
