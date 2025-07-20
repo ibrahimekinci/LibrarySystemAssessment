@@ -19,6 +19,9 @@ namespace LibrarySystem.App.Forms.Dashboards
         public StudentDashboardForm()
         {
             InitializeComponent();
+            if (!AuthorizetionCheck())
+                return;
+
             lnkWelcome.Text = $"🙍 Hello {UserManager.CurrentUser.UserName}, How are you today ?";
             lnkWelcome.Anchor = AnchorStyles.None;
             lnkWelcome.Left = (this.ClientSize.Width - lnkWelcome.Width) / 2;

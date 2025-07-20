@@ -19,6 +19,10 @@ namespace LibrarySystem.App.Forms.User
         public UserForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {

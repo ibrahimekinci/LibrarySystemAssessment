@@ -22,6 +22,10 @@ namespace LibrarySystem.App.Forms.Language
         public LanguageManageForm(OperationType operationType, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             _operationType = operationType;
             _formTitle = "Language Create Form";
             BeforeFormClosing = beforeFormClosing;
@@ -32,6 +36,10 @@ namespace LibrarySystem.App.Forms.Language
         public LanguageManageForm(OperationType operationType, LanguageViewDto Language, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             if (operationType != OperationType.LanguageEdit)
                 throw new ArgumentException("Invalid operation type for LanguageManageForm", nameof(operationType));
 

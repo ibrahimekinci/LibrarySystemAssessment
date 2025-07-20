@@ -29,6 +29,9 @@ namespace LibrarySystem.App.Forms.User
                 throw new ArgumentException("Invalid operation type for UserManageForm", nameof(operationType));
             InitializeComponent();
 
+            if (!AuthorizetionCheck())
+                return;
+
             _operationType = operationType;
             _user = UserManager.CurrentUser;
             _formTitle = $"Profile Update ({_user.UID})";
@@ -43,6 +46,9 @@ namespace LibrarySystem.App.Forms.User
 
             InitializeComponent();
 
+            if (!AuthorizetionCheck())
+                return;
+
             _operationType = operationType;
             BeforeFormClosing = beforeFormClosing;
             _formTitle = "Create User";
@@ -55,6 +61,9 @@ namespace LibrarySystem.App.Forms.User
                 throw new UnauthorizedAccessException("UserManageForm");
 
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
 
             _operationType = operationType;
             _user = user ?? throw new ArgumentNullException(nameof(user), "User cannot be null for UserManageForm");

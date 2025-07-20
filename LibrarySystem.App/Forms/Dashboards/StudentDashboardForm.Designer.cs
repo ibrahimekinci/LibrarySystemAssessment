@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDashboardForm));
             this.lnkWelcome = new System.Windows.Forms.LinkLabel();
             this.lnkSearchBooks = new System.Windows.Forms.LinkLabel();
             this.lnkBrowseBooks = new System.Windows.Forms.LinkLabel();
@@ -48,7 +49,7 @@
             this.lnkWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkWelcome.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkWelcome.LinkColor = System.Drawing.Color.Black;
-            this.lnkWelcome.Location = new System.Drawing.Point(165, 51);
+            this.lnkWelcome.Location = new System.Drawing.Point(165, 72);
             this.lnkWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkWelcome.Name = "lnkWelcome";
             this.lnkWelcome.Padding = new System.Windows.Forms.Padding(2);
@@ -70,7 +71,7 @@
             this.lnkSearchBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkSearchBooks.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkSearchBooks.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkSearchBooks.Location = new System.Drawing.Point(195, 102);
+            this.lnkSearchBooks.Location = new System.Drawing.Point(195, 153);
             this.lnkSearchBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkSearchBooks.Name = "lnkSearchBooks";
             this.lnkSearchBooks.Padding = new System.Windows.Forms.Padding(2);
@@ -93,7 +94,7 @@
             this.lnkBrowseBooks.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkBrowseBooks.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkBrowseBooks.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkBrowseBooks.Location = new System.Drawing.Point(195, 156);
+            this.lnkBrowseBooks.Location = new System.Drawing.Point(195, 207);
             this.lnkBrowseBooks.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkBrowseBooks.Name = "lnkBrowseBooks";
             this.lnkBrowseBooks.Padding = new System.Windows.Forms.Padding(2);
@@ -116,7 +117,7 @@
             this.lnkReverseBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkReverseBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkReverseBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkReverseBook.Location = new System.Drawing.Point(200, 211);
+            this.lnkReverseBook.Location = new System.Drawing.Point(200, 262);
             this.lnkReverseBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkReverseBook.Name = "lnkReverseBook";
             this.lnkReverseBook.Padding = new System.Windows.Forms.Padding(2);
@@ -139,7 +140,7 @@
             this.lnkBarrowBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkBarrowBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkBarrowBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkBarrowBook.Location = new System.Drawing.Point(201, 263);
+            this.lnkBarrowBook.Location = new System.Drawing.Point(201, 314);
             this.lnkBarrowBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkBarrowBook.Name = "lnkBarrowBook";
             this.lnkBarrowBook.Padding = new System.Windows.Forms.Padding(2);
@@ -162,7 +163,7 @@
             this.lnkReturnBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lnkReturnBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lnkReturnBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkReturnBook.Location = new System.Drawing.Point(202, 317);
+            this.lnkReturnBook.Location = new System.Drawing.Point(202, 368);
             this.lnkReturnBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lnkReturnBook.Name = "lnkReturnBook";
             this.lnkReturnBook.Padding = new System.Windows.Forms.Padding(2);
@@ -177,14 +178,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.lnkReturnBook);
             this.Controls.Add(this.lnkBarrowBook);
             this.Controls.Add(this.lnkReverseBook);
             this.Controls.Add(this.lnkWelcome);
             this.Controls.Add(this.lnkSearchBooks);
             this.Controls.Add(this.lnkBrowseBooks);
+            this.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "StudentDashboardForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StudentDashboardForm";
             this.ResumeLayout(false);
             this.PerformLayout();

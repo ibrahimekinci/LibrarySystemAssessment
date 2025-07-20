@@ -21,6 +21,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookBarrowManageForm(BookViewDto book, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             _book = book ?? throw new ArgumentNullException(nameof(book), "Book cannot be null for barrowing operation");
             BeforeFormClosing = beforeFormClosing;
 

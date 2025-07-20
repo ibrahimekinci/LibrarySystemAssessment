@@ -19,6 +19,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookReturnForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {
@@ -76,11 +80,15 @@ namespace LibrarySystem.App.Forms.Book
                             BID = selected.BID
                         };
 
-                        //2 aud late panalty per day
-                        if (dto.ActualReturnDate <= selected.ReturnDate)
-                            dto.LateFee = 0;
+                        //0.2 aud late panalty per day
+                        if (dto.ActualReturnDate > selected.ReturnDate)
+                        {
+                            dto.LateFee = (dto.ActualReturnDate - selected.ReturnDate).Days * 0.2m;
+                        }
                         else
-                            dto.LateFee = (dto.ActualReturnDate - selected.ReturnDate).Days * 2;
+                        {
+                            dto.LateFee = 0m;
+                        }
 
                         try
                         {

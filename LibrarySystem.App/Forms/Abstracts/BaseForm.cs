@@ -150,7 +150,8 @@ namespace LibrarySystem.App.Forms.Abstracts
                     RiderectToLoginPage();
                     return false;
                 }
-                else if (!UserManager.IsUserAuthorized(AllowedUserLevels))
+
+                if (!UserManager.IsUserAuthorized(AllowedUserLevels))
                 {
                     RiderectToUnauthorizedPage();
                     return false;
@@ -158,25 +159,14 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
             return true;
         }
+
         #endregion
 
         #region Constructor 
         protected BaseForm()
         {
-            InitializeFormBase();
-            if (!AuthorizetionCheck())
-            {
-                // FormManager.ShowFormInMdi<UnauthorizedMessageForm>();
-                return;
-            }
-        }
-
-        protected override void OnLoad(EventArgs e)
-        {
-            base.OnLoad(e);
-            if (this.MdiParent != null)
-                AppTheme.StyleMdiChildForm(this);
-            InitializeForm();
+            InitializeComponent(); // Required for designer
+            InitializeFormBase(); // Safe UI initialization only
         }
 
         private void InitializeFormBase()
@@ -189,11 +179,25 @@ namespace LibrarySystem.App.Forms.Abstracts
         {
             this.Text = string.IsNullOrWhiteSpace(FormTitle) ? "Library System" : FormTitle;
             if (UserManager.IsUserLoggedIn()) this.Text += $" - {UserManager.CurrentUser.UserName}";
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
 
-            AppTheme.StyleForm(this);
+            //if (!AuthorizetionCheck())
+            //    return;
 
-            this.Load += (sender, e) => AppTheme.StyleControl(this);
-            this.ControlAdded += (sender, e) => AppTheme.StyleControl(e.Control);
+            // Apply general form styling for non-MDI forms
+            if (this.MdiParent == null)
+                AppTheme.StyleForm(this);
+            // Apply MDI-specific styling for MDI child forms
+            else
+                AppTheme.StyleMdiChildForm(this);
+
+            InitializeForm();
+
+            this.Load += (sender, ev) => AppTheme.StyleControl(this);
+            this.ControlAdded += (sender, ev) => AppTheme.StyleControl(ev.Control);
         }
         #endregion
 
@@ -214,14 +218,23 @@ namespace LibrarySystem.App.Forms.Abstracts
                 FormManager.ShowFormOnly<StudentDashboardForm>();
         }
 
-        protected void RiderectToLoginPage()
+        protected virtual void RiderectToLoginPage()
         {
+            MessageBox.Show("Please log in to continue.", "Authentication Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //LoginForm form = new LoginForm();
+            //form.Show();
             FormManager.ShowFormOnly<LoginForm>();
+            this.Close(); // Close the current form
         }
 
-        protected void RiderectToUnauthorizedPage()
+        protected virtual void RiderectToUnauthorizedPage()
         {
-            // ShowFormOnly<UnauthorizedWarningForm>();
+            MessageBox.Show("You do not have permission to access this page.", "Unauthorized", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //UnauthorizedMessageForm unauthorizedForm = new UnauthorizedMessageForm();
+            //unauthorizedForm.Show();
+            FormManager.ShowFormInMdi<UnauthorizedMessageForm>();
+            this.Close(); // Close the current form
+
         }
 
         protected DialogResult ShowInformation(string message, string title = "Information")

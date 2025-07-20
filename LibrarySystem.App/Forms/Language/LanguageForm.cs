@@ -17,6 +17,10 @@ namespace LibrarySystem.App.Forms.Language
         public LanguageForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {

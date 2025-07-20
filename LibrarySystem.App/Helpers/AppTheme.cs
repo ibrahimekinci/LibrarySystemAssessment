@@ -30,7 +30,6 @@ namespace LibrarySystem.App.Helpers
             frm.MinimizeBox = true;
             frm.MaximizeBox = true;
 
-            frm.WindowState = FormWindowState.Maximized;
             frm.MinimumSize = new Size(800, 600);
 
             frm.ShowIcon = true;
@@ -38,10 +37,19 @@ namespace LibrarySystem.App.Helpers
         }
         public static void StyleMdiChildForm(Form frm)
         {
-            frm.WindowState = FormWindowState.Normal;
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.Dock = DockStyle.None;
-            frm.MinimumSize = new Size(600, 600);
+            frm.StartPosition = FormStartPosition.CenterScreen;
+            frm.BackColor = SystemColors.Window;
+            frm.ForeColor = SystemColors.WindowText;
+
+            frm.FormBorderStyle = FormBorderStyle.Sizable;
+            frm.ControlBox = true;
+            frm.MinimizeBox = true;
+            frm.MaximizeBox = true;
+
+            frm.WindowState = FormWindowState.Maximized;
+
+            frm.ShowIcon = true;
+            frm.Icon = Properties.Resources.AppIcon;
         }
         /// <summary>
         /// Applies consistent styling to a control and all its children

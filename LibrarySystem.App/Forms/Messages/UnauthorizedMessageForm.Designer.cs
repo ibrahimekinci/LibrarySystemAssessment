@@ -28,19 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnGoHomePage = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnauthorizedMessageForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnGoHomePage
-            // 
-            this.btnGoHomePage.Location = new System.Drawing.Point(153, 413);
-            this.btnGoHomePage.Name = "btnGoHomePage";
-            this.btnGoHomePage.Size = new System.Drawing.Size(495, 20);
-            this.btnGoHomePage.TabIndex = 3;
-            this.btnGoHomePage.Text = "Go to Home Page";
-            this.btnGoHomePage.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -55,10 +46,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnGoHomePage);
+            this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.pictureBox1);
+            this.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "UnauthorizedMessageForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UnauthorizedMessageForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -66,8 +60,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnGoHomePage;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

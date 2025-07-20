@@ -15,6 +15,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookBrowsingForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {

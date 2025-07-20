@@ -11,10 +11,5 @@ namespace LibrarySystem.App.Forms.Messages
         {
             InitializeComponent();
         }
-
-        private void btnGoHomePage_Click(object sender, EventArgs e)
-        {
-            RiderectToDashboard();
-        }
     }
 }

@@ -17,6 +17,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookSearchForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
 
         private void btnSearch_Click(object sender, System.EventArgs e)

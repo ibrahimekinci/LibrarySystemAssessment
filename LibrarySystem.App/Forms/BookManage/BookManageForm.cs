@@ -22,6 +22,10 @@ namespace LibrarySystem.App.Forms.BookManage
         public BookManageForm(OperationType operationType, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             _operationType = operationType;
             _formTitle = "Book Create Form";
             BeforeFormClosing = beforeFormClosing;
@@ -32,6 +36,10 @@ namespace LibrarySystem.App.Forms.BookManage
         public BookManageForm(OperationType operationType, BookViewDto book, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             if (operationType != OperationType.BookEdit)
                 throw new ArgumentException("Invalid operation type for BookManageForm", nameof(operationType));
 

@@ -22,6 +22,9 @@ namespace LibrarySystem.App.Forms.Category
         public CategoryManageForm(OperationType operationType, Action beforeFormClosing = null)
         {
             InitializeComponent();
+            if (!AuthorizetionCheck())
+                return;
+
             _operationType = operationType;
             _formTitle = "Category Create Form";
             BeforeFormClosing = beforeFormClosing;
@@ -32,6 +35,10 @@ namespace LibrarySystem.App.Forms.Category
         public CategoryManageForm(OperationType operationType, CategoryViewDto category, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             if (operationType != OperationType.CategoryEdit)
                 throw new ArgumentException("Invalid operation type for CategoryManageForm", nameof(operationType));
 

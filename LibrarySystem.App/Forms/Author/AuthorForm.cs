@@ -17,6 +17,8 @@ namespace LibrarySystem.App.Forms.Author
         public AuthorForm()
         {
             InitializeComponent();
+            if (!AuthorizetionCheck())
+                return;
         }
         protected override void LoadFormData()
         {

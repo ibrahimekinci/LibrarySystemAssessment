@@ -19,6 +19,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookReserveForm()
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {
@@ -88,7 +92,9 @@ namespace LibrarySystem.App.Forms.Book
 
 
                     if (success)
-                        RefreshDgv();
+                    {
+                        FormManager.ShowFormInMdi<BookReservationsForm>(OperationType.ViewMyReservations);
+                    }
                     else
                         MessageBox.Show("Failed to delete author. Make sure you have all deleted the records that are realated with this record. Such as books.");
                 }

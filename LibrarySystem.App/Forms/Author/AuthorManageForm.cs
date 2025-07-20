@@ -22,6 +22,8 @@ namespace LibrarySystem.App.Forms.Author
         public AuthorManageForm(OperationType operationType, Action beforeFormClosing = null)
         {
             InitializeComponent();
+            if (!AuthorizetionCheck())
+                return;
             _operationType = operationType;
             _formTitle = "Author Create Form";
             BeforeFormClosing = beforeFormClosing;
@@ -32,6 +34,10 @@ namespace LibrarySystem.App.Forms.Author
         public AuthorManageForm(OperationType operationType, AuthorViewDto autor, Action beforeFormClosing = null)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             if (operationType != OperationType.AuthorEdit)
                 throw new ArgumentException("Invalid operation type for AuthorManageForm", nameof(operationType));
 

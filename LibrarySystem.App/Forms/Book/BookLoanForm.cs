@@ -19,6 +19,10 @@ namespace LibrarySystem.App.Forms.Book
         public BookLoanForm(OperationType operationType)
         {
             InitializeComponent();
+
+            if (!AuthorizetionCheck())
+                return;
+
             if (operationType == OperationType.ViewAllBookLoans)
             {
                 if (!UserManager.IsloggedInAsManager() && !UserManager.IsloggedInAsStaff())

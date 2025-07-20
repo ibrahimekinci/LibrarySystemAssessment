@@ -26,6 +26,10 @@ namespace LibrarySystem.App.Forms.Report
 
             InitializeComponent();
 
+            if (!AuthorizetionCheck())
+                return;
+
+
             if (operationType == OperationType.GetReportBorrowedBooksByCategory)
             {
 

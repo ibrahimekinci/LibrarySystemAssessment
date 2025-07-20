@@ -17,6 +17,9 @@ namespace LibrarySystem.App.Forms.Category
         public CategoryForm()
         {
             InitializeComponent();
+            if (!AuthorizetionCheck())
+                return;
+
         }
         protected override void LoadFormData()
         {
