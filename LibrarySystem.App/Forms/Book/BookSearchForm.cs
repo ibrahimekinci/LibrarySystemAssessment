@@ -49,6 +49,7 @@ namespace LibrarySystem.App.Forms.Book
         protected override void LoadFormData()
         {
             var categories = CategoryService.GetAll();
+            categories?.Insert(0, new CategoryViewDto { CID = 0, CategoryName = "All Categories" });
             cbCategory.DataSource = categories;
             cbCategory.DisplayMember = "CategoryName";
             cbCategory.ValueMember = "CID";
