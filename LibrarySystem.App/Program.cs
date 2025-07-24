@@ -4,7 +4,6 @@ using LibrarySystem.BLL.Services;
 using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace LibrarySystem.App
 {
@@ -20,7 +19,7 @@ namespace LibrarySystem.App
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
             // Global UI Thread exception handler
-            Application.ThreadException += HandleThreadException;
+            System.Windows.Forms.Application.ThreadException += HandleThreadException;
             // Global non-UI thread (e.g., Task) exception handler
             AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
             var auditLogService = new AuditLogService();

@@ -145,13 +145,13 @@ namespace LibrarySystem.App.Forms.Abstracts
         {
             if (IsLoggedInRequired())
             {
-                if (!UserManager.IsUserLoggedIn())
+                if (!SessionManager.IsUserLoggedIn())
                 {
                     RiderectToLoginPage();
                     return false;
                 }
 
-                if (!UserManager.IsUserAuthorized(AllowedUserLevels))
+                if (!SessionManager.IsUserAuthorized(AllowedUserLevels))
                 {
                     RiderectToUnauthorizedPage();
                     return false;
@@ -178,7 +178,7 @@ namespace LibrarySystem.App.Forms.Abstracts
         private void InitializeUI()
         {
             this.Text = string.IsNullOrWhiteSpace(FormTitle) ? "Library System" : FormTitle;
-            if (UserManager.IsUserLoggedIn()) this.Text += $" - {UserManager.CurrentUser.UserName}";
+            if (SessionManager.IsUserLoggedIn()) this.Text += $" - {SessionManager.Username}";
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -204,17 +204,17 @@ namespace LibrarySystem.App.Forms.Abstracts
         #region Common Functionality
         protected virtual void RiderectToDashboard()
         {
-            if (!UserManager.IsUserLoggedIn())
+            if (!SessionManager.IsUserLoggedIn())
             {
                 RiderectToLoginPage();
                 return;
             }
 
-            if (UserManager.IsloggedInAsManager())
+            if (SessionManager.IsLoggedInAsManager())
                 FormManager.ShowFormOnly<BookLoanForm>(OperationType.ViewAllBookLoans);
-            else if (UserManager.IsloggedInAsStaff())
+            else if (SessionManager.IsLoggedInAsStaff())
                 FormManager.ShowFormOnly<BookLoanForm>(OperationType.ViewAllBookLoans);
-            else if (UserManager.IsloggedInAsStudent())
+            else if (SessionManager.IsLoggedInAsStudent())
                 FormManager.ShowFormOnly<StudentDashboardForm>();
         }
 
@@ -260,7 +260,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             try
             {
                 LogService.LogException(ex);
-                AuditLogService.Log(AuditActionType.ApplicationException, UserManager.CurrentUser?.UID ?? 0, ex.Message);
+                AuditLogService.Log(AuditActionType.ApplicationException, SessionManager.UID, ex.Message);
             }
             catch (Exception logEx)
             {

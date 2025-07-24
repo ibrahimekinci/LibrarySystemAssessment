@@ -34,7 +34,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetUnreturnedLoansByUserId(UserManager.CurrentUser.UID);
+            var result = BookLoanService.GetUnreturnedLoansByUserId(SessionManager.UID);
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;

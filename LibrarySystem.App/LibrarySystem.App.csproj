@@ -198,7 +198,7 @@
     </Compile>
     <Compile Include="Helpers\AppTheme.cs" />
     <Compile Include="Helpers\FormManager.cs" />
-    <Compile Include="Helpers\UserManager.cs" />
+    <Compile Include="Helpers\SessionManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Abstracts\MainMdiForm.resx">

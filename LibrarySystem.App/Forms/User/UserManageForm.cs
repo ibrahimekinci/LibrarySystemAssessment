@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
+using LibrarySystem.Application.DTOs;
 using LibrarySystem.BLL.DTOs;
 using LibrarySystem.BLL.Helpers;
 using LibrarySystem.Domain.Enums;
@@ -33,7 +34,16 @@ namespace LibrarySystem.App.Forms.User
                 return;
 
             _operationType = operationType;
-            _user = UserManager.CurrentUser;
+            var authenticatedUser = SessionManager.GetUser();
+            _user = new UserViewDto()
+            {
+                UID = authenticatedUser.UID,
+                UserName = authenticatedUser.UserName,
+                UserLevel = authenticatedUser.UserLevel,
+                Email = authenticatedUser.Email,
+                PhoneNumber = authenticatedUser.PhoneNumber,
+
+            };
             _formTitle = $"Profile Update ({_user.UID})";
         }
         public UserManageForm(OperationType operationType, Action beforeFormClosing)
@@ -41,7 +51,7 @@ namespace LibrarySystem.App.Forms.User
             if (operationType != OperationType.UserCreate)
                 throw new ArgumentException("Invalid operation type for UserManageForm", nameof(operationType));
 
-            if (!UserManager.IsloggedInAsManager())
+            if (!SessionManager.IsLoggedInAsManager())
                 throw new UnauthorizedAccessException("UserManageForm");
 
             InitializeComponent();
@@ -57,7 +67,7 @@ namespace LibrarySystem.App.Forms.User
         {
             if (operationType != OperationType.UserUpdate)
                 throw new ArgumentException("Invalid operation type for UserManageForm", nameof(operationType));
-            if (!UserManager.IsloggedInAsManager())
+            if (!SessionManager.IsLoggedInAsManager())
                 throw new UnauthorizedAccessException("UserManageForm");
 
             InitializeComponent();
@@ -216,7 +226,16 @@ namespace LibrarySystem.App.Forms.User
             if (result)
             {
                 ShowInformation("Your profile updated successfully.", "Success");
-                UserManager.CurrentUser = UserService.GetById(UserManager.CurrentUser.UID);
+                var user = UserService.GetById(SessionManager.UID);
+                var authenticatedUser = new AuthenticatedUserDto()
+                {
+                    UID = user.UID,
+                    UserName = user.UserName,
+                    UserLevel = user.UserLevel,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber,
+                };
+                SessionManager.SetUser(authenticatedUser);
             }
             else
             {

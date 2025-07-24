@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LibrarySystem.Application.DTOs;
 using LibrarySystem.BLL.DTOs;
 using LibrarySystem.DAL.Entities;
 
@@ -32,6 +33,7 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<LanguageViewDto, LanguageEntity>().ReverseMap();
                 cfg.CreateMap<ReserveViewDto, ReserveEntity>().ReverseMap();
                 cfg.CreateMap<UserViewDto, UserEntity>().ReverseMap();
+                cfg.CreateMap<AuthenticatedUserDto, UserEntity>().ReverseMap();
 
                 cfg.CreateMap<AuthorCreateDto, AuthorEntity>();
                 cfg.CreateMap<BarrowCreateDto, BarrowEntity>();

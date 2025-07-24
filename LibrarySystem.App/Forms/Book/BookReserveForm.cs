@@ -79,7 +79,7 @@ namespace LibrarySystem.App.Forms.Book
                         {
                             ISBN = selected.ISBN,
                             ReservedDate = DateTime.Now,
-                            UID = UserManager.CurrentUser.UID
+                            UID = SessionManager.UID
                         };
 
                         success = 0 < BookReservationService.Reserve(dto);

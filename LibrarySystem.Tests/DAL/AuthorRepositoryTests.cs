@@ -1,6 +1,5 @@
 ﻿using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Repositories;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 
 namespace LibrarySystem.Tests.DAL
 {

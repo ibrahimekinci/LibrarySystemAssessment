@@ -1,4 +1,5 @@
-﻿using LibrarySystem.BLL.DTOs;
+﻿using LibrarySystem.Application.DTOs;
+using LibrarySystem.BLL.DTOs;
 using LibrarySystem.BLL.Interfaces;
 using LibrarySystem.DAL.Entities;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ namespace LibrarySystem.BLL.Services
         {
         }
 
-        public UserViewDto Authenticate(string username, string password)
+        public AuthenticatedUserDto Authenticate(string username, string password)
         {
             var user = UserRepository.GetByUsername(username);
             if (user == null || user.Password != password)
                 return null;
 
-            return Mapper.Map<UserViewDto>(user);
+            return Mapper.Map<AuthenticatedUserDto>(user);
         }
 
         public int Register(UserCreateDto dto)
@@ -39,7 +40,7 @@ namespace LibrarySystem.BLL.Services
                 return false;
 
             user.Password = dto.NewPassword;
-            return UserRepository.UpdatePasswordByUserId(dto.UID,dto.NewPassword);
+            return UserRepository.UpdatePasswordByUserId(dto.UID, dto.NewPassword);
         }
 
         public List<UserViewDto> GetAll()

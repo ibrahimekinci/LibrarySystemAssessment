@@ -25,7 +25,7 @@ namespace LibrarySystem.App.Forms.Book
 
             if (operationType == OperationType.ViewAllBookLoans)
             {
-                if (!UserManager.IsloggedInAsManager() && !UserManager.IsloggedInAsStaff())
+                if (!SessionManager.IsLoggedInAsManager() && !SessionManager.IsLoggedInAsStaff())
                     RiderectToUnauthorizedPage();
                 RefreshDgv = AdminDgvRefresh;
                 _formTitle = "All Book Loans";
@@ -66,7 +66,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetAllByUserId(UserManager.CurrentUser.UID);
+            var result = BookLoanService.GetAllByUserId(SessionManager.UID);
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;

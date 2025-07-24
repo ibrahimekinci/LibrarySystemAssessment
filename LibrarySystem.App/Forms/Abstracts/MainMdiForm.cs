@@ -40,17 +40,17 @@ namespace LibrarySystem.App.Forms.Abstracts
         }
         protected override void RiderectToDashboard()
         {
-            if (!UserManager.IsUserLoggedIn())
+            if (!SessionManager.IsUserLoggedIn())
             {
                 RiderectToLoginPage();
                 return;
             }
 
-            if (UserManager.IsloggedInAsManager())
+            if (SessionManager.IsLoggedInAsManager())
                 FormManager.ShowFormInMdi<BookLoanForm>(this, OperationType.ViewAllBookLoans);
-            else if (UserManager.IsloggedInAsStaff())
+            else if (SessionManager.IsLoggedInAsStaff())
                 FormManager.ShowFormInMdi<BookLoanForm>(this, OperationType.ViewAllBookLoans);
-            else if (UserManager.IsloggedInAsStudent())
+            else if (SessionManager.IsLoggedInAsStudent())
                 FormManager.ShowFormInMdi<StudentDashboardForm>(this);
         }
         #region Menu
@@ -78,10 +78,10 @@ namespace LibrarySystem.App.Forms.Abstracts
             menuStrip.Renderer = new ProfessionalMenuRenderer();
             this.MainMenuStrip = menuStrip;
 
-            if (!UserManager.IsUserLoggedIn())
+            if (!SessionManager.IsUserLoggedIn())
                 return;
 
-            var currentUserRole = UserManager.CurrentUser.UserLevel;
+            var currentUserRole = SessionManager.UserLevel;
 
             //// 📚 BOOKS – Shared by All Users
             var booksMenu = new ToolStripMenuItem("📚 Books");
@@ -99,7 +99,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             menuStrip.Items.Add(myActivityMenu);
 
             //// 📖 Student ACTIVITY – For Staff and Manager
-            if (UserManager.IsloggedInAsStaff() || UserManager.IsloggedInAsManager())
+            if (SessionManager.IsLoggedInAsStaff() || SessionManager.IsLoggedInAsManager())
             {
                 var StudentActivityMenu = new ToolStripMenuItem("📖 Student Activity");
                 StudentActivityMenu.DropDownItems.Add("📚 Student Book Loans", null, (s, e) => FormManager.ShowFormInMdi<BookLoanForm>(OperationType.ViewAllBookLoans));
@@ -108,7 +108,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
 
             //// 🛠️ ADMIN – For Staff and Manager
-            if (UserManager.IsloggedInAsStaff() || UserManager.IsloggedInAsManager())
+            if (SessionManager.IsLoggedInAsStaff() || SessionManager.IsLoggedInAsManager())
             {
                 var adminMenu = new ToolStripMenuItem("🛠️ Admin");
                 adminMenu.DropDownItems.Add("👥 Manage Users", null, (s, e) => FormManager.ShowFormInMdi<UserForm>());
@@ -120,7 +120,7 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
 
             //// 📊 REPORTS  – For Staff and Manager
-            if (UserManager.IsloggedInAsStaff() || UserManager.IsloggedInAsManager())
+            if (SessionManager.IsLoggedInAsStaff() || SessionManager.IsLoggedInAsManager())
             {
                 var reportsMenu = new ToolStripMenuItem("📊 Reports");
                 reportsMenu.DropDownItems.Add("📈 Most Borrowed Books", null, (s, e) => FormManager.ShowFormInMdi<ReportDataForm>(OperationType.GetReportMostBorrowedBooks));

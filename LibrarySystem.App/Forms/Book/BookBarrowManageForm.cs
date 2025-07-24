@@ -54,7 +54,7 @@ namespace LibrarySystem.App.Forms.Book
             {
                 BorrowDate = DateTime.Now,
                 ISBN = _book.ISBN,
-                UID = UserManager.CurrentUser.UID,
+                UID = SessionManager.UID,
                 ReturnDate = dtpReturnDate.Value
             };
 

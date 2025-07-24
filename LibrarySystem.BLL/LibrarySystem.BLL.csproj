@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="DTOs\AuditLogDto.cs" />
+    <Compile Include="DTOs\AuthenticatedUserDto.cs" />
     <Compile Include="Helpers\ValidationExtensions.cs" />
     <Compile Include="Interfaces\IAuditService.cs" />
     <Compile Include="Interfaces\IAuthorService.cs" />

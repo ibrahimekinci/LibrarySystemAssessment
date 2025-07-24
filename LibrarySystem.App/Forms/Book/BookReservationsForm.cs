@@ -25,7 +25,7 @@ namespace LibrarySystem.App.Forms.Book
 
             if (operationType == OperationType.ViewAllReservations)
             {
-                if (!UserManager.IsloggedInAsManager() && !UserManager.IsloggedInAsStaff())
+                if (!SessionManager.IsLoggedInAsManager() && !SessionManager.IsLoggedInAsStaff())
                     RiderectToUnauthorizedPage();
                 RefreshDgv = AdminDgvRefresh;
                 _formTitle = "All Book Reservations";
@@ -66,7 +66,7 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookReservationService.GetAllByUserId(UserManager.CurrentUser.UID);
+            var result = BookReservationService.GetAllByUserId(SessionManager.UID);
             if (result == null || result.Rows.Count == 0)
             {
                 dgv.DataSource = null;

@@ -26,7 +26,7 @@ namespace LibrarySystem.App.Forms
         }
         public LoginForm()
         {
-            if (UserManager.IsUserLoggedIn())
+            if (SessionManager.IsUserLoggedIn())
             {
                 ShowDashboard();
                 return;
@@ -49,7 +49,7 @@ namespace LibrarySystem.App.Forms
                 MessageBox.Show("Invalid username or password", "Invalid login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            UserManager.CurrentUser = user;
+            SessionManager.SetUser(user);
             ShowDashboard();
         }
         private void ShowDashboard()
