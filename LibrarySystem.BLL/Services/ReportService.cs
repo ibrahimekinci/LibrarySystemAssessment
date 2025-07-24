@@ -1,4 +1,4 @@
-﻿using LibrarySystem.BLL.Interfaces;
+﻿using LibrarySystem.Abstractions.Services;
 using System.Data;
 
 namespace LibrarySystem.BLL.Services

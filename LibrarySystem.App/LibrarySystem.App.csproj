@@ -297,6 +297,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj">
+      <Project>{89d27d4a-725d-4203-9cc3-b05dedb1f498}</Project>
+      <Name>LibrarySystem.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibrarySystem.BLL\LibrarySystem.BLL.csproj">
       <Project>{4a81701b-170a-4b15-bd32-8c538de0753a}</Project>
       <Name>LibrarySystem.BLL</Name>

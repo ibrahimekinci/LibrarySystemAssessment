@@ -1,0 +1,15 @@
+﻿using LibrarySystem.Abstractions.DTOs;
+using System.Data;
+
+namespace LibrarySystem.Abstractions.Repositories
+{
+    public interface IReportRepository
+    {
+        //PagedResultDto<DataTable> GetMostBorrowedBooks_AllPaged(PagedRequestDto request);
+        //PagedResultDto<DataTable> GetOverdueBooks_AllPaged(PagedRequestDto request);
+        //PagedResultDto<DataTable> GetBorrowedBooksByCategory_AllPaged(PagedRequestDto request);
+        DataTable GetMostBorrowedBooks();
+        DataTable GetOverdueBooks();
+        DataTable GetBorrowedBooksByCategory();
+    }
+}

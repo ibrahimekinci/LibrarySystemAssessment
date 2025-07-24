@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using LibrarySystem.BLL.Interfaces;
+using LibrarySystem.Abstractions.Services;
 
 namespace LibrarySystem.BLL.Services
 {

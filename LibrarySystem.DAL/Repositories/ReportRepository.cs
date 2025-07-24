@@ -1,5 +1,5 @@
 ﻿using LibrarySystem.DAL.DataSets.ReportDataSetTableAdapters;
-using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.Abstractions.Repositories;
 using System.Data;
 
 namespace LibrarySystem.DAL.Repositories

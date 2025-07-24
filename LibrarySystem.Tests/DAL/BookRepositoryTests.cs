@@ -1,8 +1,8 @@
 ﻿using LibrarySystem.DAL.Repositories;
-using LibrarySystem.DAL.Entities;
-using LibrarySystem.DAL.DTOs;
+using LibrarySystem.Domain.Entities;
+using LibrarySystem.Abstractions.DTOs;
 
-namespace LibrarySystem.Tests.DAL
+namespace LibrarySystem.Tests.Integration.DAL
 {
     public class BookRepositoryTests
     {

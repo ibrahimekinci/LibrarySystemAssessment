@@ -1,7 +1,7 @@
 ﻿using LibrarySystem.DAL.DataSets.LanguageDataSetTableAdapters;
-using LibrarySystem.DAL.Entities;
+using LibrarySystem.Domain.Entities;
 using LibrarySystem.DAL.Helpers;
-using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.Abstractions.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Data;

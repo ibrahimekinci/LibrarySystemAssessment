@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using LibrarySystem.Application.DTOs;
-using LibrarySystem.BLL.DTOs;
-using LibrarySystem.DAL.Entities;
+using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Domain.Entities;
 
 namespace LibrarySystem.BLL
 {
@@ -49,8 +48,6 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<LanguageUpdateDto, LanguageEntity>();
                 cfg.CreateMap<ReserveUpdateDto, ReserveEntity>();
                 cfg.CreateMap<UserUpdateDto, UserEntity>();
-
-                cfg.CreateMap<BookSearchCriteriaDto, DAL.DTOs.BookSearchCriteriaDto>();
             });
             //config.AssertConfigurationIsValid();
             _mapper = config.CreateMapper();

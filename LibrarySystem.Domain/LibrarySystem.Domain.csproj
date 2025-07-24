@@ -45,6 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AuthorEntity.cs" />
+    <Compile Include="Entities\BookEntity.cs" />
+    <Compile Include="Entities\BorrowEntity.cs" />
+    <Compile Include="Entities\CategoryEntity.cs" />
+    <Compile Include="Entities\LanguageEntity.cs" />
+    <Compile Include="Entities\ReserveEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Enums\AuditActionType.cs" />
     <Compile Include="Enums\OperationTypeEnum.cs" />
     <Compile Include="Enums\UserLevelEnum.cs" />

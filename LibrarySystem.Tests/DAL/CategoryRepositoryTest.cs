@@ -1,7 +1,7 @@
 ﻿using LibrarySystem.DAL.Repositories;
-using LibrarySystem.DAL.Entities;
+using LibrarySystem.Domain.Entities;
 
-namespace LibrarySystem.Tests.DAL
+namespace LibrarySystem.Tests.Integration.DAL
 {
     public class CategoryRepositoryTests
     {

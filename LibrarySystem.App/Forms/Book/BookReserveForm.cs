@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.BLL.DTOs;
+using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;

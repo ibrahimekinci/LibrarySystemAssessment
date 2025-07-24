@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.Abstractions.Repositories;
 using LibrarySystem.DAL.Repositories;
 
 namespace LibrarySystem.BLL.Services

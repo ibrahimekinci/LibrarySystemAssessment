@@ -1,6 +1,6 @@
-﻿using LibrarySystem.BLL.DTOs;
-using LibrarySystem.BLL.Interfaces;
-using LibrarySystem.DAL.Entities;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Services;
+using LibrarySystem.Domain.Entities;
 using System.Data;
 
 namespace LibrarySystem.BLL.Services

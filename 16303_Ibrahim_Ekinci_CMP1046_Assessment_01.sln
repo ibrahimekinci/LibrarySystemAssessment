@@ -7,11 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.Domain", "Lib
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.DAL", "LibrarySystem.DAL\LibrarySystem.DAL.csproj", "{F512A36F-BF1E-44AD-8462-0A673B7A4A1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.Tests", "LibrarySystem.Tests\LibrarySystem.Tests.csproj", "{C01AF76E-B8CD-4358-B1FF-8182D7C6ABD0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.Tests.Integration", "LibrarySystem.Tests\LibrarySystem.Tests.Integration.csproj", "{C01AF76E-B8CD-4358-B1FF-8182D7C6ABD0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.BLL", "LibrarySystem.BLL\LibrarySystem.BLL.csproj", "{4A81701B-170A-4B15-BD32-8C538DE0753A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.App", "LibrarySystem.App\LibrarySystem.App.csproj", "{FCE25E79-7531-4C41-BEB8-75D39B3C8A75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.Abstractions", "LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj", "{89D27D4A-725D-4203-9CC3-B05DEDB1F498}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibrarySystem.Tests.Unit", "LibrarySystem.Tests.Unit\LibrarySystem.Tests.Unit.csproj", "{E1EBBC3F-B08F-4363-8599-3D2AFDD3CCE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{FCE25E79-7531-4C41-BEB8-75D39B3C8A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCE25E79-7531-4C41-BEB8-75D39B3C8A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCE25E79-7531-4C41-BEB8-75D39B3C8A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D27D4A-725D-4203-9CC3-B05DEDB1F498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D27D4A-725D-4203-9CC3-B05DEDB1F498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D27D4A-725D-4203-9CC3-B05DEDB1F498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D27D4A-725D-4203-9CC3-B05DEDB1F498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1EBBC3F-B08F-4363-8599-3D2AFDD3CCE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1EBBC3F-B08F-4363-8599-3D2AFDD3CCE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1EBBC3F-B08F-4363-8599-3D2AFDD3CCE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1EBBC3F-B08F-4363-8599-3D2AFDD3CCE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

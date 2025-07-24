@@ -49,41 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
-    <Compile Include="DTOs\AuditLogDto.cs" />
-    <Compile Include="DTOs\AuthenticatedUserDto.cs" />
     <Compile Include="Helpers\ValidationExtensions.cs" />
-    <Compile Include="Interfaces\IAuditService.cs" />
-    <Compile Include="Interfaces\IAuthorService.cs" />
-    <Compile Include="Interfaces\IBookService.cs" />
-    <Compile Include="Interfaces\IBookLoanService.cs" />
-    <Compile Include="Interfaces\ICategoryService.cs" />
-    <Compile Include="Interfaces\ILanguageService.cs" />
-    <Compile Include="Interfaces\ILogService.cs" />
-    <Compile Include="Interfaces\IReportService.cs" />
-    <Compile Include="Interfaces\IBookReservationService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="DTOs\AuthorCreateDto.cs" />
-    <Compile Include="DTOs\AuthorUpdateDto.cs" />
-    <Compile Include="DTOs\AuthorViewDto.cs" />
-    <Compile Include="DTOs\BorrowCreateDto.cs" />
-    <Compile Include="DTOs\BorrowUpdateDto.cs" />
-    <Compile Include="DTOs\BorrowViewDto.cs" />
-    <Compile Include="DTOs\BookDto.cs" />
-    <Compile Include="DTOs\BookSearchCriteriaDto.cs" />
-    <Compile Include="DTOs\BookViewDto.cs" />
-    <Compile Include="DTOs\CategoryCreateDto.cs" />
-    <Compile Include="DTOs\CategoryUpdateDto.cs" />
-    <Compile Include="DTOs\CategoryViewDto.cs" />
-    <Compile Include="DTOs\LanguageCreateDto.cs" />
-    <Compile Include="DTOs\LanguageUpdateDto.cs" />
-    <Compile Include="DTOs\LanguageViewDto.cs" />
-    <Compile Include="DTOs\ReserveCreateDto.cs" />
-    <Compile Include="DTOs\ReserveUpdateDto.cs" />
-    <Compile Include="DTOs\ReserveViewDto.cs" />
-    <Compile Include="DTOs\UserCreateDto.cs" />
-    <Compile Include="DTOs\UserPasswordUpdateDto.cs" />
-    <Compile Include="DTOs\UserUpdateDto.cs" />
-    <Compile Include="DTOs\UserViewDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuditService.cs" />
     <Compile Include="Services\AuthorService.cs" />
@@ -98,6 +64,10 @@
     <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj">
+      <Project>{89d27d4a-725d-4203-9cc3-b05dedb1f498}</Project>
+      <Name>LibrarySystem.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LibrarySystem.DAL\LibrarySystem.DAL.csproj">
       <Project>{f512a36f-bf1e-44ad-8462-0a673b7a4a1e}</Project>
       <Name>LibrarySystem.DAL</Name>

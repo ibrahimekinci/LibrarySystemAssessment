@@ -1,4 +1,4 @@
-﻿using LibrarySystem.Application.DTOs;
+﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Domain.Enums;
 using System.Collections.Generic;
 using System.Linq;

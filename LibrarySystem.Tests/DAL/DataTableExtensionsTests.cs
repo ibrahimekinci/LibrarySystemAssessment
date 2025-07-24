@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using LibrarySystem.DAL.Helpers;
-namespace LibrarySystem.Tests.DAL
+namespace LibrarySystem.Tests.Integration.DAL
 {
     public class DataTableExtensionsTests
     {

@@ -1,0 +1,15 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace LibrarySystem.Abstractions.DTOs
+{
+    public class BorrowReturnDto
+    {
+        [Required]
+        public int BID { get; set; }
+        [Required]
+        public DateTime ActualReturnDate { get; set; }
+        [Required]
+        public decimal LateFee { get; set; }
+    }
+}

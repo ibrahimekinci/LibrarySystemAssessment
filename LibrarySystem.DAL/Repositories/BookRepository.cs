@@ -1,8 +1,8 @@
 ﻿using LibrarySystem.DAL.DataSets.BookDataSetTableAdapters;
-using LibrarySystem.DAL.DTOs;
-using LibrarySystem.DAL.Entities;
+using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Domain.Entities;
 using LibrarySystem.DAL.Helpers;
-using LibrarySystem.DAL.Interfaces;
+using LibrarySystem.Abstractions.Repositories;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
