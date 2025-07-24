@@ -27,7 +27,7 @@ namespace LibrarySystem.BLL
             {
                 cfg.AllowNullCollections = true;
                 cfg.CreateMap<AuthorViewDto, AuthorEntity>().ReverseMap();
-                cfg.CreateMap<BarrowViewDto, BarrowEntity>().ReverseMap();
+                cfg.CreateMap<BorrowViewDto, BorrowEntity>().ReverseMap();
                 cfg.CreateMap<BookViewDto, BookEntity>().ReverseMap();
                 cfg.CreateMap<CategoryViewDto, CategoryEntity>().ReverseMap();
                 cfg.CreateMap<LanguageViewDto, LanguageEntity>().ReverseMap();
@@ -36,7 +36,7 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<AuthenticatedUserDto, UserEntity>().ReverseMap();
 
                 cfg.CreateMap<AuthorCreateDto, AuthorEntity>();
-                cfg.CreateMap<BarrowCreateDto, BarrowEntity>();
+                cfg.CreateMap<BorrowCreateDto, BorrowEntity>();
                 cfg.CreateMap<BookDto, BookEntity>();
                 cfg.CreateMap<CategoryCreateDto, CategoryEntity>();
                 cfg.CreateMap<LanguageCreateDto, LanguageEntity>();
@@ -44,7 +44,7 @@ namespace LibrarySystem.BLL
                 cfg.CreateMap<UserCreateDto, UserEntity>();
 
                 cfg.CreateMap<AuthorUpdateDto, AuthorEntity>();
-                cfg.CreateMap<BarrowReturnDto, BarrowEntity>();
+                cfg.CreateMap<BorrowReturnDto, BorrowEntity>();
                 cfg.CreateMap<CategoryUpdateDto, CategoryEntity>();
                 cfg.CreateMap<LanguageUpdateDto, LanguageEntity>();
                 cfg.CreateMap<ReserveUpdateDto, ReserveEntity>();

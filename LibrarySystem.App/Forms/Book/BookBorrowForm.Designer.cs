@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.App.Forms.Book
 {
-    partial class BookBarrowForm
+    partial class BookBorrowForm
     {
         /// <summary>
         /// Required designer variable.
@@ -105,7 +105,7 @@
             this.dgv.Size = new System.Drawing.Size(801, 382);
             this.dgv.TabIndex = 24;
             // 
-            // BookBarrowForm
+            // BookBorrowForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -113,8 +113,8 @@
             this.Controls.Add(this.lnkTitle);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.dgv);
-            this.Name = "BookBarrowForm";
-            this.Text = "BookBarrowForm";
+            this.Name = "BookBorrowForm";
+            this.Text = "BookBorrowForm";
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

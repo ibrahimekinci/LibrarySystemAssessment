@@ -74,7 +74,7 @@ namespace LibrarySystem.App.Forms.Book
                     var selected = BookLoanService.GetById(id);
                     if (selected != null || selected.ActualReturnDate <= new DateTime(2001, 1, 1))
                     {
-                        var dto = new BarrowReturnDto()
+                        var dto = new BorrowReturnDto()
                         {
                             ActualReturnDate = DateTime.Now,
                             BID = selected.BID

@@ -2,7 +2,7 @@
 
 namespace LibrarySystem.DAL.Entities
 {
-    public class BarrowEntity
+    public class BorrowEntity
     {
         public int BID { get; set; }
         public int UID { get; set; }

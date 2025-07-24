@@ -41,9 +41,9 @@ namespace LibrarySystem.App.Forms.Dashboards
             FormManager.ShowFormInMdi<BookReserveForm>();
         }
 
-        private void lnkBarrowBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkBorrowBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormManager.ShowFormInMdi<BookBarrowForm>();
+            FormManager.ShowFormInMdi<BookBorrowForm>();
         }
 
         private void lnkReturnBook_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

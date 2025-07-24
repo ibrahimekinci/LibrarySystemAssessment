@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="BarrowDataSet" targetNamespace="http://tempuri.org/BarrowDataSet.xsd" xmlns:mstns="http://tempuri.org/BarrowDataSet.xsd" xmlns="http://tempuri.org/BarrowDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="BorrowDataSet" targetNamespace="http://tempuri.org/BorrowDataSet.xsd" xmlns:mstns="http://tempuri.org/BorrowDataSet.xsd" xmlns="http://tempuri.org/BorrowDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -270,7 +270,7 @@ order by 1 desc
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="BarrowDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BarrowDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BarrowDataSet">
+  <xs:element name="BorrowDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BorrowDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BorrowDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="ViewBookBorrowed" msprop:Generator_RowEvHandlerName="ViewBookBorrowedRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewBookBorrowedRowDeleted" msprop:Generator_RowDeletingName="ViewBookBorrowedRowDeleting" msprop:Generator_RowEvArgName="ViewBookBorrowedRowChangeEvent" msprop:Generator_TablePropName="ViewBookBorrowed" msprop:Generator_RowChangedName="ViewBookBorrowedRowChanged" msprop:Generator_UserTableName="ViewBookBorrowed" msprop:Generator_RowChangingName="ViewBookBorrowedRowChanging" msprop:Generator_RowClassName="ViewBookBorrowedRow" msprop:Generator_TableClassName="ViewBookBorrowedDataTable" msprop:Generator_TableVarName="tableViewBookBorrowed">

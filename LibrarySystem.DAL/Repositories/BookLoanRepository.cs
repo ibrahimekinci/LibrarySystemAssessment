@@ -1,4 +1,4 @@
-﻿using LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters;
+﻿using LibrarySystem.DAL.DataSets.BorrowDataSetTableAdapters;
 using LibrarySystem.DAL.Entities;
 using LibrarySystem.DAL.Helpers;
 using LibrarySystem.DAL.Interfaces;
@@ -14,7 +14,7 @@ namespace LibrarySystem.DAL.Repositories
         private readonly TabBorrowTableAdapter tableAdapter = new TabBorrowTableAdapter();
         private readonly ViewBookLoansTableAdapter viewAdapter = new ViewBookLoansTableAdapter();
 
-        public int Add(BarrowEntity borrow)
+        public int Add(BorrowEntity borrow)
         {
             var effectedDbRows = tableAdapter.InsertCustom(borrow.UID, borrow.ISBN, borrow.BorrowDate.FormatForDb(), borrow.ReturnDate.FormatForDb());
             if (effectedDbRows <= 0)
@@ -23,28 +23,28 @@ namespace LibrarySystem.DAL.Repositories
             return id;
         }
 
-        public List<BarrowEntity> GetAll()
+        public List<BorrowEntity> GetAll()
         {
             var table = tableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
-            return table.CopyToDataTable().ToList<BarrowEntity>();
+            return table.CopyToDataTable().ToList<BorrowEntity>();
         }
 
-        public List<BarrowEntity> GetAllByUserId(int uid)
+        public List<BorrowEntity> GetAllByUserId(int uid)
         {
             var table = tableAdapter.GetByUserId(uid);
             if (table == null || table.Rows.Count == 0)
                 return null;
-            return table.CopyToDataTable().ToList<BarrowEntity>();
+            return table.CopyToDataTable().ToList<BorrowEntity>();
         }
 
-        public BarrowEntity GetById(int bid)
+        public BorrowEntity GetById(int bid)
         {
             var table = tableAdapter.GetById(bid);
             if (table == null || table.Rows.Count == 0)
                 return null;
-            return table.CopyToDataTable().ToList<BarrowEntity>().FirstOrDefault();
+            return table.CopyToDataTable().ToList<BorrowEntity>().FirstOrDefault();
 
         }
 

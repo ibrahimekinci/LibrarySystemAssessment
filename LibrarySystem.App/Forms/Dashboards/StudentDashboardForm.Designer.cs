@@ -33,7 +33,7 @@
             this.lnkSearchBooks = new System.Windows.Forms.LinkLabel();
             this.lnkBrowseBooks = new System.Windows.Forms.LinkLabel();
             this.lnkReverseBook = new System.Windows.Forms.LinkLabel();
-            this.lnkBarrowBook = new System.Windows.Forms.LinkLabel();
+            this.lnkBorrowBook = new System.Windows.Forms.LinkLabel();
             this.lnkReturnBook = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
@@ -128,28 +128,28 @@
             this.lnkReverseBook.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
             this.lnkReverseBook.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkReverseBook_LinkClicked);
             // 
-            // lnkBarrowBook
+            // lnkBorrowBook
             // 
-            this.lnkBarrowBook.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(150)))));
-            this.lnkBarrowBook.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lnkBorrowBook.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(70)))), ((int)(((byte)(150)))));
+            this.lnkBorrowBook.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lnkBarrowBook.AutoSize = true;
-            this.lnkBarrowBook.BackColor = System.Drawing.Color.Transparent;
-            this.lnkBarrowBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkBarrowBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lnkBarrowBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.lnkBarrowBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
-            this.lnkBarrowBook.Location = new System.Drawing.Point(201, 314);
-            this.lnkBarrowBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lnkBarrowBook.Name = "lnkBarrowBook";
-            this.lnkBarrowBook.Padding = new System.Windows.Forms.Padding(2);
-            this.lnkBarrowBook.Size = new System.Drawing.Size(343, 50);
-            this.lnkBarrowBook.TabIndex = 8;
-            this.lnkBarrowBook.TabStop = true;
-            this.lnkBarrowBook.Text = "📤 Borrow a Book";
-            this.lnkBarrowBook.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
-            this.lnkBarrowBook.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkBarrowBook_LinkClicked);
+            this.lnkBorrowBook.AutoSize = true;
+            this.lnkBorrowBook.BackColor = System.Drawing.Color.Transparent;
+            this.lnkBorrowBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lnkBorrowBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lnkBorrowBook.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lnkBorrowBook.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(204)))));
+            this.lnkBorrowBook.Location = new System.Drawing.Point(201, 314);
+            this.lnkBorrowBook.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lnkBorrowBook.Name = "lnkBorrowBook";
+            this.lnkBorrowBook.Padding = new System.Windows.Forms.Padding(2);
+            this.lnkBorrowBook.Size = new System.Drawing.Size(343, 50);
+            this.lnkBorrowBook.TabIndex = 8;
+            this.lnkBorrowBook.TabStop = true;
+            this.lnkBorrowBook.Text = "📤 Borrow a Book";
+            this.lnkBorrowBook.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(0)))), ((int)(((byte)(128)))));
+            this.lnkBorrowBook.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkBorrowBook_LinkClicked);
             // 
             // lnkReturnBook
             // 
@@ -180,7 +180,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 561);
             this.Controls.Add(this.lnkReturnBook);
-            this.Controls.Add(this.lnkBarrowBook);
+            this.Controls.Add(this.lnkBorrowBook);
             this.Controls.Add(this.lnkReverseBook);
             this.Controls.Add(this.lnkWelcome);
             this.Controls.Add(this.lnkSearchBooks);
@@ -202,7 +202,7 @@
         private System.Windows.Forms.LinkLabel lnkSearchBooks;
         private System.Windows.Forms.LinkLabel lnkBrowseBooks;
         private System.Windows.Forms.LinkLabel lnkReverseBook;
-        private System.Windows.Forms.LinkLabel lnkBarrowBook;
+        private System.Windows.Forms.LinkLabel lnkBorrowBook;
         private System.Windows.Forms.LinkLabel lnkReturnBook;
     }
 }

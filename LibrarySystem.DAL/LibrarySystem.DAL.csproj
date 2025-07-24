@@ -68,13 +68,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthorDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSets\BarrowDataSet.cs">
-      <DependentUpon>BarrowDataSet.xsd</DependentUpon>
+    <Compile Include="DataSets\BorrowDataSet.cs">
+      <DependentUpon>BorrowDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSets\BarrowDataSet.Designer.cs">
+    <Compile Include="DataSets\BorrowDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BarrowDataSet.xsd</DependentUpon>
+      <DependentUpon>BorrowDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSets\BookDataSet.cs">
       <DependentUpon>BookDataSet.xsd</DependentUpon>
@@ -122,7 +122,7 @@
       <DependentUpon>UserDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Entities\AuthorEntity.cs" />
-    <Compile Include="Entities\BarrowEntity.cs" />
+    <Compile Include="Entities\BorrowEntity.cs" />
     <Compile Include="DTOs\BookSearchCriteriaDto.cs" />
     <Compile Include="Entities\BookEntity.cs" />
     <Compile Include="Entities\CategoryEntity.cs" />
@@ -168,16 +168,16 @@
     <None Include="DataSets\AuthorDataSet.xss">
       <DependentUpon>AuthorDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\BarrowDataSet.xsc">
-      <DependentUpon>BarrowDataSet.xsd</DependentUpon>
+    <None Include="DataSets\BorrowDataSet.xsc">
+      <DependentUpon>BorrowDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSets\BarrowDataSet.xsd">
+    <None Include="DataSets\BorrowDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BarrowDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>BorrowDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DataSets\BarrowDataSet.xss">
-      <DependentUpon>BarrowDataSet.xsd</DependentUpon>
+    <None Include="DataSets\BorrowDataSet.xss">
+      <DependentUpon>BorrowDataSet.xsd</DependentUpon>
     </None>
     <None Include="DataSets\BookDataSet.xsc">
       <DependentUpon>BookDataSet.xsd</DependentUpon>

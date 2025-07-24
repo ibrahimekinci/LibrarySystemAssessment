@@ -1,6 +1,6 @@
 ﻿namespace LibrarySystem.App.Forms.Book
 {
-    partial class BookBarrowManageForm
+    partial class BookBorrowManageForm
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lnkTitle = new System.Windows.Forms.LinkLabel();
-            this.btnBarrow = new System.Windows.Forms.Button();
+            this.btnBorrow = new System.Windows.Forms.Button();
             this.lbl = new System.Windows.Forms.Label();
             this.txtPages = new System.Windows.Forms.TextBox();
             this.txtPublishYear = new System.Windows.Forms.TextBox();
@@ -158,27 +158,27 @@
             this.lnkTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lnkTitle.VisitedLinkColor = System.Drawing.Color.Black;
             // 
-            // btnBarrow
+            // btnBorrow
             // 
-            this.btnBarrow.AutoSize = true;
-            this.btnBarrow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBarrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnBarrow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnBarrow.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
-            this.btnBarrow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(150)))));
-            this.btnBarrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(180)))));
-            this.btnBarrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBarrow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnBarrow.ForeColor = System.Drawing.Color.White;
-            this.btnBarrow.Location = new System.Drawing.Point(247, 452);
-            this.btnBarrow.MinimumSize = new System.Drawing.Size(100, 34);
-            this.btnBarrow.Name = "btnBarrow";
-            this.btnBarrow.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
-            this.btnBarrow.Size = new System.Drawing.Size(100, 39);
-            this.btnBarrow.TabIndex = 36;
-            this.btnBarrow.Text = "Barrow";
-            this.btnBarrow.UseVisualStyleBackColor = false;
-            this.btnBarrow.Click += new System.EventHandler(this.btnBarrow_Click);
+            this.btnBorrow.AutoSize = true;
+            this.btnBorrow.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBorrow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnBorrow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnBorrow.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(120)))), ((int)(((byte)(215)))));
+            this.btnBorrow.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(60)))), ((int)(((byte)(150)))));
+            this.btnBorrow.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(90)))), ((int)(((byte)(180)))));
+            this.btnBorrow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBorrow.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBorrow.ForeColor = System.Drawing.Color.White;
+            this.btnBorrow.Location = new System.Drawing.Point(247, 452);
+            this.btnBorrow.MinimumSize = new System.Drawing.Size(100, 34);
+            this.btnBorrow.Name = "btnBorrow";
+            this.btnBorrow.Padding = new System.Windows.Forms.Padding(10, 3, 10, 3);
+            this.btnBorrow.Size = new System.Drawing.Size(100, 39);
+            this.btnBorrow.TabIndex = 36;
+            this.btnBorrow.Text = "Borrow";
+            this.btnBorrow.UseVisualStyleBackColor = false;
+            this.btnBorrow.Click += new System.EventHandler(this.btnBorrow_Click);
             // 
             // lbl
             // 
@@ -301,7 +301,7 @@
             this.dtpReturnDate.Size = new System.Drawing.Size(200, 20);
             this.dtpReturnDate.TabIndex = 61;
             // 
-            // BookBarrowManageForm
+            // BookBorrowManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -324,10 +324,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lnkTitle);
-            this.Controls.Add(this.btnBarrow);
+            this.Controls.Add(this.btnBorrow);
             this.Controls.Add(this.lbl);
-            this.Name = "BookBarrowManageForm";
-            this.Text = "BookBarrowManageForm";
+            this.Name = "BookBorrowManageForm";
+            this.Text = "BookBorrowManageForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -343,7 +343,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel lnkTitle;
-        private System.Windows.Forms.Button btnBarrow;
+        private System.Windows.Forms.Button btnBorrow;
         private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.TextBox txtPages;
         private System.Windows.Forms.TextBox txtPublishYear;

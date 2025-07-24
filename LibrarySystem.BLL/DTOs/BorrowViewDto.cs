@@ -2,7 +2,7 @@
 
 namespace LibrarySystem.BLL.DTOs
 {
-    public class BarrowViewDto
+    public class BorrowViewDto
     {
         public int BID { get; set; }
         public string ISBN { get; set; }

@@ -5,9 +5,9 @@ namespace LibrarySystem.BLL.Interfaces
 {
     public interface IBookLoanService
     {
-        int Borrow(BarrowCreateDto barrowRecord);
-        bool Return(BarrowReturnDto barrowRecord);
-        BarrowViewDto GetById(int id);
+        int Borrow(BorrowCreateDto borrow);
+        bool Return(BorrowReturnDto borrow);
+        BorrowViewDto GetById(int id);
         DataTable GetUnreturnedLoansByUserId(int userId);
         DataTable GetAll();
         DataTable GetAllByUserId(int uid);

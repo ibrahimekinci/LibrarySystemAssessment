@@ -6,15 +6,15 @@ namespace LibrarySystem.DAL.Interfaces
 {
     public interface IBookLoanRepository
     {
-        //PagedResultDto<List<BarrowEntity>> GetAllPaged(PagedRequestDto request);
-        //PagedResultDto<List<BarrowEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
-        List<BarrowEntity> GetAll();
-        List<BarrowEntity> GetAllByUserId(int uid);
-        BarrowEntity GetById(int bid);
+        //PagedResultDto<List<BorrowEntity>> GetAllPaged(PagedRequestDto request);
+        //PagedResultDto<List<BorrowEntity>> GetAllPagedByUserId(int uid, PagedRequestDto request);
+        List<BorrowEntity> GetAll();
+        List<BorrowEntity> GetAllByUserId(int uid);
+        BorrowEntity GetById(int bid);
         DataTable GetUnreturnedLoansByUserId(int UID);
         DataTable GetAllLoans();
         DataTable GetLoansByUserId(int uid);
-        int Add(BarrowEntity borrow);
+        int Add(BorrowEntity borrow);
         bool Delete(int bid);
         bool Return(int borrowId, System.DateTime actualReturnDate, decimal lateFee);
     }

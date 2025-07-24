@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibrarySystem.BLL.DTOs
 {
-    public class BarrowCreateDto
+    public class BorrowCreateDto
     {
 
         [Required]

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace LibrarySystem.BLL.DTOs
 {
-    public class BarrowReturnDto
+    public class BorrowReturnDto
     {
         [Required]
         public int BID { get; set; }

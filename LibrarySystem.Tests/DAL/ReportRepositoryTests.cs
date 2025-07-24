@@ -10,7 +10,7 @@ namespace LibrarySystem.Tests.DAL
         private readonly ReportRepository _reportRepo = new();
         private readonly UserRepository _userRepo = new();
         private readonly BookRepository _bookRepo = new();
-        private readonly BookLoanRepository _barrowRepo = new();
+        private readonly BookLoanRepository _borrowRepo = new();
 
         private string _testIsbn;
         private int _testUserId;
@@ -50,7 +50,7 @@ namespace LibrarySystem.Tests.DAL
             _testUserId = _userRepo.Add(user);
 
             // Overdue borrow
-            _barrowRepo.Add(new BarrowEntity
+            _borrowRepo.Add(new BorrowEntity
             {
                 UID = _testUserId,
                 ISBN = _testIsbn,
@@ -59,7 +59,7 @@ namespace LibrarySystem.Tests.DAL
             });
 
             // Recent borrows
-            _barrowRepo.Add(new BarrowEntity
+            _borrowRepo.Add(new BorrowEntity
             {
                 UID = _testUserId,
                 ISBN = _testIsbn,
@@ -67,7 +67,7 @@ namespace LibrarySystem.Tests.DAL
                 ReturnDate = DateTime.Now.AddDays(10)
             });
 
-            _barrowRepo.Add(new BarrowEntity
+            _borrowRepo.Add(new BorrowEntity
             {
                 UID = _testUserId,
                 ISBN = _testIsbn,
@@ -75,7 +75,7 @@ namespace LibrarySystem.Tests.DAL
                 ReturnDate = DateTime.Now.AddDays(5)
             });
 
-            _barrowRepo.Add(new BarrowEntity
+            _borrowRepo.Add(new BorrowEntity
             {
                 UID = _testUserId,
                 ISBN = _testIsbn,
@@ -126,14 +126,14 @@ namespace LibrarySystem.Tests.DAL
             // Cleanup order: borrow → book → user → category → language
             try
             {
-                var barrows = _barrowRepo.GetAllByUserId(_testUserId);
-                if (barrows != null)
+                var borrows = _borrowRepo.GetAllByUserId(_testUserId);
+                if (borrows != null)
                 {
-                    foreach (var barrow in barrows.Where(b => b.ISBN == _testIsbn))
+                    foreach (var borrow in borrows.Where(b => b.ISBN == _testIsbn))
                     {
-                        // Not necessary to delete barrows if cascade is set, but try:
+                        // Not necessary to delete borrows if cascade is set, but try:
                         // NOTE: Only delete our test ISBN
-                        // No delete method in BarrowRepo, implement if needed
+                        // No delete method in BorrowRepo, implement if needed
                     }
                 }
 

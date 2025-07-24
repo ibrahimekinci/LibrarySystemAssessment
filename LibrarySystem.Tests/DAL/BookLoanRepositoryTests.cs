@@ -10,7 +10,7 @@ namespace LibrarySystem.Tests.DAL
 
         private readonly List<int> _createdIds = new();
 
-        private BarrowEntity CreateTestBarrow()
+        private BorrowEntity CreateTestBorrow()
         {
             var books = _bookRepo.GetAll();
             Assert.NotNull(books);
@@ -19,7 +19,7 @@ namespace LibrarySystem.Tests.DAL
             var random = new Random();
             var randomBook = books[random.Next(books.Count)];
 
-            return new BarrowEntity
+            return new BorrowEntity
             {
                 UID = 1, // Make sure user ID 1 exists in your DB
                 ISBN = randomBook.ISBN,
@@ -31,7 +31,7 @@ namespace LibrarySystem.Tests.DAL
         [Fact]
         public void Add_Should_Insert_And_Return_Valid_Id()
         {
-            var borrow = CreateTestBarrow();
+            var borrow = CreateTestBorrow();
             int id = _repo.Add(borrow);
 
             Assert.True(id > 0);
@@ -48,7 +48,7 @@ namespace LibrarySystem.Tests.DAL
         [Fact]
         public void GetById_Should_Return_Inserted_Record()
         {
-            var borrow = CreateTestBarrow();
+            var borrow = CreateTestBorrow();
             int id = _repo.Add(borrow);
             _createdIds.Add(id);
 
@@ -71,7 +71,7 @@ namespace LibrarySystem.Tests.DAL
         [Fact]
         public void GetAllByUserId_Should_Return_Records()
         {
-            var borrow = CreateTestBarrow();
+            var borrow = CreateTestBorrow();
             int id = _repo.Add(borrow);
             _createdIds.Add(id);
 
@@ -83,7 +83,7 @@ namespace LibrarySystem.Tests.DAL
         [Fact]
         public void Return_Should_Update_ActualReturnDate_And_LateFee()
         {
-            var borrow = CreateTestBarrow();
+            var borrow = CreateTestBorrow();
             int id = _repo.Add(borrow);
             _createdIds.Add(id);
 

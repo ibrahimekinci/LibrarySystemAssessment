@@ -20,9 +20,9 @@ namespace LibrarySystem.DAL.DataSets {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("BarrowDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("BorrowDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class BarrowDataSet : global::System.Data.DataSet {
+    public partial class BorrowDataSet : global::System.Data.DataSet {
         
         private ViewBookBorrowedDataTable tableViewBookBorrowed;
         
@@ -34,7 +34,7 @@ namespace LibrarySystem.DAL.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BarrowDataSet() {
+        public BorrowDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +45,7 @@ namespace LibrarySystem.DAL.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected BarrowDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected BorrowDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -157,7 +157,7 @@ namespace LibrarySystem.DAL.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            BarrowDataSet cln = ((BarrowDataSet)(base.Clone()));
+            BorrowDataSet cln = ((BorrowDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -247,9 +247,9 @@ namespace LibrarySystem.DAL.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "BarrowDataSet";
+            this.DataSetName = "BorrowDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/BarrowDataSet.xsd";
+            this.Namespace = "http://tempuri.org/BorrowDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableViewBookBorrowed = new ViewBookBorrowedDataTable();
@@ -289,7 +289,7 @@ namespace LibrarySystem.DAL.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            BarrowDataSet ds = new BarrowDataSet();
+            BorrowDataSet ds = new BorrowDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -697,7 +697,7 @@ namespace LibrarySystem.DAL.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BarrowDataSet ds = new BarrowDataSet();
+                BorrowDataSet ds = new BorrowDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1050,7 +1050,7 @@ namespace LibrarySystem.DAL.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BarrowDataSet ds = new BarrowDataSet();
+                BorrowDataSet ds = new BorrowDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1431,7 +1431,7 @@ namespace LibrarySystem.DAL.DataSets {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BarrowDataSet ds = new BarrowDataSet();
+                BorrowDataSet ds = new BorrowDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1935,7 +1935,7 @@ namespace LibrarySystem.DAL.DataSets {
         }
     }
 }
-namespace LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters {
+namespace LibrarySystem.DAL.DataSets.BorrowDataSetTableAdapters {
     
     
     /// <summary>
@@ -2096,7 +2096,7 @@ namespace LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BarrowDataSet.ViewBookBorrowedDataTable dataTable) {
+        public virtual int Fill(BorrowDataSet.ViewBookBorrowedDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2109,9 +2109,9 @@ namespace LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BarrowDataSet.ViewBookBorrowedDataTable GetData() {
+        public virtual BorrowDataSet.ViewBookBorrowedDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BarrowDataSet.ViewBookBorrowedDataTable dataTable = new BarrowDataSet.ViewBookBorrowedDataTable();
+            BorrowDataSet.ViewBookBorrowedDataTable dataTable = new BorrowDataSet.ViewBookBorrowedDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2366,7 +2366,7 @@ SELECT BID, UID, ISBN, BorrowDate, ReturnDate, ActualReturnDate, LateFee FROM Ta
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BarrowDataSet.TabBorrowDataTable dataTable) {
+        public virtual int Fill(BorrowDataSet.TabBorrowDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2379,9 +2379,9 @@ SELECT BID, UID, ISBN, BorrowDate, ReturnDate, ActualReturnDate, LateFee FROM Ta
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BarrowDataSet.TabBorrowDataTable GetData() {
+        public virtual BorrowDataSet.TabBorrowDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BarrowDataSet.TabBorrowDataTable dataTable = new BarrowDataSet.TabBorrowDataTable();
+            BorrowDataSet.TabBorrowDataTable dataTable = new BorrowDataSet.TabBorrowDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2390,10 +2390,10 @@ SELECT BID, UID, ISBN, BorrowDate, ReturnDate, ActualReturnDate, LateFee FROM Ta
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BarrowDataSet.TabBorrowDataTable GetById(int BID) {
+        public virtual BorrowDataSet.TabBorrowDataTable GetById(int BID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(BID));
-            BarrowDataSet.TabBorrowDataTable dataTable = new BarrowDataSet.TabBorrowDataTable();
+            BorrowDataSet.TabBorrowDataTable dataTable = new BorrowDataSet.TabBorrowDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2402,10 +2402,10 @@ SELECT BID, UID, ISBN, BorrowDate, ReturnDate, ActualReturnDate, LateFee FROM Ta
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BarrowDataSet.TabBorrowDataTable GetByUserId(int UID) {
+        public virtual BorrowDataSet.TabBorrowDataTable GetByUserId(int UID) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UID));
-            BarrowDataSet.TabBorrowDataTable dataTable = new BarrowDataSet.TabBorrowDataTable();
+            BorrowDataSet.TabBorrowDataTable dataTable = new BorrowDataSet.TabBorrowDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2413,14 +2413,14 @@ SELECT BID, UID, ISBN, BorrowDate, ReturnDate, ActualReturnDate, LateFee FROM Ta
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BarrowDataSet.TabBorrowDataTable dataTable) {
+        public virtual int Update(BorrowDataSet.TabBorrowDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BarrowDataSet dataSet) {
+        public virtual int Update(BorrowDataSet dataSet) {
             return this.Adapter.Update(dataSet, "TabBorrow");
         }
         
@@ -2915,10 +2915,10 @@ order by 1 desc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BarrowDataSet.ViewBookLoansDataTable GetLoansByUserId(int UID) {
+        public virtual BorrowDataSet.ViewBookLoansDataTable GetLoansByUserId(int UID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UID));
-            BarrowDataSet.ViewBookLoansDataTable dataTable = new BarrowDataSet.ViewBookLoansDataTable();
+            BorrowDataSet.ViewBookLoansDataTable dataTable = new BorrowDataSet.ViewBookLoansDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2927,9 +2927,9 @@ order by 1 desc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BarrowDataSet.ViewBookLoansDataTable GetAll() {
+        public virtual BorrowDataSet.ViewBookLoansDataTable GetAll() {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            BarrowDataSet.ViewBookLoansDataTable dataTable = new BarrowDataSet.ViewBookLoansDataTable();
+            BorrowDataSet.ViewBookLoansDataTable dataTable = new BorrowDataSet.ViewBookLoansDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2938,10 +2938,10 @@ order by 1 desc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BarrowDataSet.ViewBookLoansDataTable GetUnReturnedBooks(int UID) {
+        public virtual BorrowDataSet.ViewBookLoansDataTable GetUnReturnedBooks(int UID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UID));
-            BarrowDataSet.ViewBookLoansDataTable dataTable = new BarrowDataSet.ViewBookLoansDataTable();
+            BorrowDataSet.ViewBookLoansDataTable dataTable = new BorrowDataSet.ViewBookLoansDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3038,7 +3038,7 @@ order by 1 desc
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(BarrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(BorrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._tabBorrowTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TabBorrow.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -3057,7 +3057,7 @@ order by 1 desc
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(BarrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(BorrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._tabBorrowTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TabBorrow.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -3075,7 +3075,7 @@ order by 1 desc
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(BarrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(BorrowDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._tabBorrowTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TabBorrow.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -3117,7 +3117,7 @@ order by 1 desc
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(BarrowDataSet dataSet) {
+        public virtual int UpdateAll(BorrowDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

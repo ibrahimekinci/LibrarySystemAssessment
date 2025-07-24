@@ -9,15 +9,15 @@ namespace LibrarySystem.BLL.Services
 {
     public class BookLoanService : BaseService, IBookLoanService
     {
-        public int Borrow(BarrowCreateDto barrowRecord)
+        public int Borrow(BorrowCreateDto borrow)
         {
-            var entity = Mapper.Map<BarrowEntity>(barrowRecord);
+            var entity = Mapper.Map<BorrowEntity>(borrow);
             return BookLoanRepository.Add(entity);
         }
 
-        public bool Return(BarrowReturnDto barrowRecord)
+        public bool Return(BorrowReturnDto borrow)
         {
-            return BookLoanRepository.Return(barrowRecord.BID, barrowRecord.ActualReturnDate, barrowRecord.LateFee);
+            return BookLoanRepository.Return(borrow.BID, borrow.ActualReturnDate, borrow.LateFee);
         }
         public bool Delete(int borrowId)
         {
@@ -28,10 +28,10 @@ namespace LibrarySystem.BLL.Services
             return BookLoanRepository.Delete(borrowId);
         }
 
-        public BarrowViewDto GetById(int id)
+        public BorrowViewDto GetById(int id)
         {
             var entity = BookLoanRepository.GetById(id);
-            return Mapper.Map<BarrowViewDto>(entity);
+            return Mapper.Map<BorrowViewDto>(entity);
         }
 
         public DataTable GetUnreturnedLoansByUserId(int userId)

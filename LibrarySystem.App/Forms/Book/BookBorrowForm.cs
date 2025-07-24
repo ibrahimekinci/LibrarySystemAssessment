@@ -6,15 +6,15 @@ using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
 {
-    public partial class BookBarrowForm : BaseForm
+    public partial class BookBorrowForm : BaseForm
     {
-        public override string FormTitle => "Book Barrow";
+        public override string FormTitle => "Book Borrow";
         private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
         {
             UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student
         };
         protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => allowedUserLevels;
-        public BookBarrowForm()
+        public BookBorrowForm()
         {
             InitializeComponent();
 
@@ -48,15 +48,15 @@ namespace LibrarySystem.App.Forms.Book
         }
         private void AddActionButtons()
         {
-            var btnBarrow = new DataGridViewButtonColumn
+            var btnBorrow = new DataGridViewButtonColumn
             {
-                Name = "btnBarrow",
-                HeaderText = "Barrow",
-                Text = "Barrow",
+                Name = "btnBorrow",
+                HeaderText = "Borrow",
+                Text = "Borrow",
                 UseColumnTextForButtonValue = true
             };
 
-            dgv.Columns.Insert(0, btnBarrow);
+            dgv.Columns.Insert(0, btnBorrow);
         }
         private void Dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -64,12 +64,12 @@ namespace LibrarySystem.App.Forms.Book
 
             var isbn = Convert.ToString(dgv.Rows[e.RowIndex].Cells["ISBN"].Value);
 
-            if (dgv.Columns[e.ColumnIndex].Name == "btnBarrow")
+            if (dgv.Columns[e.ColumnIndex].Name == "btnBorrow")
             {
                 var selected = BookService.GetAvailableBookByISBN(isbn);
                 if (selected != null)
                 {
-                    using (var form = new BookBarrowManageForm(selected, RefreshDgv))
+                    using (var form = new BookBorrowManageForm(selected, RefreshDgv))
                     {
                         form.ShowDialog();
                     }

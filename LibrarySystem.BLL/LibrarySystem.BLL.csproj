@@ -65,9 +65,9 @@
     <Compile Include="DTOs\AuthorCreateDto.cs" />
     <Compile Include="DTOs\AuthorUpdateDto.cs" />
     <Compile Include="DTOs\AuthorViewDto.cs" />
-    <Compile Include="DTOs\BarrowCreateDto.cs" />
-    <Compile Include="DTOs\BarrowUpdateDto.cs" />
-    <Compile Include="DTOs\BarrowViewDto.cs" />
+    <Compile Include="DTOs\BorrowCreateDto.cs" />
+    <Compile Include="DTOs\BorrowUpdateDto.cs" />
+    <Compile Include="DTOs\BorrowViewDto.cs" />
     <Compile Include="DTOs\BookDto.cs" />
     <Compile Include="DTOs\BookSearchCriteriaDto.cs" />
     <Compile Include="DTOs\BookViewDto.cs" />

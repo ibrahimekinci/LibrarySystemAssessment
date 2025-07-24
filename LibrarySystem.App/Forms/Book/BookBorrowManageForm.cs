@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace LibrarySystem.App.Forms.Book
 {
-    public partial class BookBarrowManageForm : BaseForm
+    public partial class BookBorrowManageForm : BaseForm
     {
         public override string FormTitle => "Book Barrrowing Form";
         private static readonly IReadOnlyList<UserLevelEnum> allowedUserLevels = new List<UserLevelEnum>
@@ -18,14 +18,14 @@ namespace LibrarySystem.App.Forms.Book
         protected override IReadOnlyList<UserLevelEnum> AllowedUserLevels => allowedUserLevels;
         public Action BeforeFormClosing { get; set; }
         private readonly BookViewDto _book;
-        public BookBarrowManageForm(BookViewDto book, Action beforeFormClosing = null)
+        public BookBorrowManageForm(BookViewDto book, Action beforeFormClosing = null)
         {
             InitializeComponent();
 
             if (!AuthorizetionCheck())
                 return;
 
-            _book = book ?? throw new ArgumentNullException(nameof(book), "Book cannot be null for barrowing operation");
+            _book = book ?? throw new ArgumentNullException(nameof(book), "Book cannot be null for borrowing operation");
             BeforeFormClosing = beforeFormClosing;
 
             dtpReturnDate.Focus();
@@ -48,9 +48,9 @@ namespace LibrarySystem.App.Forms.Book
             this.Close();
         }
 
-        private void btnBarrow_Click(object sender, EventArgs e)
+        private void btnBorrow_Click(object sender, EventArgs e)
         {
-            var dto = new BarrowCreateDto
+            var dto = new BorrowCreateDto
             {
                 BorrowDate = DateTime.Now,
                 ISBN = _book.ISBN,

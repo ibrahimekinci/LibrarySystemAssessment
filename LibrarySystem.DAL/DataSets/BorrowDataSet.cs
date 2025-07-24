@@ -2,12 +2,12 @@
 {
 
 
-    partial class BarrowDataSet
+    partial class BorrowDataSet
     {
     }
 }
 
-namespace LibrarySystem.DAL.DataSets.BarrowDataSetTableAdapters
+namespace LibrarySystem.DAL.DataSets.BorrowDataSetTableAdapters
 {
 
 
