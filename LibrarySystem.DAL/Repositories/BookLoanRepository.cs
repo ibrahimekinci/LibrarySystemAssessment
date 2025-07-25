@@ -1,7 +1,7 @@
-﻿using LibrarySystem.DAL.DataSets.BorrowDataSetTableAdapters;
-using LibrarySystem.Domain.Entities;
+﻿using LibrarySystem.Abstractions.Repositories;
+using LibrarySystem.DAL.DataSets.BorrowDataSetTableAdapters;
 using LibrarySystem.DAL.Helpers;
-using LibrarySystem.Abstractions.Repositories;
+using LibrarySystem.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;

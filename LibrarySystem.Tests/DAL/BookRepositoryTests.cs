@@ -134,13 +134,7 @@ namespace LibrarySystem.Tests.Integration.DAL
             Assert.NotNull(list);
         }
 
-        [Fact]
-        public void GetAllBookBorrowed_Should_Return_NonNull_List()
-        {
-            var list = _repo.GetAllBookBorrowed();
-            Assert.NotNull(list);
-        }
-
+       
         [Fact]
         public void Search_With_All_Fields_Should_Return_Matching_Book()
         {

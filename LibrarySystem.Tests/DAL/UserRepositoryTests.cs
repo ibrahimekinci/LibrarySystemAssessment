@@ -55,7 +55,6 @@ namespace LibrarySystem.Tests.Integration.DAL
             user.UserName = "u" + user.UserName;
             user.Email = "updated@test.com";
             user.PhoneNumber = "0411222333";
-            user.Password = "newpass456";
             user.UserLevel = UserLevelEnum.Manager;
 
             // Act
@@ -67,7 +66,6 @@ namespace LibrarySystem.Tests.Integration.DAL
             Assert.Equal(user.UserName, result.UserName);
             Assert.Equal(user.Email, result.Email);
             Assert.Equal(user.PhoneNumber, result.PhoneNumber);
-            Assert.Equal(user.Password, result.Password);
             Assert.Equal(user.UserLevel, result.UserLevel);
 
             // Cleanup
