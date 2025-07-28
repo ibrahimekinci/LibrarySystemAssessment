@@ -12,28 +12,83 @@ namespace LibrarySystem.DAL.Repositories
     public class BookRepository : BaseRepository, IBookRepository
     {
 
-        private readonly TabBookTableAdapter tableAdapter = new TabBookTableAdapter();
-        private readonly ViewBookTableAdapter ViewAdapter = new ViewBookTableAdapter();
-        private readonly ViewBookAvailableTableAdapter _viewBookAvailableAdapter = new ViewBookAvailableTableAdapter();
-        private readonly ViewBookBorrowedTableAdapter _viewBookBorrowedAdapter = new ViewBookBorrowedTableAdapter();
+        #region TableAdapter Properties
+
+        private TabBookTableAdapter _tabBookTableAdapter;
+        private TabBookTableAdapter TabBookTableAdapter
+        {
+            get
+            {
+                if (_tabBookTableAdapter == null)
+                {
+                    _tabBookTableAdapter = new TabBookTableAdapter();
+                    _tabBookTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabBookTableAdapter;
+            }
+        }
+
+        private ViewBookTableAdapter _viewBookTableAdapter;
+        private ViewBookTableAdapter ViewBookTableAdapter
+        {
+            get
+            {
+                if (_viewBookTableAdapter == null)
+                {
+                    _viewBookTableAdapter = new ViewBookTableAdapter();
+                    _viewBookTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _viewBookTableAdapter;
+            }
+        }
+
+        private ViewBookAvailableTableAdapter _viewBookAvailableTableAdapter;
+        private ViewBookAvailableTableAdapter ViewBookAvailableTableAdapter
+        {
+            get
+            {
+                if (_viewBookAvailableTableAdapter == null)
+                {
+                    _viewBookAvailableTableAdapter = new ViewBookAvailableTableAdapter();
+                    _viewBookAvailableTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _viewBookAvailableTableAdapter;
+            }
+        }
+
+        private ViewBookBorrowedTableAdapter _viewBookBorrowedTableAdapter;
+        private ViewBookBorrowedTableAdapter ViewBookBorrowedTableAdapter
+        {
+            get
+            {
+                if (_viewBookBorrowedTableAdapter == null)
+                {
+                    _viewBookBorrowedTableAdapter = new ViewBookBorrowedTableAdapter();
+                    _viewBookBorrowedTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _viewBookBorrowedTableAdapter;
+            }
+        }
+
+        #endregion
 
         public BookEntity GetByISBN(string isbn)
         {
-            var table = ViewAdapter.GetDataByISBN(isbn);
+            var table = ViewBookTableAdapter.GetDataByISBN(isbn);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();
         }
         public List<BookEntity> GetAll()
         {
-            var table = ViewAdapter.GetData();
+            var table = ViewBookTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>();
         }
         public List<BookEntity> Search(BookSearchCriteriaDto dto)
         {
-            var table = ViewAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId.ToString());
+            var table = ViewBookTableAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId.ToString());
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>();
@@ -41,7 +96,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<BookEntity> GetAllBookBorrowed()
         {
-            var table = _viewBookBorrowedAdapter.GetData();
+            var table = ViewBookBorrowedTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>();
@@ -49,7 +104,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public List<BookEntity> GetAllBookAvailable()
         {
-            var table = _viewBookAvailableAdapter.GetData();
+            var table = ViewBookAvailableTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>();
@@ -57,23 +112,23 @@ namespace LibrarySystem.DAL.Repositories
 
         public string Add(BookEntity book)
         {
-            var id = tableAdapter.InsertCustom(book.ISBN, book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher);
+            var id = TabBookTableAdapter.InsertCustom(book.ISBN, book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher);
             return 0 < id ? book.ISBN : "";
         }
 
         public bool Update(BookEntity book)
         {
-            return 0 < tableAdapter.UpdateById(book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher, book.ISBN);
+            return 0 < TabBookTableAdapter.UpdateById(book.BookName, book.Author, book.Category, book.Language, book.PublishYear, book.Pages, book.Publisher, book.ISBN);
         }
 
         public bool Delete(string isbn)
         {
-            return 0 < tableAdapter.DeleteByISBN(isbn);
+            return 0 < TabBookTableAdapter.DeleteByISBN(isbn);
         }
 
         public BookEntity GetAvailableBookByISBN(string isbn)
         {
-            var table = _viewBookAvailableAdapter.GetByISBN(isbn);
+            var table = ViewBookAvailableTableAdapter.GetByISBN(isbn);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();
@@ -81,7 +136,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public BookEntity GetBorrowedBookByUserIdAndISBN(int userId, string isbn)
         {
-            var table = _viewBookBorrowedAdapter.GetByUserIdAndISBN(userId, isbn);
+            var table = ViewBookBorrowedTableAdapter.GetByUserIdAndISBN(userId, isbn);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>().FirstOrDefault();

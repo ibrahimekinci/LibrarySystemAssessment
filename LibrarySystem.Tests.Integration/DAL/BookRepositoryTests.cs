@@ -4,7 +4,7 @@ using LibrarySystem.Abstractions.DTOs;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class BookRepositoryTests
+    public class BookRepositoryTests : BaseDalTest
     {
         private readonly BookRepository _repo = new();
 

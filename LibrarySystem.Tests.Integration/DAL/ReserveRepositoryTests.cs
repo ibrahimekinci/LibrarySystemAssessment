@@ -3,7 +3,7 @@ using LibrarySystem.DAL.Repositories;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class ReserveRepositoryTests
+    public class ReserveRepositoryTests : BaseDalTest
     {
         private readonly ReserveRepository _repo = new();
         private readonly BookRepository _bookRepo = new();

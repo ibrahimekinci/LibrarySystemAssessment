@@ -3,7 +3,7 @@ using LibrarySystem.Domain.Entities;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class CategoryRepositoryTests
+    public class CategoryRepositoryTests : BaseDalTest
     {
         private readonly CategoryRepository _repo = new CategoryRepository();
 

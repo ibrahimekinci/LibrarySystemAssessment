@@ -11,26 +11,42 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class UserRepository : BaseRepository, IUserRepository
     {
-        private readonly TabUserTableAdapter tableAdapter = new TabUserTableAdapter();
+        #region TableAdapter Properties – User
+
+        private TabUserTableAdapter _tabUserTableAdapter;
+        private TabUserTableAdapter TabUserTableAdapter
+        {
+            get
+            {
+                if (_tabUserTableAdapter == null)
+                {
+                    _tabUserTableAdapter = new TabUserTableAdapter();
+                    _tabUserTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabUserTableAdapter;
+            }
+        }
+
+        #endregion
 
         public int Add(UserEntity user)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(user.UserName, user.Password, user.PhoneNumber, user.Email, (int)user.UserLevel);
+            var effectedDbRows = TabUserTableAdapter.InsertCustom(user.UserName, user.Password, user.PhoneNumber, user.Email, (int)user.UserLevel);
             if (effectedDbRows <= 0)
                 return 0;
 
-            var id = Convert.ToInt32(tableAdapter.GetLastId());
+            var id = Convert.ToInt32(TabUserTableAdapter.GetLastId());
             return id;
         }
 
         public bool Delete(int uid)
         {
-            return 0 < tableAdapter.DeleteById(uid);
+            return 0 < TabUserTableAdapter.DeleteById(uid);
         }
 
         public List<UserEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
+            var table = TabUserTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<UserEntity>();
@@ -38,7 +54,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public UserEntity GetById(int uid)
         {
-            var table = tableAdapter.GetById(uid);
+            var table = TabUserTableAdapter.GetById(uid);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<UserEntity>().FirstOrDefault();
@@ -46,18 +62,18 @@ namespace LibrarySystem.DAL.Repositories
 
         public UserEntity GetByUsername(string username)
         {
-            var table = tableAdapter.GetByUserName(username);
+            var table = TabUserTableAdapter.GetByUserName(username);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<UserEntity>().FirstOrDefault();
         }
         public bool UpdatePasswordByUserId(int userId, string password)
         {
-            return 0 < tableAdapter.UpdatePasswordByUserId(password, userId);
+            return 0 < TabUserTableAdapter.UpdatePasswordByUserId(password, userId);
         }
         public bool Update(UserEntity user)
         {
-            return 0 < tableAdapter.UpdateById(user.UserName, user.PhoneNumber, user.Email, (int)user.UserLevel, user.UID);
+            return 0 < TabUserTableAdapter.UpdateById(user.UserName, user.PhoneNumber, user.Email, (int)user.UserLevel, user.UID);
         }
     }
 }

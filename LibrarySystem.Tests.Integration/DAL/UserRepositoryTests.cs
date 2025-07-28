@@ -4,7 +4,7 @@ using LibrarySystem.Domain.Enums;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class UserRepositoryTests
+    public class UserRepositoryTests : BaseDalTest
     {
         private readonly UserRepository _repo = new();
 

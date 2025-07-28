@@ -2,7 +2,7 @@
 using LibrarySystem.DAL.Helpers;
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class DataTableExtensionsTests
+    public class DataTableExtensionsTests : BaseDalTest
     {
         public class SampleEntity
         {

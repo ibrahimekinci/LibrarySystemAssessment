@@ -10,33 +10,47 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class CategoryRepository : BaseRepository, ICategoryRepository
     {
-        private readonly TabCategoryTableAdapter tableAdapter = new TabCategoryTableAdapter();
+        #region TableAdapter Properties
+        private TabCategoryTableAdapter _tabCategoryTableAdapter;
+        private TabCategoryTableAdapter TabCategoryTableAdapter
+        {
+            get
+            {
+                if (_tabCategoryTableAdapter == null)
+                {
+                    _tabCategoryTableAdapter = new TabCategoryTableAdapter();
+                    _tabCategoryTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabCategoryTableAdapter;
+            }
+        }
 
+        #endregion
         public CategoryEntity GetById(int id)
         {
-            var table = tableAdapter.GetById(id);
+            var table = TabCategoryTableAdapter.GetById(id);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<CategoryEntity>().FirstOrDefault();
         }
         public int Add(CategoryEntity category)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(category.CategoryName);
+            var effectedDbRows = TabCategoryTableAdapter.InsertCustom(category.CategoryName);
             if (effectedDbRows <= 0)
                 return 0;
 
-            var id = Convert.ToInt32(tableAdapter.GetLastId());
+            var id = Convert.ToInt32(TabCategoryTableAdapter.GetLastId());
             return id;
         }
 
         public bool Delete(int cid)
         {
-            return 0 < tableAdapter.DeleteById(cid);
+            return 0 < TabCategoryTableAdapter.DeleteById(cid);
         }
 
         public List<CategoryEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
+            var table = TabCategoryTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<CategoryEntity>();
@@ -44,7 +58,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Update(CategoryEntity category)
         {
-            return 0 < tableAdapter.UpdateById(category.CategoryName, category.CID);
+            return 0 < TabCategoryTableAdapter.UpdateById(category.CategoryName, category.CID);
         }
     }
 }

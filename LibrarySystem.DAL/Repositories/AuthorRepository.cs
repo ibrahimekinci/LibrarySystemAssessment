@@ -10,26 +10,41 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class AuthorRepository : BaseRepository, IAuthorRepository
     {
-        private readonly TabAuthorTableAdapter tableAdapter = new TabAuthorTableAdapter();
+        #region TableAdapter Properties
+        private TabAuthorTableAdapter _tabAuthorTableAdapter;
+
+        private TabAuthorTableAdapter TabAuthorTableAdapter
+        {
+            get
+            {
+                if (_tabAuthorTableAdapter == null)
+                {
+                    _tabAuthorTableAdapter = new TabAuthorTableAdapter();
+                    _tabAuthorTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabAuthorTableAdapter;
+            }
+        }
+        #endregion
 
         public int Add(AuthorEntity author)
         {
-            var effectedDbRows = Convert.ToInt32(tableAdapter.InsertCustom(author.AuthorName));
+            var effectedDbRows = Convert.ToInt32(TabAuthorTableAdapter.InsertCustom(author.AuthorName));
             if (effectedDbRows <= 0)
                 return 0;
 
-            var id = Convert.ToInt32(tableAdapter.GetLastId());
+            var id = Convert.ToInt32(TabAuthorTableAdapter.GetLastId());
             return id;
         }
 
         public bool Delete(int aid)
         {
-            return tableAdapter.DeleteById(aid) > 0;
+            return TabAuthorTableAdapter.DeleteById(aid) > 0;
         }
 
         public List<AuthorEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
+            var table = TabAuthorTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<AuthorEntity>();
@@ -37,7 +52,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public AuthorEntity GetById(int aid)
         {
-            var table = tableAdapter.GetById(aid);
+            var table = TabAuthorTableAdapter.GetById(aid);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<AuthorEntity>().FirstOrDefault();
@@ -46,7 +61,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Update(AuthorEntity author)
         {
-            return tableAdapter.UpdateById(author.AuthorName, author.AID) > 0;
+            return TabAuthorTableAdapter.UpdateById(author.AuthorName, author.AID) > 0;
         }
     }
 }

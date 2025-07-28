@@ -3,7 +3,7 @@ using LibrarySystem.DAL.Repositories;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class LanguageRepositoryTests
+    public class LanguageRepositoryTests : BaseDalTest
     {
         private readonly LanguageRepository _repo = new();
 

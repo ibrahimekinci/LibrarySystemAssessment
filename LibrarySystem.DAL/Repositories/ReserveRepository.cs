@@ -1,9 +1,8 @@
-﻿using LibrarySystem.DAL.DataSets.ReserveDataSetTableAdapters;
-using LibrarySystem.Domain.Entities;
+﻿using LibrarySystem.Abstractions.Repositories;
+using LibrarySystem.DAL.DataSets.ReserveDataSetTableAdapters;
 using LibrarySystem.DAL.Helpers;
-using LibrarySystem.Abstractions.Repositories;
+using LibrarySystem.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -11,37 +10,66 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class ReserveRepository : BaseRepository, IReserveRepository
     {
-        private readonly TabReservedTableAdapter tableAdapter = new TabReservedTableAdapter();
-        private readonly ViewReservationsTableAdapter viewAdapter = new ViewReservationsTableAdapter();
+        #region TableAdapter Properties – Reservations
+
+        private TabReservedTableAdapter _tabReservedTableAdapter;
+        private TabReservedTableAdapter TabReservedTableAdapter
+        {
+            get
+            {
+                if (_tabReservedTableAdapter == null)
+                {
+                    _tabReservedTableAdapter = new TabReservedTableAdapter();
+                    _tabReservedTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabReservedTableAdapter;
+            }
+        }
+
+        private ViewReservationsTableAdapter _viewReservationsTableAdapter;
+        private ViewReservationsTableAdapter ViewReservationsTableAdapter
+        {
+            get
+            {
+                if (_viewReservationsTableAdapter == null)
+                {
+                    _viewReservationsTableAdapter = new ViewReservationsTableAdapter();
+                    _viewReservationsTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _viewReservationsTableAdapter;
+            }
+        }
+
+        #endregion
         public int Add(ReserveEntity reserve)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(reserve.UID, reserve.ISBN, reserve.ReservedDate.FormatForDb());
+            var effectedDbRows = TabReservedTableAdapter.InsertCustom(reserve.UID, reserve.ISBN, reserve.ReservedDate.FormatForDb());
             if (effectedDbRows <= 0)
                 return 0;
 
-            var id = Convert.ToInt32(tableAdapter.GetLastId());
+            var id = Convert.ToInt32(TabReservedTableAdapter.GetLastId());
             return id;
         }
 
         public bool Delete(int rid)
         {
-            return 0 < tableAdapter.DeleteById(rid);
+            return 0 < TabReservedTableAdapter.DeleteById(rid);
         }
 
         public DataTable GetAll()
         {
-            var table = viewAdapter.GetAll();
+            var table = ViewReservationsTableAdapter.GetAll();
             return table;
         }
 
         public DataTable GetAllByUserId(int userId)
         {
-            var table = viewAdapter.GetAllByUserId(userId);
+            var table = ViewReservationsTableAdapter.GetAllByUserId(userId);
             return table;
         }
         public ReserveEntity GetById(int id)
         {
-            var table = tableAdapter.GetById(id);
+            var table = TabReservedTableAdapter.GetById(id);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<ReserveEntity>().FirstOrDefault();

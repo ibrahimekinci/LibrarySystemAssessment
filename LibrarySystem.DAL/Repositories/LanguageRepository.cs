@@ -11,32 +11,49 @@ namespace LibrarySystem.DAL.Repositories
 {
     public class LanguageRepository : BaseRepository, ILanguageRepository
     {
-        private readonly TabLanguageTableAdapter tableAdapter = new TabLanguageTableAdapter();
+        #region TableAdapter Properties
+
+        private TabLanguageTableAdapter _tabLanguageTableAdapter;
+        private TabLanguageTableAdapter TabLanguageTableAdapter
+        {
+            get
+            {
+                if (_tabLanguageTableAdapter == null)
+                {
+                    _tabLanguageTableAdapter = new TabLanguageTableAdapter();
+                    _tabLanguageTableAdapter.ApplyGlobalConfiguration();
+                }
+                return _tabLanguageTableAdapter;
+            }
+        }
+
+        #endregion
+
         public LanguageEntity GetById(int id)
         {
-            var table = tableAdapter.GetById(id);
+            var table = TabLanguageTableAdapter.GetById(id);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<LanguageEntity>().FirstOrDefault();
         }
         public int Add(LanguageEntity language)
         {
-            var effectedDbRows = tableAdapter.InsertCustom(language.LanguageName);
+            var effectedDbRows = TabLanguageTableAdapter.InsertCustom(language.LanguageName);
             if (effectedDbRows <= 0)
                 return 0;
 
-            var id = Convert.ToInt32(tableAdapter.GetLastId());
+            var id = Convert.ToInt32(TabLanguageTableAdapter.GetLastId());
             return id;
         }
 
         public bool Delete(int lid)
         {
-            return 0 < tableAdapter.DeleteById(lid);
+            return 0 < TabLanguageTableAdapter.DeleteById(lid);
         }
 
         public List<LanguageEntity> GetAll()
         {
-            var table = tableAdapter.GetData();
+            var table = TabLanguageTableAdapter.GetData();
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<LanguageEntity>();
@@ -44,7 +61,7 @@ namespace LibrarySystem.DAL.Repositories
 
         public bool Update(LanguageEntity language)
         {
-            return 0 < tableAdapter.UpdateById(language.LanguageName, language.LID);
+            return 0 < TabLanguageTableAdapter.UpdateById(language.LanguageName, language.LID);
         }
     }
 }

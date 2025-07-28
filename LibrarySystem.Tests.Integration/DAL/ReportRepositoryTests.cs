@@ -5,7 +5,7 @@ using System.Data;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
-    public class ReportRepositoryTests : IDisposable
+    public class ReportRepositoryTests : BaseDalTest
     {
         private readonly ReportRepository _reportRepo = new();
         private readonly UserRepository _userRepo = new();
