@@ -1,4 +1,5 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Services;
 using LibrarySystem.Domain.Entities;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace LibrarySystem.BLL.Services
         }
         public int Add(BookDto book)
         {
+            var existEntity = BookRepository.GetByISBN(book.ISBN);
+            if (existEntity != null && !string.IsNullOrEmpty(existEntity.ISBN))
+                throw new ConflictException("ISBN is already being used.");
+
             var entity = Mapper.Map<BookEntity>(book);
             var result = BookRepository.Add(entity);
             return string.IsNullOrWhiteSpace(result) ? 0 : 1;

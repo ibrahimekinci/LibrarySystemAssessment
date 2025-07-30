@@ -1,8 +1,11 @@
-﻿using LibrarySystem.Abstractions.Services;
-using LibrarySystem.Abstractions.DTOs;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Exceptions;
+using LibrarySystem.Abstractions.Services;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibrarySystem.BLL.Services
 {
@@ -20,6 +23,18 @@ namespace LibrarySystem.BLL.Services
         }
         public int Add(LanguageCreateDto language)
         {
+            var languages = LanguageRepository.GetAll();
+            if (languages != null && languages.Count > 0)
+            {
+                bool languageExists = languages.Any(existingLanguage =>
+                    String.Compare(existingLanguage.LanguageName, language.LanguageName, StringComparison.OrdinalIgnoreCase) == 0);
+
+                if (languageExists)
+                {
+                    throw new ConflictException("Language was already added.");
+                }
+            }
+
             var entity = Mapper.Map<LanguageEntity>(language);
             return LanguageRepository.Add(entity);
         }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LibrarySystem.Abstractions.Repositories;
+using LibrarySystem.Abstractions.Services;
 using LibrarySystem.DAL.Repositories;
 
 namespace LibrarySystem.BLL.Services
@@ -15,7 +16,8 @@ namespace LibrarySystem.BLL.Services
         private IAuthorRepository _authorRepository;
         private ILanguageRepository _languageRepository;
         private IReportRepository _reportRepository;
-
+        private IAuditLogService _auditLogService;
+        private ILogService _logService;
         protected static IMapper Mapper
         {
             get
@@ -105,6 +107,27 @@ namespace LibrarySystem.BLL.Services
                 if (_reportRepository == null)
                     _reportRepository = new ReportRepository();
                 return _reportRepository;
+            }
+        }
+
+        protected IAuditLogService AuditLogService
+        {
+            get
+            {
+                if (_auditLogService == null)
+                    _auditLogService = new AuditLogService();
+                return _auditLogService;
+            }
+        }
+        protected ILogService LogService
+        {
+            get
+            {
+                if (_logService == null)
+                {
+                    _logService = new LogService();
+                }
+                return _logService;
             }
         }
     }

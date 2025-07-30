@@ -1,7 +1,10 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Services;
 using LibrarySystem.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibrarySystem.BLL.Services
 {
@@ -9,6 +12,18 @@ namespace LibrarySystem.BLL.Services
     {
         public int Add(AuthorCreateDto author)
         {
+            var authors = AuthorRepository.GetAll();
+            if (authors != null && authors.Count > 0)
+            {
+                bool authorExists = authors.Any(x =>
+                    String.Compare(x.AuthorName, author.AuthorName, StringComparison.OrdinalIgnoreCase) == 0);
+
+                if (authorExists)
+                {
+                    throw new ConflictException("Author was already added.");
+                }
+            }
+
             var entity = Mapper.Map<AuthorEntity>(author);
             return AuthorRepository.Add(entity);
         }

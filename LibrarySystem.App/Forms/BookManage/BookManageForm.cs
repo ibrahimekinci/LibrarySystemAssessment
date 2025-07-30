@@ -132,7 +132,7 @@ namespace LibrarySystem.App.Forms.BookManage
                 Publisher = txtPublisher.Text.Trim()
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
@@ -164,7 +164,7 @@ namespace LibrarySystem.App.Forms.BookManage
                 Publisher = txtPublisher.Text.Trim()
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");

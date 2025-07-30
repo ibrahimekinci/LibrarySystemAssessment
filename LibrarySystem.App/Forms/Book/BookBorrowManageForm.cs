@@ -58,7 +58,7 @@ namespace LibrarySystem.App.Forms.Book
                 ReturnDate = dtpReturnDate.Value
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");

@@ -62,7 +62,7 @@ namespace LibrarySystem.App.Helpers
 
         public static int UID => _user?.UID ?? 0;
         public static string Username => _user?.UserName;
-        // public static string Token => _user?.Token;
+         public static string Token => _user?.Token;
         public static string Email => _user?.Email;
         public static string PhoneNumber => _user?.PhoneNumber;
         public static UserLevelEnum UserLevel => _user?.UserLevel ?? 0;

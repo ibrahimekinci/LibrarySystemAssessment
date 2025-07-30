@@ -21,7 +21,7 @@ namespace LibrarySystem.BLL.Helpers
         /// <summary>
         /// Converts validation errors to a formatted string summary.
         /// </summary>
-        public static string ToErrorSummary(this IEnumerable<ValidationResult> results)
+        public static string GetErrorSummary(this IEnumerable<ValidationResult> results)
         {
             if (results == null || !results.Any())
                 return null;
@@ -33,10 +33,10 @@ namespace LibrarySystem.BLL.Helpers
         /// <summary>
         /// Returns error summary string if invalid; otherwise returns null.
         /// </summary>
-        public static string ValidateAndGetErrors(this object obj)
+        public static string CheckValidityAndGetErrors(this object obj)
         {
             var results = obj.ValidateObject();
-            return results.Any() ? results.ToErrorSummary() : null;
+            return results.Any() ? results.GetErrorSummary() : null;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
+using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Services;
 
 namespace LibrarySystem.BLL.Services
@@ -26,6 +28,7 @@ namespace LibrarySystem.BLL.Services
                 Debug.WriteLine($"EXCEPTION silently fail: {logException}");
             }
         }
+
         public bool IsCriticalException(Exception ex) =>
             ex is OutOfMemoryException ||
             ex is AppDomainUnloadedException ||
@@ -39,7 +42,7 @@ namespace LibrarySystem.BLL.Services
 
         public string GetUserFriendlyMessage(Exception ex)
         {
-            if (ex is System.Data.Common.DbException)
+            if (ex is DbException)
             {
                 return "A database error occurred. Please try again later.";
             }
@@ -55,6 +58,10 @@ namespace LibrarySystem.BLL.Services
             {
                 return "You don't have permission to perform this action.";
             }
+            else if (ex is ICustomException exception)
+            {
+                return exception.GetUserFriendlyMessage();
+            }
             else
             {
                 return "An unexpected error occurred. Our team has been notified. Please try again.";
@@ -64,7 +71,7 @@ namespace LibrarySystem.BLL.Services
 
         public string GetErrorTitle(Exception ex)
         {
-            if (ex is System.Data.Common.DbException)
+            if (ex is DbException)
             {
                 return "Database Error";
             }

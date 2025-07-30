@@ -6,7 +6,6 @@ namespace LibrarySystem.Abstractions.Services
 {
     public interface IUserService
     {
-        AuthenticatedUserDto Authenticate(string username, string password);
         int Register(UserCreateDto dto); // Used by Manager to add Staff or Student
         bool UpdateUser(UserUpdateDto dto);
         bool ResetPassword(UserPasswordUpdateDto dto); // Manager can reset password

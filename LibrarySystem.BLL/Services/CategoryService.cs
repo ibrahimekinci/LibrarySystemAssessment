@@ -1,8 +1,11 @@
-﻿using LibrarySystem.Abstractions.Services;
-using LibrarySystem.Abstractions.DTOs;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Exceptions;
+using LibrarySystem.Abstractions.Services;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibrarySystem.BLL.Services
 {
@@ -20,6 +23,18 @@ namespace LibrarySystem.BLL.Services
         }
         public int Add(CategoryCreateDto category)
         {
+            var categories = CategoryRepository.GetAll();
+            if (categories != null && categories.Count > 0)
+            {
+                bool categoryExists = categories.Any(x =>
+                    String.Compare(x.CategoryName, category.CategoryName, StringComparison.OrdinalIgnoreCase) == 0);
+
+                if (categoryExists)
+                {
+                    throw new ConflictException("Category was already added.");
+                }
+            }
+
             var entity = Mapper.Map<CategoryEntity>(category);
             return CategoryRepository.Add(entity);
         }

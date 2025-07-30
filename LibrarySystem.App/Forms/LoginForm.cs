@@ -22,7 +22,6 @@ namespace LibrarySystem.App.Forms
             this.ShowIcon = true;
             BackgroundImage = Properties.Resources.bg2;
             BackgroundImageLayout = ImageLayout.Stretch;
-
         }
         public LoginForm()
         {
@@ -42,14 +41,33 @@ namespace LibrarySystem.App.Forms
                 MessageBox.Show("Please enter both username and password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            var user = UserService.Authenticate(username, password);
-            if (user == null || user.UID < 1)
+            var result = AuthenticationService.Login(username, password);
+            if (result == null)
             {
-                MessageBox.Show("Invalid username or password", "Invalid login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("Please try again.");
                 return;
             }
-            SessionManager.SetUser(user);
+            if (result.UID < 1)
+            {
+                ShowError("Invalid login.");
+                return;
+            }
+
+            SessionManager.SetUser(result);
+
+            //var result = AuthenticationService.Login(username, password);
+            //if (result == null)
+            //{
+            //    ShowError("Please try again.");
+            //    return;
+            //}
+            //if (!result.Success || result.Data == null || result.Data.UID < 1)
+            //{
+            //    MessageBox.Show(result.Message, "Invalid login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            //SessionManager.SetUser(result.Data);
             ShowDashboard();
         }
         private void ShowDashboard()

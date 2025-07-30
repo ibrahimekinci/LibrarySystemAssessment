@@ -1,8 +1,8 @@
-﻿using LibrarySystem.App.Forms.Book;
+﻿using LibrarySystem.Abstractions.Services;
+using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Forms.Messages;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Abstractions.Services;
 using LibrarySystem.BLL.Services;
 using LibrarySystem.Domain.Enums;
 using System;
@@ -99,6 +99,16 @@ namespace LibrarySystem.App.Forms.Abstracts
                 return _userService;
             }
         }
+        private IAuthenticationService _authenticationService;
+        protected IAuthenticationService AuthenticationService
+        {
+            get
+            {
+                if (_authenticationService == null)
+                    _authenticationService = new AuthenticationService();
+                return _authenticationService;
+            }
+        }
         private ILogService _logService;
         protected ILogService LogService
         {
@@ -120,6 +130,11 @@ namespace LibrarySystem.App.Forms.Abstracts
             }
         }
         #endregion
+
+        #region SoapApiClients
+       
+        #endregion
+
 
         #region Virtuals
         protected virtual bool IsLoggedInRequired() => true;

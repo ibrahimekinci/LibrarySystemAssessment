@@ -1,0 +1,557 @@
+[2025-07-30 03:51:53] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-30 03:53:38] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Root element is missing.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocolHelper.GetRequestElement()
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-30 03:54:44] Message: Server found request content type to be 'application/xml', but expected 'application/soap+xml'.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+
+
+[2025-07-30 03:57:56] Message: Server found request content type to be 'application/xml', but expected 'text/xml'.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+
+
+[2025-07-30 04:01:06] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:01:08] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:01:22] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:09:19] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:12:26] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:18:18] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:18:33] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:26:42] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:28:32] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:29:28] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 04:31:34] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Please enter both username and password.
+Type: BadRequestException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 04:53:41] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: aPlease enter both username and password.
+Type: ConflictException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 04:57:16] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: aPlease enter both username and password.
+Type: ConflictException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 05:03:08] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: aPlease enter both username and password.
+Type: ConflictException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 05:04:25] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: aPlease enter both username and password.
+Type: ConflictException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 05:06:24] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: aPlease enter both username and password.
+Type: ConflictException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.TestException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 41
+
+
+[2025-07-30 05:09:32] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 14:16:38] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 14:16:52] Message: An unexpected error occurred. Our team has been notified. Please try again.
+Type: SoapException
+Stack Trace:
+
+
+
+[2025-07-30 18:20:00] Message: Server was unable to read request.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+   at System.Web.Services.Protocols.WebServiceHandler.CoreProcessRequest()
+Inner Exception:
+Message: 'tns' is an undeclared prefix. Line 4, position 6.
+Type: XmlException
+Stack Trace:
+   at System.Xml.XmlTextReaderImpl.Throw(Exception e)
+   at System.Xml.XmlTextReaderImpl.LookupNamespace(NodeData node)
+   at System.Xml.XmlTextReaderImpl.ElementNamespaceLookup()
+   at System.Xml.XmlTextReaderImpl.ParseAttributes()
+   at System.Xml.XmlTextReaderImpl.ParseElement()
+   at System.Xml.XmlTextReaderImpl.ParseElementContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.SoapEnvelopeReader.Read()
+   at System.Xml.XmlReader.MoveToContent()
+   at System.Web.Services.Protocols.SoapServerProtocol.ReadParameters()
+
+
+[2025-07-30 19:07:46] Message: Server did not recognize the value of HTTP Header SOAPAction: http://tempuri.org/IAuthenticationSoapService/Login.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap11ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-30 19:14:00] Message: Server did not recognize the value of HTTP Header SOAPAction: http://tempuri.org/IAuthenticationSoapService/Login.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap11ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-31 02:41:22] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-31 02:42:56] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-31 02:51:22] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.RouteRequest(SoapServerMessage message)
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-07-31 04:17:57] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Validation Error: The provided data does not meet the required format or constraints.
+Type: ValidationException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.TestSoapService.TestValidationException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\TestSoapService.asmx.cs:line 108
+
+
+[2025-07-31 04:24:11] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 04:41:12] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 04:41:52] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:08:09] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:09:29] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:10:17] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:10:49] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Validation Error: The provided data does not meet the required format or constraints.
+Type: ValidationException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.TestSoapService.TestValidationException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\TestSoapService.asmx.cs:line 108
+
+
+[2025-07-31 05:12:58] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Validation Error: The provided data does not meet the required format or constraints.
+Type: ValidationException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.TestSoapService.TestValidationException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\TestSoapService.asmx.cs:line 108
+
+
+[2025-07-31 05:14:04] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: Validation Error: The provided data does not meet the required format or constraints.
+Type: ValidationException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.TestSoapService.TestValidationException() in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\TestSoapService.asmx.cs:line 108
+
+
+[2025-07-31 05:15:07] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:25:50] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: This method is not implemented yet. Please use the AuthenticationService.Login method instead.
+Type: CustomException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 24
+
+
+[2025-07-31 05:52:30] Message: This method is not implemented yet. Please use the REST API for authentication.
+Type: BadRequestException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 26
+
+
+[2025-07-31 05:53:11] Message: This method is not implemented yet. Please use the REST API for authentication.
+Type: BadRequestException
+Stack Trace:
+   at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 26
+
+

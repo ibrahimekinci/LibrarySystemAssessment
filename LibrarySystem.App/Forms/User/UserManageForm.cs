@@ -1,7 +1,6 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.BLL.Helpers;
 using LibrarySystem.Domain.Enums;
 using System;
@@ -157,7 +156,7 @@ namespace LibrarySystem.App.Forms.User
                 UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? 0)
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
@@ -186,7 +185,7 @@ namespace LibrarySystem.App.Forms.User
                 UserLevel = (UserLevelEnum)(cbUserLevel.SelectedValue ?? 0)
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
@@ -215,7 +214,7 @@ namespace LibrarySystem.App.Forms.User
                 UserLevel = _user.UserLevel
             };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");

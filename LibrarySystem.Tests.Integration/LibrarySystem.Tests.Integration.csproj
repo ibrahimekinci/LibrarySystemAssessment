@@ -29,6 +29,7 @@
     <ProjectReference Include="..\LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj" />
     <ProjectReference Include="..\LibrarySystem.DAL\LibrarySystem.DAL.csproj" />
     <ProjectReference Include="..\LibrarySystem.Domain\LibrarySystem.Domain.csproj" />
+    <ProjectReference Include="..\LibrarySystem.WebApi\LibrarySystem.WebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

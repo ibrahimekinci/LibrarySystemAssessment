@@ -76,7 +76,7 @@ namespace LibrarySystem.App.Forms.Category
         {
             var dto = new CategoryCreateDto { CategoryName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
@@ -97,7 +97,7 @@ namespace LibrarySystem.App.Forms.Category
         {
             var dto = new CategoryUpdateDto { CID = _category.CID, CategoryName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");

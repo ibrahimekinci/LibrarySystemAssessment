@@ -75,10 +75,10 @@ namespace LibrarySystem.App.Forms.Author
         {
             var dto = new AuthorCreateDto { AuthorName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
-            if (errors != null)
+            string errorMessage = dto.CheckValidityAndGetErrors();
+            if (!String.IsNullOrEmpty(errorMessage))
             {
-                ShowError(errors, "Validation Error");
+                ShowError(errorMessage, "Validation Error");
                 return;
             }
             var result = AuthorService.Add(dto);
@@ -96,7 +96,7 @@ namespace LibrarySystem.App.Forms.Author
         {
             var dto = new AuthorUpdateDto { AID = _autor.AID, AuthorName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");

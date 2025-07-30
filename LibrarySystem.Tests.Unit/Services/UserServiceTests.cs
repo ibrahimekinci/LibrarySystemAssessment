@@ -10,6 +10,7 @@ namespace LibrarySystem.Tests.Unit.Services
     public class UserServiceTests
     {
         private readonly UserService _service;
+        private readonly AuthenticationService _serviceAuth;
         private readonly Mock<IUserRepository> _userRepoMock;
         private readonly Mock<IMapper> _mapperMock;
 
@@ -18,6 +19,7 @@ namespace LibrarySystem.Tests.Unit.Services
             _userRepoMock = new Mock<IUserRepository>();
             _mapperMock = new Mock<IMapper>();
             _service = new UserService();
+            _serviceAuth = new AuthenticationService();
             // Inject repository mock into BaseService via reflection
             var userRepoField = typeof(BaseService).GetField("_userRepository", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             userRepoField.SetValue(_service, _userRepoMock.Object);
@@ -35,7 +37,7 @@ namespace LibrarySystem.Tests.Unit.Services
             _userRepoMock.Setup(r => r.GetByUsername(username)).Returns((UserEntity)null);
 
             // Act & Assert (user not found)
-            var result1 = _service.Authenticate(username, password);
+            var result1 = _serviceAuth.Login(username, password);
             Assert.Null(result1);
             _userRepoMock.Verify(r => r.GetByUsername(username), Times.Once);
 
@@ -44,7 +46,7 @@ namespace LibrarySystem.Tests.Unit.Services
             _userRepoMock.Setup(r => r.GetByUsername(username)).Returns(existingUser);
 
             // Act
-            var result2 = _service.Authenticate(username, password);
+            var result2 = _serviceAuth.Login(username, password);
 
             // Assert
             Assert.Null(result2);
@@ -63,7 +65,7 @@ namespace LibrarySystem.Tests.Unit.Services
             _mapperMock.Setup(m => m.Map<AuthenticatedUserDto>(userEntity)).Returns(expectedDto);
 
             // Act
-            var result = _service.Authenticate(username, password);
+            var result = _serviceAuth.Login(username, password);
 
             // Assert
             Assert.NotNull(result);

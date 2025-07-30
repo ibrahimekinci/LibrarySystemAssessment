@@ -1,5 +1,6 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Services;
 using LibrarySystem.Domain.Entities;
 using System.Collections.Generic;
@@ -8,21 +9,12 @@ namespace LibrarySystem.BLL.Services
 {
     public class UserService : BaseService, IUserService
     {
-        public UserService()
-        {
-        }
-
-        public AuthenticatedUserDto Authenticate(string username, string password)
-        {
-            var user = UserRepository.GetByUsername(username);
-            if (user == null || user.Password != password)
-                return null;
-
-            return Mapper.Map<AuthenticatedUserDto>(user);
-        }
-
         public int Register(UserCreateDto dto)
         {
+            var existEntity = UserRepository.GetByUsername(dto.UserName);
+            if (existEntity != null && existEntity.UID > 0)
+                throw new ConflictException("UserName is already being used.");
+
             var entity = Mapper.Map<UserEntity>(dto);
             return UserRepository.Add(entity);
         }

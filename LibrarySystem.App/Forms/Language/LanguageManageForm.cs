@@ -77,7 +77,7 @@ namespace LibrarySystem.App.Forms.Language
         {
             var dto = new LanguageCreateDto { LanguageName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
@@ -98,7 +98,7 @@ namespace LibrarySystem.App.Forms.Language
         {
             var dto = new LanguageUpdateDto { LID = _Language.LID, LanguageName = txt.Text.Trim() };
 
-            var errors = dto.ValidateAndGetErrors();
+            var errors = dto.CheckValidityAndGetErrors();
             if (errors != null)
             {
                 ShowError(errors, "Validation Error");
