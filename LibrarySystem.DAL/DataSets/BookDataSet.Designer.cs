@@ -3494,7 +3494,7 @@ SELECT @@ROWCOUNT AS AffectedRows";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BookDataSet.ViewBookDataTable GetDataBySearchCriterias(string BookName, string AuthorName, string CategoryId) {
+        public virtual BookDataSet.ViewBookDataTable GetDataBySearchCriterias(string BookName, string AuthorName, int CategoryId) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((BookName == null)) {
                 throw new global::System.ArgumentNullException("BookName");
@@ -3508,12 +3508,7 @@ SELECT @@ROWCOUNT AS AffectedRows";
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(AuthorName));
             }
-            if ((CategoryId == null)) {
-                throw new global::System.ArgumentNullException("CategoryId");
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(CategoryId));
-            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(CategoryId));
             BookDataSet.ViewBookDataTable dataTable = new BookDataSet.ViewBookDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

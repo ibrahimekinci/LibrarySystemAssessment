@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services
@@ -20,12 +21,12 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<List<BookViewDto>> GetAll()
+        public Response<List<BookViewDto>> GetAll()
         {
             try
             {
                 var result = BookService.GetAll();
-                return SoapServiceResult<List<BookViewDto>>.Ok(result);
+                return Response<List<BookViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -33,7 +34,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -43,14 +44,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BookViewDto> GetByISBN(string isbn)
+        public Response<BookViewDto> GetByISBN(string isbn)
         {
             try
             {
                 var result = BookService.GetByISBN(isbn);
                 if (result != null)
-                    return SoapServiceResult<BookViewDto>.Ok(result);
-                return SoapServiceResult<BookViewDto>.Fail("Book not found.");
+                    return Response<BookViewDto>.Ok(result);
+                return Response<BookViewDto>.Fail("Book not found.");
             }
             catch (System.Exception ex)
             {
@@ -58,7 +59,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -68,21 +69,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BookViewDto> Add(BookDto dto)
+        public Response<BookViewDto> Add(BookDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<BookViewDto>.Fail(errorMessage);
+                    return Response<BookViewDto>.Fail(errorMessage);
 
                 var result = BookService.Add(dto);
                 if (result > 0)
                 {
                     var viewDto = BookService.GetByISBN(dto.ISBN);
-                    return SoapServiceResult<BookViewDto>.Ok(viewDto, "Book created successfully.");
+                    return Response<BookViewDto>.Ok(viewDto, "Book created successfully.");
                 }
-                return SoapServiceResult<BookViewDto>.Fail("Failed to create book.");
+                return Response<BookViewDto>.Fail("Failed to create book.");
             }
             catch (System.Exception ex)
             {
@@ -90,7 +91,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -100,21 +101,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BookViewDto> Update(BookDto dto)
+        public Response<BookViewDto> Update(BookDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<BookViewDto>.Fail(errorMessage);
+                    return Response<BookViewDto>.Fail(errorMessage);
 
                 var result = BookService.Update(dto);
                 if (result)
                 {
                     var viewDto = BookService.GetByISBN(dto.ISBN);
-                    return SoapServiceResult<BookViewDto>.Ok(viewDto, "Book updated successfully.");
+                    return Response<BookViewDto>.Ok(viewDto, "Book updated successfully.");
                 }
-                return SoapServiceResult<BookViewDto>.Fail("Failed to update book.");
+                return Response<BookViewDto>.Fail("Failed to update book.");
             }
             catch (System.Exception ex)
             {
@@ -122,7 +123,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -132,14 +133,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> Delete(string isbn)
+        public Response<bool> Delete(string isbn)
         {
             try
             {
                 var result = BookService.Delete(isbn);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "Book deleted successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to delete book.");
+                    return Response<bool>.Ok(true, "Book deleted successfully.");
+                return Response<bool>.Fail("Failed to delete book. Make sure you have all deleted the records that are realated with this record.");
             }
             catch (System.Exception ex)
             {
@@ -147,7 +148,18 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else if (ex is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Foreign key violation
+                    {
+                        return Response<bool>.Fail("Deletion failed due to foreign key constraint. Referencing records");
+                    }
+                    else
+                    {
+                        throw; // Re-throw other errors
+                    }
                 }
                 else
                 {
@@ -157,12 +169,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<List<BookViewDto>> Search(BookSearchCriteriaDto dto)
+        public Response<List<BookViewDto>> Search(BookSearchCriteriaDto dto)
         {
             try
             {
                 var result = BookService.Search(dto);
-                return SoapServiceResult<List<BookViewDto>>.Ok(result);
+                return Response<List<BookViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -170,7 +182,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -180,12 +192,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<List<BookViewDto>> GetAvailableBooks()
+        public Response<List<BookViewDto>> GetAvailableBooks()
         {
             try
             {
                 var result = BookService.GetAvailableBooks();
-                return SoapServiceResult<List<BookViewDto>>.Ok(result);
+                return Response<List<BookViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -193,7 +205,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<BookViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -203,14 +215,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BookViewDto> GetAvailableBookByISBN(string isbn)
+        public Response<BookViewDto> GetAvailableBookByISBN(string isbn)
         {
             try
             {
                 var result = BookService.GetAvailableBookByISBN(isbn);
                 if (result != null)
-                    return SoapServiceResult<BookViewDto>.Ok(result);
-                return SoapServiceResult<BookViewDto>.Fail("Available book not found.");
+                    return Response<BookViewDto>.Ok(result);
+                return Response<BookViewDto>.Fail("Available book not found.");
             }
             catch (System.Exception ex)
             {
@@ -218,7 +230,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -228,14 +240,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BookViewDto> GetBorrowedBookByUserIdAndISBN(int userId, string isbn)
+        public Response<BookViewDto> GetBorrowedBookByUserIdAndISBN(int userId, string isbn)
         {
             try
             {
                 var result = BookService.GetBorrowedBookByUserIdAndISBN(userId, isbn);
                 if (result != null)
-                    return SoapServiceResult<BookViewDto>.Ok(result);
-                return SoapServiceResult<BookViewDto>.Fail("Borrowed book not found.");
+                    return Response<BookViewDto>.Ok(result);
+                return Response<BookViewDto>.Fail("Borrowed book not found.");
             }
             catch (System.Exception ex)
             {
@@ -243,7 +255,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BookViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {

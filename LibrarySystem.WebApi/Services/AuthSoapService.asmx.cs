@@ -18,18 +18,18 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod(Description = "Authenticate user and return JWT token.")]
-        public SoapServiceResult<AuthenticatedUserDto> Login(string username, string password)
+        public Response<AuthenticatedUserDto> Login(string username, string password)
         {
             try
             {
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-                    return SoapServiceResult<AuthenticatedUserDto>.Fail("Please enter both username and password.");
+                    return Response<AuthenticatedUserDto>.Fail("Please enter both username and password.");
 
                 var result = AuthenticationService.Login(username, password);
                 if (result != null && result.UID > 0)
-                    return SoapServiceResult<AuthenticatedUserDto>.Ok(result, "Login successful.");
+                    return Response<AuthenticatedUserDto>.Ok(result, "Login successful.");
 
-                return SoapServiceResult<AuthenticatedUserDto>.Fail("Invalid username or password.");
+                return Response<AuthenticatedUserDto>.Fail("Invalid username or password.");
             }
             catch (System.Exception ex)
             {
@@ -37,7 +37,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<AuthenticatedUserDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<AuthenticatedUserDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {

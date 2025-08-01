@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetMostBorrowedBooks">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMostBorrowedBooksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMostBorrowedBooksResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfDataTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOverdueBooks">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetOverdueBooksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOverdueBooksResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBorrowedBooksByCategory">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBorrowedBooksByCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBorrowedBooksByCategoryResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMostBorrowedBooksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMostBorrowedBooks" />
+  </wsdl:message>
+  <wsdl:message name="GetMostBorrowedBooksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMostBorrowedBooksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOverdueBooksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOverdueBooks" />
+  </wsdl:message>
+  <wsdl:message name="GetOverdueBooksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOverdueBooksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBorrowedBooksByCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetBorrowedBooksByCategory" />
+  </wsdl:message>
+  <wsdl:message name="GetBorrowedBooksByCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetBorrowedBooksByCategoryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ReportSoapServiceSoap">
+    <wsdl:operation name="GetMostBorrowedBooks">
+      <wsdl:input message="tns:GetMostBorrowedBooksSoapIn" />
+      <wsdl:output message="tns:GetMostBorrowedBooksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOverdueBooks">
+      <wsdl:input message="tns:GetOverdueBooksSoapIn" />
+      <wsdl:output message="tns:GetOverdueBooksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBorrowedBooksByCategory">
+      <wsdl:input message="tns:GetBorrowedBooksByCategorySoapIn" />
+      <wsdl:output message="tns:GetBorrowedBooksByCategorySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReportSoapServiceSoap" type="tns:ReportSoapServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMostBorrowedBooks">
+      <soap:operation soapAction="http://tempuri.org/GetMostBorrowedBooks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverdueBooks">
+      <soap:operation soapAction="http://tempuri.org/GetOverdueBooks" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBorrowedBooksByCategory">
+      <soap:operation soapAction="http://tempuri.org/GetBorrowedBooksByCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReportSoapServiceSoap12" type="tns:ReportSoapServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMostBorrowedBooks">
+      <soap12:operation soapAction="http://tempuri.org/GetMostBorrowedBooks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverdueBooks">
+      <soap12:operation soapAction="http://tempuri.org/GetOverdueBooks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBorrowedBooksByCategory">
+      <soap12:operation soapAction="http://tempuri.org/GetBorrowedBooksByCategory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReportSoapService">
+    <wsdl:port name="ReportSoapServiceSoap" binding="tns:ReportSoapServiceSoap">
+      <soap:address location="http://librarysystem.com/Services/ReportSoapService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReportSoapServiceSoap12" binding="tns:ReportSoapServiceSoap12">
+      <soap12:address location="http://librarysystem.com/Services/ReportSoapService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

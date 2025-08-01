@@ -1,6 +1,4 @@
-﻿using LibrarySystem.Domain.Enums;
-
-namespace LibrarySystem.Domain.Entities
+﻿namespace LibrarySystem.Domain.Entities
 {
     public class UserEntity
     {
@@ -9,14 +7,14 @@ namespace LibrarySystem.Domain.Entities
         public int UID { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public UserLevelEnum UserLevel { get; set; }
+        public int UserLevel { get; set; }
         public string UserLevelName
         {
             get
             {
-                if (UserLevelEnum.Student == UserLevel) return "Student";
-                else if (UserLevelEnum.Staff == UserLevel) return "Staff";
-                else if (UserLevelEnum.Manager == UserLevel) return "Manager";
+                if (1 == UserLevel) return "Student";
+                else if (2 == UserLevel) return "Staff";
+                else if (3 == UserLevel) return "Manager";
                 else return "Unknown";
             }
         }

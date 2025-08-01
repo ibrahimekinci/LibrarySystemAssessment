@@ -1,7 +1,7 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Domain.Enums;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

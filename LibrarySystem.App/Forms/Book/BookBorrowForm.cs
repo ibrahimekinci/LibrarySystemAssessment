@@ -1,7 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
@@ -33,17 +35,25 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookService.GetAvailableBooks();
-            if (result == null || result.Count == 0)
+
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookService.GetAvailableBooks();
+                if (!result.Success || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -66,18 +76,26 @@ namespace LibrarySystem.App.Forms.Book
 
             if (dgv.Columns[e.ColumnIndex].Name == "btnBorrow")
             {
-                var selected = BookService.GetAvailableBookByISBN(isbn);
-                if (selected != null)
+                try
                 {
-                    using (var form = new BookBorrowManageForm(selected, RefreshDgv))
+                    var result = BookService.GetAvailableBookByISBN(isbn);
+                    if (result != null && result.Success && result.Data != null)
                     {
-                        form.ShowDialog();
+                        var selectedDto = Mapper.Map<BookViewDto>(result.Data);
+                        using (var form = new BookBorrowManageForm(selectedDto, RefreshDgv))
+                        {
+                            form.ShowDialog();
+                        }
+                    }
+                    else
+                    {
+                        ShowInformation("Book is not available.");
+                        RefreshDgv();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    ShowInformation("Book is not available.");
-                    RefreshDgv();
+                    HandleException(ex);
                 }
             }
         }

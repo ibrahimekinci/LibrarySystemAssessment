@@ -1,6 +1,5 @@
 ﻿using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.WebApi.Abstracts;
-using System.Linq;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services

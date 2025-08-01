@@ -1,5 +1,5 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 
 namespace LibrarySystem.Abstractions.Services
 {

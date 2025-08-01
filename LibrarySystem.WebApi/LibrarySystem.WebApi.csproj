@@ -87,7 +87,7 @@
     </Compile>
     <Compile Include="Helpers\SoapExceptionHandlerExtension.cs" />
     <Compile Include="Helpers\SoapExceptionHandlerExtensionAttribute.cs" />
-    <Compile Include="Models\SoapServiceResponse.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuditSoapService.asmx.cs">
       <DependentUpon>AuditSoapService.asmx</DependentUpon>

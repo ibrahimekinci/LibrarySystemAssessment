@@ -1,7 +1,7 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
 
@@ -82,15 +82,25 @@ namespace LibrarySystem.App.Forms.Category
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = CategoryService.Add(dto);
-            if (result > 0)
+
+            var dtoSoap = Mapper.Map<CategoryService.CategoryCreateDto>(dto);
+            try
             {
-                ShowInformation("Category create successfully.", "Success");
+                var result = CategoryService.Add(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Category.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -104,15 +114,24 @@ namespace LibrarySystem.App.Forms.Category
                 return;
             }
 
-            var result = CategoryService.Update(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<CategoryService.CategoryUpdateDto>(dto);
+            try
             {
-                ShowInformation("Category updated successfully.", "Success");
+                var result = CategoryService.Update(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Category.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
     }

@@ -1,4 +1,4 @@
-﻿using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibrarySystem.Abstractions.DTOs

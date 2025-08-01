@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SoapServiceHealthCheck">
+        <s:complexType />
+      </s:element>
+      <s:element name="SoapServiceHealthCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SoapServiceHealthCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestDatabaseHealthCheck">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestDatabaseHealthCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestDatabaseHealthCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestBadRequestException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestBadRequestExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestBadRequestExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestConflictException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestConflictExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestConflictExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestCustomException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestCustomExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestCustomExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestExternalServiceException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestExternalServiceExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestExternalServiceExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestForbiddenException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestForbiddenExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestForbiddenExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestInternalServerErrorException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestInternalServerErrorExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestInternalServerErrorExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestMethodNotAllowedException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestMethodNotAllowedExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestMethodNotAllowedExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestNotFoundException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestNotFoundExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestNotFoundExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestResourceAlreadyExistsException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestResourceAlreadyExistsExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestResourceAlreadyExistsExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestUnauthorizedException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestUnauthorizedExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestUnauthorizedExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestUnprocessableEntityException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestUnprocessableEntityExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestUnprocessableEntityExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestValidationException">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestValidationExceptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestValidationExceptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SoapServiceHealthCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:SoapServiceHealthCheck" />
+  </wsdl:message>
+  <wsdl:message name="SoapServiceHealthCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:SoapServiceHealthCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestDatabaseHealthCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:TestDatabaseHealthCheck" />
+  </wsdl:message>
+  <wsdl:message name="TestDatabaseHealthCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:TestDatabaseHealthCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestBadRequestExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestBadRequestException" />
+  </wsdl:message>
+  <wsdl:message name="TestBadRequestExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestBadRequestExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestConflictExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestConflictException" />
+  </wsdl:message>
+  <wsdl:message name="TestConflictExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestConflictExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestCustomExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestCustomException" />
+  </wsdl:message>
+  <wsdl:message name="TestCustomExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestCustomExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestExternalServiceExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestExternalServiceException" />
+  </wsdl:message>
+  <wsdl:message name="TestExternalServiceExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestExternalServiceExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestForbiddenExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestForbiddenException" />
+  </wsdl:message>
+  <wsdl:message name="TestForbiddenExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestForbiddenExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestInternalServerErrorExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestInternalServerErrorException" />
+  </wsdl:message>
+  <wsdl:message name="TestInternalServerErrorExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestInternalServerErrorExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodNotAllowedExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestMethodNotAllowedException" />
+  </wsdl:message>
+  <wsdl:message name="TestMethodNotAllowedExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestMethodNotAllowedExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestNotFoundExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="TestNotFoundExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestNotFoundExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestResourceAlreadyExistsExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestResourceAlreadyExistsException" />
+  </wsdl:message>
+  <wsdl:message name="TestResourceAlreadyExistsExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestResourceAlreadyExistsExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestUnauthorizedExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestUnauthorizedException" />
+  </wsdl:message>
+  <wsdl:message name="TestUnauthorizedExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestUnauthorizedExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestUnprocessableEntityExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestUnprocessableEntityException" />
+  </wsdl:message>
+  <wsdl:message name="TestUnprocessableEntityExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestUnprocessableEntityExceptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestValidationExceptionSoapIn">
+    <wsdl:part name="parameters" element="tns:TestValidationException" />
+  </wsdl:message>
+  <wsdl:message name="TestValidationExceptionSoapOut">
+    <wsdl:part name="parameters" element="tns:TestValidationExceptionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TestSoapServiceSoap">
+    <wsdl:operation name="SoapServiceHealthCheck">
+      <wsdl:input message="tns:SoapServiceHealthCheckSoapIn" />
+      <wsdl:output message="tns:SoapServiceHealthCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestDatabaseHealthCheck">
+      <wsdl:input message="tns:TestDatabaseHealthCheckSoapIn" />
+      <wsdl:output message="tns:TestDatabaseHealthCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestBadRequestException">
+      <wsdl:input message="tns:TestBadRequestExceptionSoapIn" />
+      <wsdl:output message="tns:TestBadRequestExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConflictException">
+      <wsdl:input message="tns:TestConflictExceptionSoapIn" />
+      <wsdl:output message="tns:TestConflictExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestCustomException">
+      <wsdl:input message="tns:TestCustomExceptionSoapIn" />
+      <wsdl:output message="tns:TestCustomExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestExternalServiceException">
+      <wsdl:input message="tns:TestExternalServiceExceptionSoapIn" />
+      <wsdl:output message="tns:TestExternalServiceExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestForbiddenException">
+      <wsdl:input message="tns:TestForbiddenExceptionSoapIn" />
+      <wsdl:output message="tns:TestForbiddenExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestInternalServerErrorException">
+      <wsdl:input message="tns:TestInternalServerErrorExceptionSoapIn" />
+      <wsdl:output message="tns:TestInternalServerErrorExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestMethodNotAllowedException">
+      <wsdl:input message="tns:TestMethodNotAllowedExceptionSoapIn" />
+      <wsdl:output message="tns:TestMethodNotAllowedExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestNotFoundException">
+      <wsdl:input message="tns:TestNotFoundExceptionSoapIn" />
+      <wsdl:output message="tns:TestNotFoundExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestResourceAlreadyExistsException">
+      <wsdl:input message="tns:TestResourceAlreadyExistsExceptionSoapIn" />
+      <wsdl:output message="tns:TestResourceAlreadyExistsExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestUnauthorizedException">
+      <wsdl:input message="tns:TestUnauthorizedExceptionSoapIn" />
+      <wsdl:output message="tns:TestUnauthorizedExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestUnprocessableEntityException">
+      <wsdl:input message="tns:TestUnprocessableEntityExceptionSoapIn" />
+      <wsdl:output message="tns:TestUnprocessableEntityExceptionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestValidationException">
+      <wsdl:input message="tns:TestValidationExceptionSoapIn" />
+      <wsdl:output message="tns:TestValidationExceptionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TestSoapServiceSoap" type="tns:TestSoapServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SoapServiceHealthCheck">
+      <soap:operation soapAction="http://tempuri.org/SoapServiceHealthCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDatabaseHealthCheck">
+      <soap:operation soapAction="http://tempuri.org/TestDatabaseHealthCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestBadRequestException">
+      <soap:operation soapAction="http://tempuri.org/TestBadRequestException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConflictException">
+      <soap:operation soapAction="http://tempuri.org/TestConflictException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestCustomException">
+      <soap:operation soapAction="http://tempuri.org/TestCustomException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestExternalServiceException">
+      <soap:operation soapAction="http://tempuri.org/TestExternalServiceException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestForbiddenException">
+      <soap:operation soapAction="http://tempuri.org/TestForbiddenException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestInternalServerErrorException">
+      <soap:operation soapAction="http://tempuri.org/TestInternalServerErrorException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethodNotAllowedException">
+      <soap:operation soapAction="http://tempuri.org/TestMethodNotAllowedException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestNotFoundException">
+      <soap:operation soapAction="http://tempuri.org/TestNotFoundException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestResourceAlreadyExistsException">
+      <soap:operation soapAction="http://tempuri.org/TestResourceAlreadyExistsException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestUnauthorizedException">
+      <soap:operation soapAction="http://tempuri.org/TestUnauthorizedException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestUnprocessableEntityException">
+      <soap:operation soapAction="http://tempuri.org/TestUnprocessableEntityException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestValidationException">
+      <soap:operation soapAction="http://tempuri.org/TestValidationException" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TestSoapServiceSoap12" type="tns:TestSoapServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SoapServiceHealthCheck">
+      <soap12:operation soapAction="http://tempuri.org/SoapServiceHealthCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDatabaseHealthCheck">
+      <soap12:operation soapAction="http://tempuri.org/TestDatabaseHealthCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestBadRequestException">
+      <soap12:operation soapAction="http://tempuri.org/TestBadRequestException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConflictException">
+      <soap12:operation soapAction="http://tempuri.org/TestConflictException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestCustomException">
+      <soap12:operation soapAction="http://tempuri.org/TestCustomException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestExternalServiceException">
+      <soap12:operation soapAction="http://tempuri.org/TestExternalServiceException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestForbiddenException">
+      <soap12:operation soapAction="http://tempuri.org/TestForbiddenException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestInternalServerErrorException">
+      <soap12:operation soapAction="http://tempuri.org/TestInternalServerErrorException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestMethodNotAllowedException">
+      <soap12:operation soapAction="http://tempuri.org/TestMethodNotAllowedException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestNotFoundException">
+      <soap12:operation soapAction="http://tempuri.org/TestNotFoundException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestResourceAlreadyExistsException">
+      <soap12:operation soapAction="http://tempuri.org/TestResourceAlreadyExistsException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestUnauthorizedException">
+      <soap12:operation soapAction="http://tempuri.org/TestUnauthorizedException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestUnprocessableEntityException">
+      <soap12:operation soapAction="http://tempuri.org/TestUnprocessableEntityException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestValidationException">
+      <soap12:operation soapAction="http://tempuri.org/TestValidationException" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TestSoapService">
+    <wsdl:port name="TestSoapServiceSoap" binding="tns:TestSoapServiceSoap">
+      <soap:address location="http://librarysystem.com/Services/TestSoapService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TestSoapServiceSoap12" binding="tns:TestSoapServiceSoap12">
+      <soap12:address location="http://librarysystem.com/Services/TestSoapService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

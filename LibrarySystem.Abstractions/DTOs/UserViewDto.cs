@@ -1,11 +1,11 @@
-﻿using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.Enums;
 
 namespace LibrarySystem.Abstractions.DTOs
 {
     public class UserViewDto
     {
-        public string UserName { get; set; }
         public int UID { get; set; }
+        public string UserName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public UserLevelEnum UserLevel { get; set; }

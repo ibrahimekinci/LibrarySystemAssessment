@@ -1,6 +1,6 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -38,7 +38,6 @@ namespace LibrarySystem.App.Forms.Book
             else
             {
                 throw new ArgumentException("Invalid operation type for BookLoanForm", nameof(operationType));
-
             }
         }
         protected override void LoadFormData()
@@ -50,32 +49,48 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetAll();
-            if (result == null || result.Rows.Count == 0)
+
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookLoanService.GetAll();
+                if (!result.Success || result.Data == null || result.Data.Rows.Count == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void UserDgvRefresh()
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetAllByUserId(SessionManager.UID);
-            if (result == null || result.Rows.Count == 0)
+
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookLoanService.GetAllByUserId(SessionManager.UID);
+                if (!result.Success || result.Data == null || result.Data.Rows.Count == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
     }

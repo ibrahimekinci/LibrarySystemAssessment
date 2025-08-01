@@ -1,7 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.BookManage
@@ -39,17 +41,24 @@ namespace LibrarySystem.App.Forms.BookManage
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookService.GetAll();
-            if (result == null || result.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookService.GetAll();
+                if (!result.Success || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -84,36 +93,35 @@ namespace LibrarySystem.App.Forms.BookManage
                 var confirm = MessageBox.Show("Are you sure you want to delete this Book?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
-                    var success = false;
-
                     try
                     {
-                        success = BookService.Delete(isbn);
+                        var result = BookService.Delete(isbn);
+                        if (!result.Success)
+                            ShowError(result.Message);
                     }
                     catch (Exception ex)
                     {
+                        ShowError("Failed to delete Book.");
                         HandleException(ex);
                     }
 
-                    if (success)
-                        RefreshDgv();
-                    else
-                        MessageBox.Show("Failed to delete Book. Make sure you have all deleted the records that are realated with this record.");
+                    RefreshDgv();
                 }
             }
             else if (dgv.Columns[e.ColumnIndex].Name == "btnEdit")
             {
-                var selectedBook = BookService.GetByISBN(isbn);
-                if (selectedBook != null)
+                var result = BookService.GetByISBN(isbn);
+                if (result != null && result.Success && result.Data != null)
                 {
-                    using (var form = new BookManageForm(OperationType.BookEdit, selectedBook, RefreshDgv))
+                    var selectedDto = Mapper.Map<BookViewDto>(result.Data);
+                    using (var form = new BookManageForm(OperationType.BookEdit, selectedDto, RefreshDgv))
                     {
                         form.ShowDialog();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Book not found.");
+                    ShowError("Book not found.");
                     RefreshDgv();
                 }
             }

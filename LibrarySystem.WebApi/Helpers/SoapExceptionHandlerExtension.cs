@@ -1,13 +1,8 @@
-﻿using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.Abstractions.Services;
+﻿using LibrarySystem.Abstractions.Services;
 using LibrarySystem.BLL.Services;
-using LibrarySystem.WebApi.Models;
 using System;
-using System.IO;
-using System.Reflection;
 using System.Web.Services.Protocols;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace LibrarySystem.WebApi.Helpers
 {

@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
 using System.Data;
@@ -20,21 +20,21 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<ReserveViewDto> Reserve(ReserveCreateDto dto)
+        public Response<ReserveViewDto> Reserve(ReserveCreateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<ReserveViewDto>.Fail(errorMessage);
+                    return Response<ReserveViewDto>.Fail(errorMessage);
 
                 var result = BookReservationService.Reserve(dto);
                 if (result > 0)
                 {
                     var viewDto = BookReservationService.GetById(result);
-                    return SoapServiceResult<ReserveViewDto>.Ok(viewDto, "Book reserved successfully.");
+                    return Response<ReserveViewDto>.Ok(viewDto, "Book reserved successfully.");
                 }
-                return SoapServiceResult<ReserveViewDto>.Fail("Failed to reserve book.");
+                return Response<ReserveViewDto>.Fail("Failed to reserve book.");
             }
             catch (System.Exception ex)
             {
@@ -42,7 +42,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -52,21 +52,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<ReserveViewDto> UpdateReservation(ReserveUpdateDto dto)
+        public Response<ReserveViewDto> UpdateReservation(ReserveUpdateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<ReserveViewDto>.Fail(errorMessage);
+                    return Response<ReserveViewDto>.Fail(errorMessage);
 
                 var result = BookReservationService.UpdateReservation(dto);
                 if (result)
                 {
                     var viewDto = BookReservationService.GetById(dto.RID);
-                    return SoapServiceResult<ReserveViewDto>.Ok(viewDto, "Reservation updated successfully.");
+                    return Response<ReserveViewDto>.Ok(viewDto, "Reservation updated successfully.");
                 }
-                return SoapServiceResult<ReserveViewDto>.Fail("Failed to update reservation.");
+                return Response<ReserveViewDto>.Fail("Failed to update reservation.");
             }
             catch (System.Exception ex)
             {
@@ -74,7 +74,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -84,14 +84,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<ReserveViewDto> GetById(int id)
+        public Response<ReserveViewDto> GetById(int id)
         {
             try
             {
                 var result = BookReservationService.GetById(id);
                 if (result != null)
-                    return SoapServiceResult<ReserveViewDto>.Ok(result);
-                return SoapServiceResult<ReserveViewDto>.Fail("Reservation not found.");
+                    return Response<ReserveViewDto>.Ok(result);
+                return Response<ReserveViewDto>.Fail("Reservation not found.");
             }
             catch (System.Exception ex)
             {
@@ -99,7 +99,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<ReserveViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -109,12 +109,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetAll()
+        public Response<DataTable> GetAll()
         {
             try
             {
                 var result = BookReservationService.GetAll();
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -122,7 +122,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -132,12 +132,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetAllByUserId(int userId)
+        public Response<DataTable> GetAllByUserId(int userId)
         {
             try
             {
                 var result = BookReservationService.GetAllByUserId(userId);
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -145,7 +145,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -155,14 +155,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> CancelReservation(int id)
+        public Response<bool> CancelReservation(int id)
         {
             try
             {
                 var result = BookReservationService.CancelReservation(id);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "Reservation cancelled successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to cancel reservation.");
+                    return Response<bool>.Ok(true, "Reservation cancelled successfully.");
+                return Response<bool>.Fail("Failed to cancel reservation.");
             }
             catch (System.Exception ex)
             {
@@ -170,7 +170,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {

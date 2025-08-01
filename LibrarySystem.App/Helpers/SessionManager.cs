@@ -1,5 +1,5 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,7 +8,6 @@ namespace LibrarySystem.App.Helpers
     public static class SessionManager
     {
         private static AuthenticatedUserDto _user = null;
-
         public static void SetUser(AuthenticatedUserDto user)
         {
             _user = user;

@@ -1,7 +1,7 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
 
@@ -81,15 +81,25 @@ namespace LibrarySystem.App.Forms.Author
                 ShowError(errorMessage, "Validation Error");
                 return;
             }
-            var result = AuthorService.Add(dto);
-            if (result > 0)
+
+            var dtoSoap = Mapper.Map<AuthorService.AuthorCreateDto>(dto);
+            try
             {
-                ShowInformation("Author create successfully.", "Success");
+                var result = AuthorService.Add(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update author.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -102,15 +112,22 @@ namespace LibrarySystem.App.Forms.Author
                 ShowError(errors, "Validation Error");
                 return;
             }
-
-            var result = AuthorService.Update(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<AuthorService.AuthorUpdateDto>(dto);
+            try
             {
-                ShowInformation("Author updated successfully.", "Success");
+                var result = AuthorService.Update(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update author.", "Error");
+                HandleException(ex);
             }
             CloseTheFormDialog();
         }

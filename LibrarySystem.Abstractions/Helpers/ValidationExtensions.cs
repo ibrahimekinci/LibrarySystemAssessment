@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace LibrarySystem.BLL.Helpers
+namespace LibrarySystem.Abstractions.Helpers
 {
     public static class ValidationExtensions
     {
@@ -40,3 +40,4 @@ namespace LibrarySystem.BLL.Helpers
         }
     }
 }
+

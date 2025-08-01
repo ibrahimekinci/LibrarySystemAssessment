@@ -1,9 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
@@ -35,17 +35,24 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookService.GetAvailableBooks();
-            if (result == null || result.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookService.GetAvailableBooks();
+                if (!result.Success || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -71,32 +78,35 @@ namespace LibrarySystem.App.Forms.Book
                 var confirm = MessageBox.Show("Are you sure you want to reserve this book?", "Confirm Reservation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
-                    var success = false;
-                    var selected = BookService.GetAvailableBookByISBN(isbn);
-                    if (selected != null)
+                    try
                     {
-                        var dto = new ReserveCreateDto()
+                        var selectedBookResult = BookService.GetAvailableBookByISBN(isbn);
+                        if (selectedBookResult != null && selectedBookResult.Success && selectedBookResult.Data != null)
                         {
-                            ISBN = selected.ISBN,
-                            ReservedDate = DateTime.Now,
-                            UID = SessionManager.UID
-                        };
+                            var dto = new BookReservationService.ReserveCreateDto()
+                            {
+                                ISBN = selectedBookResult.Data.ISBN,
+                                ReservedDate = DateTime.Now,
+                                UID = SessionManager.UID
+                            };
 
-                        success = 0 < BookReservationService.Reserve(dto);
+                            var resultReserve = BookReservationService.Reserve(dto);
+                            if (resultReserve.Success)
+                                FormManager.ShowFormInMdi<BookReservationsForm>(OperationType.ViewMyReservations);
+                            else
+                                ShowError(resultReserve.Message);
+                        }
+                        else
+                        {
+                            ShowError("Book is not available.");
+                            RefreshDgv();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        ShowInformation("Book is not available.");
-                        RefreshDgv();
-                    }
-
-
-                    if (success)
-                    {
-                        FormManager.ShowFormInMdi<BookReservationsForm>(OperationType.ViewMyReservations);
-                    }
-                    else
+                        HandleException(ex);
                         MessageBox.Show("Failed to delete author. Make sure you have all deleted the records that are realated with this record. Such as books.");
+                    }
                 }
 
             }

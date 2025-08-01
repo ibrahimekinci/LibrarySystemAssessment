@@ -1,8 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web.Services.Protocols;
 
 namespace LibrarySystem.App.Forms.Report
 {
@@ -52,18 +53,57 @@ namespace LibrarySystem.App.Forms.Report
         }
         private void btnBorrowedBooksByCategory_Click(object sender, EventArgs e)
         {
-            var result = ReportService.GetBorrowedBooksByCategory();
-            RefreshDgv(result);
+            try
+            {
+                var result = ReportService.GetBorrowedBooksByCategory();
+                if (result.Success)
+                    RefreshDgv(result.Data);
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                    RefreshDgv(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void btnMostBorrowedBooks_Click(object sender, EventArgs e)
         {
-            var result = ReportService.GetMostBorrowedBooks();
-            RefreshDgv(result);
+            try
+            {
+                var result = ReportService.GetMostBorrowedBooks();
+                if (result.Success)
+                    RefreshDgv(result.Data);
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                    RefreshDgv(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void btnOverdueBooks_Click(object sender, EventArgs e)
         {
-            var result = ReportService.GetOverdueBooks();
-            RefreshDgv(result);
+            try
+            {
+                var result = ReportService.GetOverdueBooks();
+                if (result.Success)
+                    RefreshDgv(result.Data);
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                    RefreshDgv(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void RefreshDgv(DataTable result)
         {

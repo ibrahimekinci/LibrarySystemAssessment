@@ -1,9 +1,10 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Book
@@ -34,17 +35,24 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookLoanService.GetUnreturnedLoansByUserId(SessionManager.UID);
-            if (result == null || result.Rows.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookLoanService.GetUnreturnedLoansByUserId(SessionManager.UID);
+                if (!result.Success || result.Data == null || result.Data.Rows.Count == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -71,49 +79,43 @@ namespace LibrarySystem.App.Forms.Book
                 if (confirm == DialogResult.Yes)
                 {
                     var success = false;
-                    var selected = BookLoanService.GetById(id);
-                    if (selected != null || selected.ActualReturnDate <= new DateTime(2001, 1, 1))
+                    try
                     {
-                        var dto = new BorrowReturnDto()
+                        var result = BookLoanService.GetById(id);
+                        if (result != null && result.Success && result.Data != null && result.Data.ActualReturnDate <= new DateTime(2001, 1, 1))
                         {
-                            ActualReturnDate = DateTime.Now,
-                            BID = selected.BID
-                        };
+                            var dto = new BookLoanService.BorrowReturnDto()
+                            {
+                                ActualReturnDate = DateTime.Now,
+                                BID = result.Data.BID
+                            };
 
-                        //0.2 aud late panalty per day
-                        if (dto.ActualReturnDate > selected.ReturnDate)
-                        {
-                            dto.LateFee = (dto.ActualReturnDate - selected.ReturnDate).Days * 0.2m;
-                        }
-                        else
-                        {
-                            dto.LateFee = 0m;
-                        }
+                            //0.2 aud late panalty per day
+                            if (dto.ActualReturnDate > result.Data.ReturnDate)
+                            {
+                                dto.LateFee = (dto.ActualReturnDate - result.Data.ReturnDate).Days * 0.2m;
+                            }
+                            else
+                            {
+                                dto.LateFee = 0m;
+                            }
 
-                        try
-                        {
-                            success = BookLoanService.Return(dto);
+                            var resultReturn = BookLoanService.Return(dto);
+                            if (resultReturn != null)
+                                success = resultReturn.Success;
                         }
-                        catch (Exception ex)
+                        if (!success)
                         {
-                            HandleException(ex);
+                            ShowError("The book loan could not be found. Please try again with the updated list.");
                         }
-
-                        if (success)
-                            RefreshDgv();
-                        else
-                            MessageBox.Show("The book loan could not found. Please try again with the updated list.");
                     }
-
-                    if (success)
-                        RefreshDgv();
-                    else
+                    catch (Exception ex)
                     {
-                        ShowError("The book loan could not be found. Please try again with the updated list.");
-                        RefreshDgv();
+                        ShowError("Failed to delete author.");
+                        HandleException(ex);
                     }
+                    RefreshDgv();
                 }
-
             }
         }
     }

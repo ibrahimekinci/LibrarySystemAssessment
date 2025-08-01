@@ -1,9 +1,11 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services
@@ -20,21 +22,21 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<UserViewDto> Register(UserCreateDto dto)
+        public Response<UserViewDto> Register(UserCreateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<UserViewDto>.Fail(errorMessage);
+                    return Response<UserViewDto>.Fail(errorMessage);
 
                 var result = UserService.Register(dto);
                 if (result > 0)
                 {
                     var viewDto = UserService.GetById(result);
-                    return SoapServiceResult<UserViewDto>.Ok(viewDto, "User registered successfully.");
+                    return Response<UserViewDto>.Ok(viewDto, "User registered successfully.");
                 }
-                return SoapServiceResult<UserViewDto>.Fail("Failed to register user.");
+                return Response<UserViewDto>.Fail("Failed to register user.");
             }
             catch (System.Exception ex)
             {
@@ -42,7 +44,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -52,21 +54,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<UserViewDto> UpdateUser(UserUpdateDto dto)
+        public Response<UserViewDto> UpdateUser(UserUpdateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<UserViewDto>.Fail(errorMessage);
+                    return Response<UserViewDto>.Fail(errorMessage);
 
                 var result = UserService.UpdateUser(dto);
                 if (result)
                 {
                     var viewDto = UserService.GetById(dto.UID);
-                    return SoapServiceResult<UserViewDto>.Ok(viewDto, "User updated successfully.");
+                    return Response<UserViewDto>.Ok(viewDto, "User updated successfully.");
                 }
-                return SoapServiceResult<UserViewDto>.Fail("Failed to update user.");
+                return Response<UserViewDto>.Fail("Failed to update user.");
             }
             catch (System.Exception ex)
             {
@@ -74,7 +76,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -84,21 +86,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<UserViewDto> ResetPassword(UserPasswordUpdateDto dto)
+        public Response<UserViewDto> ResetPassword(UserPasswordUpdateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<UserViewDto>.Fail(errorMessage);
+                    return Response<UserViewDto>.Fail(errorMessage);
 
                 var result = UserService.ResetPassword(dto);
                 if (result)
                 {
                     var viewDto = UserService.GetById(dto.UID);
-                    return SoapServiceResult<UserViewDto>.Ok(viewDto, "Password reset successfully.");
+                    return Response<UserViewDto>.Ok(viewDto, "Password reset successfully.");
                 }
-                return SoapServiceResult<UserViewDto>.Fail("Failed to reset password.");
+                return Response<UserViewDto>.Fail("Failed to reset password.");
             }
             catch (System.Exception ex)
             {
@@ -106,7 +108,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -116,12 +118,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<List<UserViewDto>> GetAll()
+        public Response<List<UserViewDto>> GetAll()
         {
             try
             {
                 var result = UserService.GetAll();
-                return SoapServiceResult<List<UserViewDto>>.Ok(result);
+                return Response<List<UserViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -129,7 +131,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<UserViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<UserViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -139,14 +141,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<UserViewDto> GetById(int userId)
+        public Response<UserViewDto> GetById(int userId)
         {
             try
             {
                 var result = UserService.GetById(userId);
                 if (result != null)
-                    return SoapServiceResult<UserViewDto>.Ok(result);
-                return SoapServiceResult<UserViewDto>.Fail("User not found.");
+                    return Response<UserViewDto>.Ok(result);
+                return Response<UserViewDto>.Fail("User not found.");
             }
             catch (System.Exception ex)
             {
@@ -154,7 +156,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<UserViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -164,14 +166,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> Delete(int userId)
+        public Response<bool> Delete(int userId)
         {
             try
             {
                 var result = UserService.Delete(userId);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "User deleted successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to delete user.");
+                    return Response<bool>.Ok(true, "User deleted successfully.");
+                return Response<bool>.Fail("Failed to delete user.");
             }
             catch (System.Exception ex)
             {
@@ -179,7 +181,18 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else if (ex is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Foreign key violation
+                    {
+                        return Response<bool>.Fail("Deletion failed due to foreign key constraint. Referencing records");
+                    }
+                    else
+                    {
+                        throw; // Re-throw other errors
+                    }
                 }
                 else
                 {

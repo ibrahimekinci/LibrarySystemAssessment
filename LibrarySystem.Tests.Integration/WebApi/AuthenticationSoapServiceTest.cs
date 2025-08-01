@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.BLL.Services;
 using LibrarySystem.DAL.Helpers;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 using System.Data.SqlClient;
 
 namespace LibrarySystem.Tests.Integration.WebApi

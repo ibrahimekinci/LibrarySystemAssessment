@@ -555,3 +555,353 @@ Stack Trace:
    at LibrarySystem.WebApi.Services.AuthSoapService.Login(String username, String password) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\AuthSoapService.asmx.cs:line 26
 
 
+[2025-08-01 04:09:39] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:10:21] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:11:39] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:13:43] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:14:10] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:15:04] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:15:24] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:15:47] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:16:17] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:19:12] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:20:55] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:21:27] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:22:00] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:22:26] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:22:55] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:29:24] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:12] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:26] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:35] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:42] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:51] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:38:58] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:39:06] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:39:12] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:39:18] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:39:25] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-01 04:39:32] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:29:35] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: The DELETE statement conflicted with the REFERENCE constraint "fk_TabBorrow_TabUser". The conflict occurred in database "librarysystem", table "dbo.TabBorrow", column 'UID'.
+The statement has been terminated.
+Type: SqlException
+Stack Trace:
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at LibrarySystem.DAL.DataSets.UserDataSetTableAdapters.TabUserTableAdapter.DeleteById(Int32 Original_UID) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.DAL\DataSets\UserDataSet.Designer.cs:line 1284
+   at LibrarySystem.DAL.Repositories.UserRepository.Delete(Int32 uid) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.DAL\Repositories\UserRepository.cs:line 44
+   at LibrarySystem.BLL.Services.UserService.Delete(Int32 userId) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.BLL\Services\UserService.cs:line 51
+   at LibrarySystem.WebApi.Services.UserSoapService.Delete(Int32 userId) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\UserSoapService.asmx.cs:line 186
+
+
+[2025-08-02 04:41:43] Message: Server was unable to process request.
+Type: SoapException
+Stack Trace:
+
+Inner Exception:
+Message: The DELETE statement conflicted with the REFERENCE constraint "fk_TabBorrow_TabUser". The conflict occurred in database "librarysystem", table "dbo.TabBorrow", column 'UID'.
+The statement has been terminated.
+Type: SqlException
+Stack Trace:
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at LibrarySystem.DAL.DataSets.UserDataSetTableAdapters.TabUserTableAdapter.DeleteById(Int32 Original_UID) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.DAL\DataSets\UserDataSet.Designer.cs:line 1284
+   at LibrarySystem.DAL.Repositories.UserRepository.Delete(Int32 uid) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.DAL\Repositories\UserRepository.cs:line 44
+   at LibrarySystem.BLL.Services.UserService.Delete(Int32 userId) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.BLL\Services\UserService.cs:line 51
+   at LibrarySystem.WebApi.Services.UserSoapService.Delete(Int32 userId) in C:\projects\16303_Ibrahim_Ekinci_CMP1046_Assessment_01\LibrarySystem.WebApi\Services\UserSoapService.asmx.cs:line 186
+
+
+[2025-08-02 04:51:28] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:51:42] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:51:46] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:51:50] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:51:55] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:51:59] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:52:04] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:52:09] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:52:12] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:52:17] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+
+[2025-08-02 04:52:23] Message: Unable to handle request without a valid action parameter. Please supply a valid soap action.
+Type: SoapException
+Stack Trace:
+   at System.Web.Services.Protocols.Soap12ServerProtocolHelper.RouteRequest()
+   at System.Web.Services.Protocols.SoapServerProtocol.Initialize()
+   at System.Web.Services.Protocols.ServerProtocolFactory.Create(Type type, HttpContext context, HttpRequest request, HttpResponse response, Boolean& abortProcessing)
+
+

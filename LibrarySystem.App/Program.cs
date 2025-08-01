@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.App.Forms;
 using LibrarySystem.App.Forms.Messages;
-using LibrarySystem.BLL.Services;
+using LibrarySystem.App.Helpers;
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -22,10 +22,7 @@ namespace LibrarySystem.App
             System.Windows.Forms.Application.ThreadException += HandleThreadException;
             // Global non-UI thread (e.g., Task) exception handler
             AppDomain.CurrentDomain.UnhandledException += HandleUnhandledException;
-            var auditLogService = new AuditLogService();
-            auditLogService.Log(Domain.Enums.AuditActionType.ApplicationStarted, 0, "LibrarySystem.App.Program.Main");
             System.Windows.Forms.Application.Run(new LoginForm());
-            auditLogService.Log(Domain.Enums.AuditActionType.ApplicationEnded, 0, "LibrarySystem.App.Program.Main");
         }
         private static void HandleThreadException(object sender, ThreadExceptionEventArgs e)
         {
@@ -42,7 +39,7 @@ namespace LibrarySystem.App
         {
             try
             {
-                var logService = new LogService();
+                var logService = new LogHelper();
                 logService.LogException(ex);
                 if (logService.IsCriticalException(ex))
                 {

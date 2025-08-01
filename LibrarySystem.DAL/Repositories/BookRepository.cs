@@ -88,7 +88,7 @@ namespace LibrarySystem.DAL.Repositories
         }
         public List<BookEntity> Search(BookSearchCriteriaDto dto)
         {
-            var table = ViewBookTableAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId.ToString());
+            var table = ViewBookTableAdapter.GetDataBySearchCriterias(dto.BookName, dto.AuthorName, dto.CategoryId ?? 0);
             if (table == null || table.Rows.Count == 0)
                 return null;
             return table.CopyToDataTable().ToList<BookEntity>();

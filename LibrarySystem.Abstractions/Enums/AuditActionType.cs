@@ -1,4 +1,4 @@
-﻿namespace LibrarySystem.Domain.Enums
+﻿namespace LibrarySystem.Abstractions.Enums
 {
     public enum AuditActionType
     {

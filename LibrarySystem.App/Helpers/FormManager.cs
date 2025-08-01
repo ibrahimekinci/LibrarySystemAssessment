@@ -1,6 +1,4 @@
 ﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.App.Forms.Book;
-using LibrarySystem.App.Forms.Report;
 using System;
 using System.Linq;
 using System.Windows.Forms;

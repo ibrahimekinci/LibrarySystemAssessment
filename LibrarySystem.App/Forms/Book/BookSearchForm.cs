@@ -1,8 +1,8 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibrarySystem.App.Forms.Book
 {
@@ -25,34 +25,52 @@ namespace LibrarySystem.App.Forms.Book
 
         private void btnSearch_Click(object sender, System.EventArgs e)
         {
-            var dto = new BookSearchCriteriaDto
+            var dto = new BookService.BookSearchCriteriaDto
             {
                 AuthorName = txtAuthorName.Text.Trim(),
                 BookName = txtBookName.Text.Trim(),
                 CategoryId = Convert.ToInt32(cbCategory.SelectedValue)
             };
-
-            var result = BookService.Search(dto);
-            if (result == null || result.Count == 0 && dgv.Rows.Count > 0)
+            try
+            {
+                var result = BookService.Search(dto);
+                if (result == null || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                }
+                else
+                {
+                    dgv.Width = this.Width - 40;
+                    dgv.DataSource = result.Data;
+                    dgv.Columns[5].Visible = false;
+                    dgv.Columns[6].Visible = false;
+                    dgv.Columns[7].Visible = false;
+                }
+            }
+            catch (Exception ex)
             {
                 dgv.DataSource = null;
-            }
-            else
-            {
-                dgv.Width = this.Width - 40;
-                dgv.DataSource = BookService.Search(dto);
-                dgv.Columns[5].Visible = false;
-                dgv.Columns[6].Visible = false;
-                dgv.Columns[7].Visible = false;
+                HandleException(ex);
             }
         }
         protected override void LoadFormData()
         {
-            var categories = CategoryService.GetAll();
-            categories?.Insert(0, new CategoryViewDto { CID = 0, CategoryName = "All Categories" });
-            cbCategory.DataSource = categories;
-            cbCategory.DisplayMember = "CategoryName";
-            cbCategory.ValueMember = "CID";
+            try
+            {
+                var result = CategoryService.GetAll();
+                if (result.Success && result.Data != null)
+                {
+                    var categories = result.Data.ToList();
+                    categories?.Insert(0, new CategoryService.CategoryViewDto { CID = 0, CategoryName = "All Categories" });
+                    cbCategory.DataSource = categories;
+                    cbCategory.DisplayMember = "CategoryName";
+                    cbCategory.ValueMember = "CID";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
     }
 }

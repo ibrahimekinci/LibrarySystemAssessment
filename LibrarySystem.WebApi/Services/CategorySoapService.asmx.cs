@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services
@@ -20,12 +21,12 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<List<CategoryViewDto>> GetAll()
+        public Response<List<CategoryViewDto>> GetAll()
         {
             try
             {
                 var result = CategoryService.GetAll();
-                return SoapServiceResult<List<CategoryViewDto>>.Ok(result);
+                return Response<List<CategoryViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -33,7 +34,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<CategoryViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<CategoryViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -43,14 +44,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<CategoryViewDto> GetById(int id)
+        public Response<CategoryViewDto> GetById(int id)
         {
             try
             {
                 var result = CategoryService.GetById(id);
                 if (result != null)
-                    return SoapServiceResult<CategoryViewDto>.Ok(result);
-                return SoapServiceResult<CategoryViewDto>.Fail("Category not found.");
+                    return Response<CategoryViewDto>.Ok(result);
+                return Response<CategoryViewDto>.Fail("Category not found.");
             }
             catch (System.Exception ex)
             {
@@ -58,7 +59,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -68,21 +69,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<CategoryViewDto> Add(CategoryCreateDto dto)
+        public Response<CategoryViewDto> Add(CategoryCreateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<CategoryViewDto>.Fail(errorMessage);
+                    return Response<CategoryViewDto>.Fail(errorMessage);
 
                 var result = CategoryService.Add(dto);
                 if (result > 0)
                 {
                     var viewDto = CategoryService.GetById(result);
-                    return SoapServiceResult<CategoryViewDto>.Ok(viewDto, "Category created successfully.");
+                    return Response<CategoryViewDto>.Ok(viewDto, "Category created successfully.");
                 }
-                return SoapServiceResult<CategoryViewDto>.Fail("Failed to create category.");
+                return Response<CategoryViewDto>.Fail("Failed to create category.");
             }
             catch (System.Exception ex)
             {
@@ -90,7 +91,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -100,21 +101,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<CategoryViewDto> Update(CategoryUpdateDto dto)
+        public Response<CategoryViewDto> Update(CategoryUpdateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<CategoryViewDto>.Fail(errorMessage);
+                    return Response<CategoryViewDto>.Fail(errorMessage);
 
                 var result = CategoryService.Update(dto);
                 if (result)
                 {
                     var viewDto = CategoryService.GetById(dto.CID);
-                    return SoapServiceResult<CategoryViewDto>.Ok(viewDto, "Category updated successfully.");
+                    return Response<CategoryViewDto>.Ok(viewDto, "Category updated successfully.");
                 }
-                return SoapServiceResult<CategoryViewDto>.Fail("Failed to update category.");
+                return Response<CategoryViewDto>.Fail("Failed to update category.");
             }
             catch (System.Exception ex)
             {
@@ -122,7 +123,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<CategoryViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -132,14 +133,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> Delete(int categoryId)
+        public Response<bool> Delete(int categoryId)
         {
             try
             {
                 var result = CategoryService.Delete(categoryId);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "Category deleted successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to delete category.");
+                    return Response<bool>.Ok(true, "Category deleted successfully.");
+                return Response<bool>.Fail("Failed to delete category. Make sure you have all deleted the records that are realated with this record.");
             }
             catch (System.Exception ex)
             {
@@ -147,7 +148,18 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else if (ex is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Foreign key violation
+                    {
+                        return Response<bool>.Fail("Deletion failed due to foreign key constraint. Referencing records");
+                    }
+                    else
+                    {
+                        throw; // Re-throw other errors
+                    }
                 }
                 else
                 {

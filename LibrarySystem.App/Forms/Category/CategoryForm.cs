@@ -1,7 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Category
@@ -38,17 +40,24 @@ namespace LibrarySystem.App.Forms.Category
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = CategoryService.GetAll();
-            if (result == null || result.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = CategoryService.GetAll();
+                if (!result.Success || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -83,36 +92,36 @@ namespace LibrarySystem.App.Forms.Category
                 var confirm = MessageBox.Show("Are you sure you want to delete this Category?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
-                    var success = false;
-
                     try
                     {
-                        success = CategoryService.Delete(id);
+                        var result = CategoryService.Delete(id);
+                        if (!result.Success)
+                            ShowError(result.Message);
                     }
                     catch (Exception ex)
                     {
+                        ShowError("Failed to delete Category.");
                         HandleException(ex);
                     }
 
-                    if (success)
-                        RefreshDgv();
-                    else
-                        MessageBox.Show("Failed to delete Category. Make sure you have all deleted the records that are realated with this record.");
+                    RefreshDgv();
                 }
             }
             else if (dgv.Columns[e.ColumnIndex].Name == "btnEdit")
             {
-                var selectedCategory = CategoryService.GetById(id);
-                if (selectedCategory != null)
+                var result = CategoryService.GetById(id);
+
+                if (result != null && result.Success && result.Data != null)
                 {
-                    using (var form = new CategoryManageForm(OperationType.CategoryEdit, selectedCategory, RefreshDgv))
+                    var selectedDto = Mapper.Map<CategoryViewDto>(result.Data);
+                    using (var form = new CategoryManageForm(OperationType.CategoryEdit, selectedDto, RefreshDgv))
                     {
                         form.ShowDialog();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Category not found.");
+                    ShowError("Category not found.");
                     RefreshDgv();
                 }
             }

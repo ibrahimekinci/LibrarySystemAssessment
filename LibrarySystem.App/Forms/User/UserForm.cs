@@ -1,8 +1,9 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.User
@@ -41,17 +42,25 @@ namespace LibrarySystem.App.Forms.User
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = UserService.GetAll();
-            if (result == null || result.Count == 0)
+
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = UserService.GetAll();
+                if (!result.Success || result.Data == null || result.Data.Count() == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    AddActionButtons();
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                AddActionButtons();
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void AddActionButtons()
@@ -95,21 +104,19 @@ namespace LibrarySystem.App.Forms.User
                 var confirm = MessageBox.Show("Are you sure you want to delete this User?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (confirm == DialogResult.Yes)
                 {
-                    var success = false;
-
                     try
                     {
-                        success = UserService.Delete(id);
+                        var result = UserService.Delete(id);
+                        if (!result.Success)
+                            ShowError(result.Message);
                     }
                     catch (Exception ex)
                     {
+                        ShowError("Failed to delete User.");
                         HandleException(ex);
                     }
 
-                    if (success)
-                        RefreshDgv();
-                    else
-                        MessageBox.Show("Failed to delete User. Make sure you have all deleted the records that are realated with this user.");
+                    RefreshDgv();
                 }
             }
             if (dgv.Columns[e.ColumnIndex].Name == "btnResetPassword")
@@ -127,41 +134,43 @@ namespace LibrarySystem.App.Forms.User
                             NewPassword = Guid.NewGuid().ToString("d").Substring(1, 8)
                         };
 
-                        success = UserService.ResetPassword(dto);
-                        if (success)
+                        var dtoSoap = Mapper.Map<UserService.UserPasswordUpdateDto>(dto);
+                        var result = UserService.ResetPassword(dtoSoap);
+
+                        if (result.Success)
                         {
-                            MessageBox.Show($"Password reset successfully. New password: {dto.NewPassword}");
+                            ShowInformation($"Password reset successfully. New password: {dto.NewPassword}", "Success");
+                            success = result.Success;
                         }
                         else
                         {
-                            MessageBox.Show("Failed to reset password. Please try again.");
+                            ShowError(result.Message, "Api Error");
                         }
-
                     }
                     catch (Exception ex)
                     {
+                        ShowError("Failed to delete User.");
                         HandleException(ex);
                     }
 
-                    if (success)
-                        RefreshDgv();
-                    else
-                        MessageBox.Show("Failed to delete User. Make sure you have all deleted the records that are realated with this user.");
+                    RefreshDgv();
                 }
             }
             else if (dgv.Columns[e.ColumnIndex].Name == "btnEdit")
             {
-                var selectedUser = UserService.GetById(id);
-                if (selectedUser != null)
+                var result = UserService.GetById(id);
+
+                if (result != null && result.Success && result.Data != null)
                 {
-                    using (var form = new UserManageForm(OperationType.UserUpdate, selectedUser, RefreshDgv))
+                    var selectedDto = Mapper.Map<UserViewDto>(result.Data);
+                    using (var form = new UserManageForm(OperationType.UserUpdate, selectedDto, RefreshDgv))
                     {
                         form.ShowDialog();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("User not found.");
+                    ShowError("Please try again.");
                     RefreshDgv();
                 }
             }

@@ -1,5 +1,4 @@
-﻿using LibrarySystem.Abstractions.DTOs;
-using System.Data;
+﻿using System.Data;
 
 namespace LibrarySystem.Abstractions.Repositories
 {

@@ -1,5 +1,4 @@
 ﻿using LibrarySystem.Domain.Entities;
-using System.Collections.Generic;
 using System.Data;
 
 namespace LibrarySystem.Abstractions.Repositories

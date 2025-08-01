@@ -1,8 +1,8 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -50,7 +50,7 @@ namespace LibrarySystem.App.Forms.Book
 
         private void btnBorrow_Click(object sender, EventArgs e)
         {
-            var dto = new BorrowCreateDto
+            var dto = new BookLoanService.BorrowCreateDto
             {
                 BorrowDate = DateTime.Now,
                 ISBN = _book.ISBN,
@@ -65,15 +65,21 @@ namespace LibrarySystem.App.Forms.Book
                 return;
             }
 
-            var result = BookLoanService.Borrow(dto);
-            if (result > 0)
+            try
             {
-                ShowInformation("You have successfully borrowed the book.", "Success");
+                var result = BookLoanService.Borrow(dto);
+
+                if (result != null && result.Success && result.Data != null)
+                    ShowInformation("You have successfully borrowed the book.", "Success");
+                else
+                    ShowError("Failed to borrow the book.", "Error");
+
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to borrow the book.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
     }

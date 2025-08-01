@@ -1,6 +1,8 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
 using System;
+using System.Web.Services.Protocols;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms
@@ -41,34 +43,31 @@ namespace LibrarySystem.App.Forms
                 MessageBox.Show("Please enter both username and password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var result = AuthenticationService.Login(username, password);
-            if (result == null)
+
+            try
             {
-                ShowError("Please try again.");
-                return;
+                var result = AuthService.Login(username, password);
+                if (result == null)
+                {
+                    ShowError("Please try again.");
+                    return;
+                }
+                if (!result.Success || result.Data == null || result.Data.UID < 1)
+                {
+                    ShowError(result.Message);
+                    return;
+                }
+
+                var authenticatedUserDto = Mapper.Map<AuthenticatedUserDto>(result.Data);
+                SessionManager.SetUser(authenticatedUserDto);
+
+                ShowDashboard();
             }
-            if (result.UID < 1)
+            catch (Exception ex)
             {
-                ShowError("Invalid login.");
-                return;
+                HandleException(ex);
             }
 
-            SessionManager.SetUser(result);
-
-            //var result = AuthenticationService.Login(username, password);
-            //if (result == null)
-            //{
-            //    ShowError("Please try again.");
-            //    return;
-            //}
-            //if (!result.Success || result.Data == null || result.Data.UID < 1)
-            //{
-            //    MessageBox.Show(result.Message, "Invalid login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
-
-            //SessionManager.SetUser(result.Data);
-            ShowDashboard();
         }
         private void ShowDashboard()
         {

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Borrow">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dto" type="tns:BorrowCreateDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BorrowCreateDto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISBN" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="BorrowDate" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BorrowResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BorrowResult" type="tns:ResponseOfBorrowViewDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfBorrowViewDto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:BorrowViewDto" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BorrowViewDto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ISBN" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualReturnDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LateFee" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BorrowDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="BookName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Return">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dto" type="tns:BorrowReturnDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BorrowReturnDto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualReturnDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LateFee" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReturnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnResult" type="tns:ResponseOfBorrowViewDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByIdResult" type="tns:ResponseOfBorrowViewDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnreturnedLoansByUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnreturnedLoansByUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnreturnedLoansByUserIdResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfDataTable">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAll">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllByUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllByUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllByUserIdResult" type="tns:ResponseOfDataTable" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Delete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="borrowId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Data" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="BorrowSoapIn">
+    <wsdl:part name="parameters" element="tns:Borrow" />
+  </wsdl:message>
+  <wsdl:message name="BorrowSoapOut">
+    <wsdl:part name="parameters" element="tns:BorrowResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnSoapIn">
+    <wsdl:part name="parameters" element="tns:Return" />
+  </wsdl:message>
+  <wsdl:message name="ReturnSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetById" />
+  </wsdl:message>
+  <wsdl:message name="GetByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnreturnedLoansByUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnreturnedLoansByUserId" />
+  </wsdl:message>
+  <wsdl:message name="GetUnreturnedLoansByUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnreturnedLoansByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllByUserId" />
+  </wsdl:message>
+  <wsdl:message name="GetAllByUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="DeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="BookLoanSoapServiceSoap">
+    <wsdl:operation name="Borrow">
+      <wsdl:input message="tns:BorrowSoapIn" />
+      <wsdl:output message="tns:BorrowSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Return">
+      <wsdl:input message="tns:ReturnSoapIn" />
+      <wsdl:output message="tns:ReturnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <wsdl:input message="tns:GetByIdSoapIn" />
+      <wsdl:output message="tns:GetByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreturnedLoansByUserId">
+      <wsdl:input message="tns:GetUnreturnedLoansByUserIdSoapIn" />
+      <wsdl:output message="tns:GetUnreturnedLoansByUserIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <wsdl:input message="tns:GetAllSoapIn" />
+      <wsdl:output message="tns:GetAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByUserId">
+      <wsdl:input message="tns:GetAllByUserIdSoapIn" />
+      <wsdl:output message="tns:GetAllByUserIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input message="tns:DeleteSoapIn" />
+      <wsdl:output message="tns:DeleteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BookLoanSoapServiceSoap" type="tns:BookLoanSoapServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Borrow">
+      <soap:operation soapAction="http://tempuri.org/Borrow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return">
+      <soap:operation soapAction="http://tempuri.org/Return" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <soap:operation soapAction="http://tempuri.org/GetById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreturnedLoansByUserId">
+      <soap:operation soapAction="http://tempuri.org/GetUnreturnedLoansByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByUserId">
+      <soap:operation soapAction="http://tempuri.org/GetAllByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BookLoanSoapServiceSoap12" type="tns:BookLoanSoapServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Borrow">
+      <soap12:operation soapAction="http://tempuri.org/Borrow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Return">
+      <soap12:operation soapAction="http://tempuri.org/Return" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetById">
+      <soap12:operation soapAction="http://tempuri.org/GetById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnreturnedLoansByUserId">
+      <soap12:operation soapAction="http://tempuri.org/GetUnreturnedLoansByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAll">
+      <soap12:operation soapAction="http://tempuri.org/GetAll" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllByUserId">
+      <soap12:operation soapAction="http://tempuri.org/GetAllByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://tempuri.org/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BookLoanSoapService">
+    <wsdl:port name="BookLoanSoapServiceSoap" binding="tns:BookLoanSoapServiceSoap">
+      <soap:address location="http://librarysystem.com/Services/BookLoanSoapService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BookLoanSoapServiceSoap12" binding="tns:BookLoanSoapServiceSoap12">
+      <soap12:address location="http://librarysystem.com/Services/BookLoanSoapService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,8 +1,8 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -162,15 +162,25 @@ namespace LibrarySystem.App.Forms.User
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = UserService.Register(dto);
-            if (result > 0)
+
+            var dtoSoap = Mapper.Map<UserService.UserCreateDto>(dto);
+            try
             {
-                ShowInformation("Author create successfully.", "Success");
+                var result = UserService.Register(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update author.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -192,15 +202,24 @@ namespace LibrarySystem.App.Forms.User
                 return;
             }
 
-            var result = UserService.UpdateUser(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<UserService.UserUpdateDto>(dto);
+            try
             {
-                ShowInformation("User updated successfully.", "Success");
+                var result = UserService.UpdateUser(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update user.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnUpdateMyProfile_Click(object sender, System.EventArgs e)
@@ -221,24 +240,40 @@ namespace LibrarySystem.App.Forms.User
                 return;
             }
 
-            var result = UserService.UpdateUser(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<UserService.UserUpdateDto>(dto);
+            try
             {
-                ShowInformation("Your profile updated successfully.", "Success");
-                var user = UserService.GetById(SessionManager.UID);
-                var authenticatedUser = new AuthenticatedUserDto()
+                var resultUserUpdate = UserService.UpdateUser(dtoSoap);
+                if (resultUserUpdate.Success)
                 {
-                    UID = user.UID,
-                    UserName = user.UserName,
-                    UserLevel = user.UserLevel,
-                    Email = user.Email,
-                    PhoneNumber = user.PhoneNumber,
-                };
-                SessionManager.SetUser(authenticatedUser);
+                    ShowInformation("Your profile updated successfully.", "Success");
+                    var userViewResult = UserService.GetById(SessionManager.UID);
+                    if (userViewResult.Success)
+                    {
+                        var authenticatedUser = new AuthenticatedUserDto()
+                        {
+                            UID = userViewResult.Data.UID,
+                            UserName = userViewResult.Data.UserName,
+                            Email = userViewResult.Data.Email,
+                            PhoneNumber = userViewResult.Data.PhoneNumber,
+                            UserLevel = SessionManager.UserLevel,
+                            Token = SessionManager.Token
+                        };
+                        SessionManager.SetUser(authenticatedUser);
+                    }
+                    else
+                    {
+                        ShowError(userViewResult.Message);
+                    }
+                }
+                else
+                {
+                    ShowError("Failed to update your profile.", "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update your profile.", "Error");
+                HandleException(ex);
             }
         }
         private void btnResetPassword_Click(object sender, EventArgs e)
@@ -246,8 +281,6 @@ namespace LibrarySystem.App.Forms.User
             var confirm = MessageBox.Show("Are you sure you want to reset the password?", "Confirm Reset Password", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirm == DialogResult.Yes)
             {
-                var success = false;
-
                 try
                 {
                     var dto = new UserPasswordUpdateDto()
@@ -255,15 +288,16 @@ namespace LibrarySystem.App.Forms.User
                         UID = _user.UID,
                         NewPassword = Guid.NewGuid().ToString("d").Substring(1, 8)
                     };
-
-                    success = UserService.ResetPassword(dto);
-                    if (success)
+                    var dtoSoap = Mapper.Map<UserService.UserPasswordUpdateDto>(dto);
+                    var result = UserService.ResetPassword(dtoSoap);
+                    if (result.Success)
                     {
-                        MessageBox.Show($"Password reset successfully. New password: {dto.NewPassword}");
+                        ShowInformation($"Password reset successfully. New password: {dto.NewPassword}", "Success");
+
                     }
                     else
                     {
-                        MessageBox.Show("Failed to reset password. Please try again.");
+                        ShowError(result.Message, "Api Error");
                     }
 
                 }

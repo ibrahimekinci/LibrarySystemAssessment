@@ -1,8 +1,8 @@
-﻿namespace LibrarySystem.Domain.Enums
+﻿namespace LibrarySystem.Abstractions.Enums
 {
     public enum UserLevelEnum
     {
-        Unknown = -1,
+        Unknown = 0,
 
         Student = 1,
         Staff = 2,

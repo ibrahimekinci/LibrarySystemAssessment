@@ -17,12 +17,12 @@ namespace LibrarySystem.WebApi.Services
     public class ReportSoapService : BaseSoapService
     {
         [WebMethod]
-        public SoapServiceResult<DataTable> GetMostBorrowedBooks()
+        public Response<DataTable> GetMostBorrowedBooks()
         {
             try
             {
                 var result = ReportService.GetMostBorrowedBooks();
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -30,7 +30,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -40,12 +40,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetOverdueBooks()
+        public Response<DataTable> GetOverdueBooks()
         {
             try
             {
                 var result = ReportService.GetOverdueBooks();
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -53,7 +53,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -63,12 +63,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetBorrowedBooksByCategory()
+        public Response<DataTable> GetBorrowedBooksByCategory()
         {
             try
             {
                 var result = ReportService.GetBorrowedBooksByCategory();
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -76,7 +76,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {

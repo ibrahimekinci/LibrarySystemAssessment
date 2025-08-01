@@ -133,5 +133,4 @@ $RECYCLE.BIN/
 _NCrunch*
 /.vs
 
-ErrorLog.txt
-TemplateEngineHost/
+Thumbs.db

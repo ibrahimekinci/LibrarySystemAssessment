@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
 using System.Data;
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services
@@ -20,21 +21,21 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<BorrowViewDto> Borrow(BorrowCreateDto dto)
+        public Response<BorrowViewDto> Borrow(BorrowCreateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<BorrowViewDto>.Fail(errorMessage);
+                    return Response<BorrowViewDto>.Fail(errorMessage);
 
                 var result = BookLoanService.Borrow(dto);
                 if (result > 0)
                 {
                     var viewDto = BookLoanService.GetById(result);
-                    return SoapServiceResult<BorrowViewDto>.Ok(viewDto, "Book borrowed successfully.");
+                    return Response<BorrowViewDto>.Ok(viewDto, "Book borrowed successfully.");
                 }
-                return SoapServiceResult<BorrowViewDto>.Fail("Failed to borrow book.");
+                return Response<BorrowViewDto>.Fail("Failed to borrow book.");
             }
             catch (System.Exception ex)
             {
@@ -42,7 +43,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -52,21 +53,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BorrowViewDto> Return(BorrowReturnDto dto)
+        public Response<BorrowViewDto> Return(BorrowReturnDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<BorrowViewDto>.Fail(errorMessage);
+                    return Response<BorrowViewDto>.Fail(errorMessage);
 
                 var result = BookLoanService.Return(dto);
                 if (result)
                 {
                     var viewDto = BookLoanService.GetById(dto.BID);
-                    return SoapServiceResult<BorrowViewDto>.Ok(viewDto, "Book returned successfully.");
+                    return Response<BorrowViewDto>.Ok(viewDto, "Book returned successfully.");
                 }
-                return SoapServiceResult<BorrowViewDto>.Fail("Failed to return book.");
+                return Response<BorrowViewDto>.Fail("Failed to return book.");
             }
             catch (System.Exception ex)
             {
@@ -74,7 +75,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -84,14 +85,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<BorrowViewDto> GetById(int id)
+        public Response<BorrowViewDto> GetById(int id)
         {
             try
             {
                 var result = BookLoanService.GetById(id);
                 if (result != null)
-                    return SoapServiceResult<BorrowViewDto>.Ok(result);
-                return SoapServiceResult<BorrowViewDto>.Fail("Loan not found.");
+                    return Response<BorrowViewDto>.Ok(result);
+                return Response<BorrowViewDto>.Fail("Loan not found.");
             }
             catch (System.Exception ex)
             {
@@ -99,7 +100,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<BorrowViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -109,12 +110,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetUnreturnedLoansByUserId(int userId)
+        public Response<DataTable> GetUnreturnedLoansByUserId(int userId)
         {
             try
             {
                 var result = BookLoanService.GetUnreturnedLoansByUserId(userId);
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -122,7 +123,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -132,12 +133,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetAll()
+        public Response<DataTable> GetAll()
         {
             try
             {
                 var result = BookLoanService.GetAll();
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -145,7 +146,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -155,12 +156,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<DataTable> GetAllByUserId(int userId)
+        public Response<DataTable> GetAllByUserId(int userId)
         {
             try
             {
                 var result = BookLoanService.GetAllByUserId(userId);
-                return SoapServiceResult<DataTable>.Ok(result);
+                return Response<DataTable>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -168,7 +169,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<DataTable>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<DataTable>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -178,14 +179,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> Delete(int borrowId)
+        public Response<bool> Delete(int borrowId)
         {
             try
             {
                 var result = BookLoanService.Delete(borrowId);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "Loan deleted successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to delete loan.");
+                    return Response<bool>.Ok(true, "Loan deleted successfully.");
+                return Response<bool>.Fail("Failed to delete loan. Make sure you have all deleted the records that are realated with this record.");
             }
             catch (System.Exception ex)
             {
@@ -193,7 +194,18 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else if (ex is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Foreign key violation
+                    {
+                        return Response<bool>.Fail("Deletion failed due to foreign key constraint. Referencing records");
+                    }
+                    else
+                    {
+                        throw; // Re-throw other errors
+                    }
                 }
                 else
                 {

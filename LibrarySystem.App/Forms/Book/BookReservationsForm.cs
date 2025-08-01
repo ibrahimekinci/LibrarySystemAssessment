@@ -1,6 +1,6 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -50,32 +50,47 @@ namespace LibrarySystem.App.Forms.Book
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookReservationService.GetAll();
-            if (result == null || result.Rows.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookReservationService.GetAll();
+                if (!result.Success || result.Data == null || result.Data.Rows.Count == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
         private void UserDgvRefresh()
         {
             dgv.Width = this.Width - 40;
             dgv.Columns.Clear();
-            var result = BookReservationService.GetAllByUserId(SessionManager.UID);
-            if (result == null || result.Rows.Count == 0)
+            try
             {
-                dgv.DataSource = null;
-                lblMessage.Visible = true;
+                var result = BookReservationService.GetAllByUserId(SessionManager.UID);
+
+                if (!result.Success || result.Data == null || result.Data.Rows.Count == 0)
+                {
+                    dgv.DataSource = null;
+                    lblMessage.Visible = true;
+                }
+                else
+                {
+                    dgv.DataSource = result.Data;
+                    lblMessage.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                dgv.DataSource = result;
-                lblMessage.Visible = false;
+                HandleException(ex);
             }
         }
     }

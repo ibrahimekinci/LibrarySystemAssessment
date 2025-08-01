@@ -1,8 +1,8 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.BLL.Services;
-using LibrarySystem.Domain.Enums;
 using LibrarySystem.WebApi.Models;
 using System.Web.Services;
 
@@ -20,9 +20,9 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
-        public SoapServiceResult<bool> Log(AuditActionType actionType, int userId, string details)
+        public Response<bool> Log(AuditActionType actionType, int userId, string details)
         {
-            var response = SoapServiceResult<bool>.Fail();
+            var response = Response<bool>.Fail();
 
             try
             {
@@ -47,16 +47,16 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> LogWithDto(AuditLogDto log)
+        public Response<bool> LogWithDto(AuditLogDto log)
         {
             try
             {
                 string errorMessage = log.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<bool>.Fail(errorMessage);
+                    return Response<bool>.Fail(errorMessage);
 
                 AuditLogService.Log(log);
-                return SoapServiceResult<bool>.Ok(true, "Audit log recorded successfully.");
+                return Response<bool>.Ok(true, "Audit log recorded successfully.");
             }
             catch (System.Exception ex)
             {
@@ -64,7 +64,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {

@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Domain.Entities;
 using LibrarySystem.DAL.Repositories;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 
 namespace LibrarySystem.Tests.Integration.DAL
 {
@@ -17,7 +17,7 @@ namespace LibrarySystem.Tests.Integration.DAL
                 Password = "pass123",
                 Email = $"test_{suffix}@test.com",
                 PhoneNumber = "0400000000",
-                UserLevel = UserLevelEnum.Student
+                UserLevel = (int)UserLevelEnum.Student
             };
         }
 
@@ -55,7 +55,7 @@ namespace LibrarySystem.Tests.Integration.DAL
             user.UserName = "u" + user.UserName;
             user.Email = "updated@test.com";
             user.PhoneNumber = "0411222333";
-            user.UserLevel = UserLevelEnum.Manager;
+            user.UserLevel = (int)UserLevelEnum.Manager;
 
             // Act
             var updated = _repo.Update(user);

@@ -1,9 +1,10 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibrarySystem.App.Forms.BookManage
 {
@@ -94,24 +95,60 @@ namespace LibrarySystem.App.Forms.BookManage
         }
         private void LoadCategories()
         {
-            var categories = CategoryService.GetAll();
-            cbCategory.DataSource = categories;
-            cbCategory.DisplayMember = "CategoryName";
-            cbCategory.ValueMember = "CID";
+            try
+            {
+                var result = CategoryService.GetAll();
+                if (result.Success && result.Data != null)
+                {
+                    var categories = result.Data.ToList();
+                    categories?.Insert(0, new CategoryService.CategoryViewDto { CID = 0, CategoryName = "Choose" });
+                    cbCategory.DataSource = categories;
+                    cbCategory.DisplayMember = "CategoryName";
+                    cbCategory.ValueMember = "CID";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void LoadLanguages()
         {
-            var languages = LanguageService.GetAll();
-            cbLanguage.DataSource = languages;
-            cbLanguage.DisplayMember = "LanguageName";
-            cbLanguage.ValueMember = "LID";
+            try
+            {
+                var result = LanguageService.GetAll();
+                if (result.Success && result.Data != null)
+                {
+                    var languages = result.Data.ToList();
+                    languages?.Insert(0, new LanguageService.LanguageViewDto { LID = 0, LanguageName = "Choose" });
+                    cbLanguage.DataSource = languages;
+                    cbLanguage.DisplayMember = "LanguageName";
+                    cbLanguage.ValueMember = "LID";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void LoadAuthors()
         {
-            var authors = AuthorService.GetAll();
-            cbAuthor.DataSource = authors;
-            cbAuthor.DisplayMember = "AuthorName";
-            cbAuthor.ValueMember = "AID";
+            try
+            {
+                var result = AuthorService.GetAll();
+                if (result.Success && result.Data != null)
+                {
+                    var authors = result.Data.ToList();
+                    authors?.Insert(0, new AuthorService.AuthorViewDto { AID = 0, AuthorName = "Choose" });
+                    cbAuthor.DataSource = authors;
+                    cbAuthor.DisplayMember = "AuthorName";
+                    cbAuthor.ValueMember = "AID";
+                }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
         private void CloseTheFormDialog()
         {
@@ -139,15 +176,24 @@ namespace LibrarySystem.App.Forms.BookManage
                 return;
             }
 
-            var result = BookService.Add(dto);
-            if (result > 0)
+            var dtoSoap = Mapper.Map<BookService.BookDto>(dto);
+            try
             {
-                ShowInformation("Book create successfully.", "Success");
+                var result = BookService.Add(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Book.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -171,15 +217,24 @@ namespace LibrarySystem.App.Forms.BookManage
                 return;
             }
 
-            var result = BookService.Update(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<BookService.BookDto>(dto);
+            try
             {
-                ShowInformation("Book updated successfully.", "Success");
+                var result = BookService.Update(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Book.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
     }

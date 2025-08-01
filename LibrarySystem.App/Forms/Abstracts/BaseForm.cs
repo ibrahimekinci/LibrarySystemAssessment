@@ -1,138 +1,63 @@
-﻿using LibrarySystem.Abstractions.Services;
+﻿using AutoMapper;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Forms.Dashboards;
 using LibrarySystem.App.Forms.Messages;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.BLL.Services;
-using LibrarySystem.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Web.Services.Protocols;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Abstracts
 {
     public partial class BaseForm : Form
     {
-        #region Services
-        private IAuthorService _authorService;
-        protected IAuthorService AuthorService
-        {
-            get
-            {
-                if (_authorService == null)
-                    _authorService = new AuthorService();
-                return _authorService;
-            }
-        }
-        private ICategoryService _categoryService;
-        protected ICategoryService CategoryService
-        {
-            get
-            {
-                if (_categoryService == null)
-                    _categoryService = new CategoryService();
-                return _categoryService;
-            }
-        }
-        private ILanguageService _languageService;
-        protected ILanguageService LanguageService
-        {
-            get
-            {
-                if (_languageService == null)
-                    _languageService = new LanguageService();
-                return _languageService;
-            }
-        }
-        private IBookService _bookService;
-        protected IBookService BookService
-        {
-            get
-            {
-                if (_bookService == null)
-                    _bookService = new BookService();
-                return _bookService;
-            }
-        }
 
-        private IBookLoanService _bookLoanService;
-        protected IBookLoanService BookLoanService
+        #region fields
+        private bool _disposed;
+        private static IMapper _mapper;
+        protected static IMapper Mapper
         {
             get
             {
-                if (_bookLoanService == null)
-                    _bookLoanService = new BookLoanService();
-                return _bookLoanService;
+                if (_mapper == null)
+                {
+                    _mapper = AutoMapperConfig.Mapper;
+                }
+                return _mapper;
             }
         }
+        // Lazy initialization for thread-safety
+        // Lazy initialization for thread-safety with immediate initialization
+        private readonly Lazy<AuthService.AuthSoapServiceSoapClient> _authService = new Lazy<AuthService.AuthSoapServiceSoapClient>(() => new SoapApiHelper().GetAuthSoapClient());
+        private readonly Lazy<BookLoanService.BookLoanSoapServiceSoapClient> _bookLoanService = new Lazy<BookLoanService.BookLoanSoapServiceSoapClient>(() => new SoapApiHelper().GetBookLoanSoapClient());
+        private readonly Lazy<BookReservationService.BookReservationSoapServiceSoapClient> _bookReservationService = new Lazy<BookReservationService.BookReservationSoapServiceSoapClient>(() => new SoapApiHelper().GetBookReservationSoapClient());
+        private readonly Lazy<BookService.BookSoapServiceSoapClient> _bookService = new Lazy<BookService.BookSoapServiceSoapClient>(() => new SoapApiHelper().GetBookSoapClient());
+        private readonly Lazy<CategoryService.CategorySoapServiceSoapClient> _categoryService = new Lazy<CategoryService.CategorySoapServiceSoapClient>(() => new SoapApiHelper().GetCategorySoapClient());
+        private readonly Lazy<LanguageService.LanguageSoapServiceSoapClient> _languageService = new Lazy<LanguageService.LanguageSoapServiceSoapClient>(() => new SoapApiHelper().GetLanguageSoapClient());
+        private readonly Lazy<ReportService.ReportSoapServiceSoapClient> _reportService = new Lazy<ReportService.ReportSoapServiceSoapClient>(() => new SoapApiHelper().GetReportSoapClient());
+        private readonly Lazy<TestService.TestSoapServiceSoapClient> _testService = new Lazy<TestService.TestSoapServiceSoapClient>(() => new SoapApiHelper().GetTestSoapClient());
+        private readonly Lazy<UserService.UserSoapServiceSoapClient> _userService = new Lazy<UserService.UserSoapServiceSoapClient>(() => new SoapApiHelper().GetUserSoapClient());
+        private readonly Lazy<AuditService.AuditSoapServiceSoapClient> _auditService = new Lazy<AuditService.AuditSoapServiceSoapClient>(() => new SoapApiHelper().GetAuditSoapClient());
+        private readonly Lazy<AuthorService.AuthorSoapServiceSoapClient> _authorService = new Lazy<AuthorService.AuthorSoapServiceSoapClient>(() => new SoapApiHelper().GetAuthorSoapClient());
+        private readonly Lazy<SoapApiHelper> _soapApiHelper = new Lazy<SoapApiHelper>(() => new SoapApiHelper(SessionManager.Token));
+        private readonly Lazy<LogHelper> _logHelper = new Lazy<LogHelper>(() => new LogHelper());
+        public AuthService.AuthSoapServiceSoapClient AuthService => _authService.Value;
+        public BookLoanService.BookLoanSoapServiceSoapClient BookLoanService => _bookLoanService.Value;
+        public BookReservationService.BookReservationSoapServiceSoapClient BookReservationService => _bookReservationService.Value;
+        public BookService.BookSoapServiceSoapClient BookService => _bookService.Value;
+        public CategoryService.CategorySoapServiceSoapClient CategoryService => _categoryService.Value;
+        public LanguageService.LanguageSoapServiceSoapClient LanguageService => _languageService.Value;
+        public ReportService.ReportSoapServiceSoapClient ReportService => _reportService.Value;
+        public TestService.TestSoapServiceSoapClient TestService => _testService.Value;
+        public UserService.UserSoapServiceSoapClient UserService => _userService.Value;
+        public AuditService.AuditSoapServiceSoapClient AuditService => _auditService.Value;
+        public AuthorService.AuthorSoapServiceSoapClient AuthorService => _authorService.Value;
+        public SoapApiHelper SoapApiHelper => _soapApiHelper.Value;
+        public LogHelper LogHelper => _logHelper.Value;
 
-        private IBookReservationService _bookReservationService;
-        protected IBookReservationService BookReservationService
-        {
-            get
-            {
-                if (_bookReservationService == null)
-                    _bookReservationService = new BookReservationService();
-                return _bookReservationService;
-            }
-        }
-
-        private IReportService _reportService;
-        protected IReportService ReportService
-        {
-            get
-            {
-                if (_reportService == null)
-                    _reportService = new ReportService();
-                return _reportService;
-            }
-        }
-
-        private IUserService _userService;
-        protected IUserService UserService
-        {
-            get
-            {
-                if (_userService == null)
-                    _userService = new UserService();
-                return _userService;
-            }
-        }
-        private IAuthenticationService _authenticationService;
-        protected IAuthenticationService AuthenticationService
-        {
-            get
-            {
-                if (_authenticationService == null)
-                    _authenticationService = new AuthenticationService();
-                return _authenticationService;
-            }
-        }
-        private ILogService _logService;
-        protected ILogService LogService
-        {
-            get
-            {
-                if (_logService == null)
-                    _logService = new LogService();
-                return _logService;
-            }
-        }
-        private IAuditLogService _auditLogService;
-        protected IAuditLogService AuditLogService
-        {
-            get
-            {
-                if (_auditLogService == null)
-                    _auditLogService = new AuditLogService();
-                return _auditLogService;
-            }
-        }
-        #endregion
-
-        #region SoapApiClients
-       
         #endregion
 
 
@@ -146,15 +71,11 @@ namespace LibrarySystem.App.Forms.Abstracts
             LoadFormData();
         }
         protected virtual void InitializeUIAdditional() { }
-        protected virtual AuditActionType GetAuditActionForOpen()
-        {
-            return AuditActionType.Unknown; // Override in derived form
-        }
         #endregion
 
         #region Authorization
         private static readonly IReadOnlyList<UserLevelEnum> defaultAllowedUserLevels =
-            new List<UserLevelEnum> { UserLevelEnum.Manager }.AsReadOnly();
+            (IReadOnlyList<UserLevelEnum>)new List<UserLevelEnum> { UserLevelEnum.Manager }.AsReadOnly();
 
         protected bool AuthorizetionCheck()
         {
@@ -177,9 +98,74 @@ namespace LibrarySystem.App.Forms.Abstracts
 
         #endregion
 
+        #region Dispose
+        private void DisposeClient<T>(Lazy<T> client) where T : IDisposable
+        {
+            if (client.IsValueCreated)
+            {
+                try
+                {
+                    var serviceClient = client.Value as System.ServiceModel.ICommunicationObject;
+                    if (serviceClient != null)
+                    {
+                        if (serviceClient.State == System.ServiceModel.CommunicationState.Faulted)
+                        {
+                            serviceClient.Abort();
+                        }
+                        else
+                        {
+                            serviceClient.Close();
+                        }
+                    }
+                    client.Value.Dispose();
+                }
+                catch
+                {
+                    var serviceClient = client.Value as System.ServiceModel.ICommunicationObject;
+                    serviceClient?.Abort();
+                }
+            }
+        }
+        private void ClientsDispose(object sender, FormClosingEventArgs e)
+        {
+            // Dispose all created objects
+            if (!_disposed)
+            {
+                // Dispose SOAP clients
+                DisposeClient(_authService);
+                DisposeClient(_bookLoanService);
+                DisposeClient(_bookReservationService);
+                DisposeClient(_bookService);
+                DisposeClient(_categoryService);
+                DisposeClient(_languageService);
+                DisposeClient(_reportService);
+                DisposeClient(_testService);
+                DisposeClient(_userService);
+                DisposeClient(_auditService);
+                DisposeClient(_authorService);
+
+                // Dispose SoapApiHelper if it implements IDisposable
+                if (_soapApiHelper.IsValueCreated && _soapApiHelper.Value is IDisposable disposableSoapApiHelper)
+                {
+                    disposableSoapApiHelper.Dispose();
+                }
+
+                // Dispose LogHelper if it implements IDisposable
+                if (_logHelper.IsValueCreated && _logHelper.Value is IDisposable disposableLogHelper)
+                {
+                    disposableLogHelper.Dispose();
+                }
+
+                _disposed = true;
+            }
+        }
+        #endregion
+
         #region Constructor 
         protected BaseForm()
         {
+            this.FormClosing += ClientsDispose;
+
             InitializeComponent(); // Required for designer
             InitializeFormBase(); // Safe UI initialization only
         }
@@ -274,8 +260,22 @@ namespace LibrarySystem.App.Forms.Abstracts
         {
             try
             {
-                LogService.LogException(ex);
-                AuditLogService.Log(AuditActionType.ApplicationException, SessionManager.UID, ex.Message);
+                if (ex is System.ServiceModel.FaultException soapFaultException)
+                {
+                    ShowError(ex.Message, "Api Error");
+                }
+                else if (ex is System.ServiceModel.CommunicationException soapCommunicationException)
+                {
+                    if (ex.Message.Contains("Server returned an invalid SOAP Fault"))
+                    {
+                        ShowError($"Invalid SOAP Fault Detected", "Error");
+                    }
+                    else
+                    {
+                        ShowError($"General Communication Error", "Error");
+                    }
+                }
+                LogHelper.LogException(ex);
             }
             catch (Exception logEx)
             {

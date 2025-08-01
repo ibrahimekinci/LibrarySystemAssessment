@@ -33,10 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,6 +54,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\AuditService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AuthorService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\AuthService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\BookLoanService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\BookReservationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\BookService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CategoryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\LanguageService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ReportService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TestService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\UserService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Abstracts\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,8 +260,11 @@
       <DependentUpon>UserManageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AppTheme.cs" />
+    <Compile Include="Helpers\AutoMapperConfig.cs" />
     <Compile Include="Helpers\FormManager.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SessionManager.cs" />
+    <Compile Include="Helpers\SoapApiHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Abstracts\MainMdiForm.resx">
@@ -280,6 +344,231 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\AuditService\AuditSoapService.wsdl" />
+    <None Include="Connected Services\AuditService\LibrarySystem.App.AuditService.LogResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuditService\LibrarySystem.App.AuditService.LogWithDtoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuditService\LibrarySystem.App.AuditService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\AuthorSoapService.wsdl" />
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.AddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.GetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.ResponseOfAuthorViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.ResponseOfListOfAuthorViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthorService\LibrarySystem.App.AuthorService.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\AuthSoapService.wsdl" />
+    <None Include="Connected Services\AuthService\LibrarySystem.App.AuthService.LoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\AuthService\LibrarySystem.App.AuthService.ResponseOfAuthenticatedUserDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookLoanService\BookLoanSoapService.wsdl" />
+    <None Include="Connected Services\BookLoanService\LibrarySystem.App.BookLoanService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookLoanService\LibrarySystem.App.BookLoanService.ResponseOfBorrowViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookLoanService\LibrarySystem.App.BookLoanService.ResponseOfDataTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookReservationService\BookReservationSoapService.wsdl" />
+    <None Include="Connected Services\BookReservationService\LibrarySystem.App.BookReservationService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookReservationService\LibrarySystem.App.BookReservationService.ResponseOfDataTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookReservationService\LibrarySystem.App.BookReservationService.ResponseOfReserveViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\BookSoapService.wsdl" />
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.AddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.GetAvailableBookByISBNResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.GetAvailableBooksResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.GetBorrowedBookByUserIdAndISBNResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.GetByISBNResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.ResponseOfBookViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.ResponseOfListOfBookViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.SearchResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BookService\LibrarySystem.App.BookService.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\CategorySoapService.wsdl" />
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.AddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.GetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.ResponseOfCategoryViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.ResponseOfListOfCategoryViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CategoryService\LibrarySystem.App.CategoryService.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LanguageSoapService.wsdl" />
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.AddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.GetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.ResponseOfLanguageViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.ResponseOfListOfLanguageViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LanguageService\LibrarySystem.App.LanguageService.UpdateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ReportService\LibrarySystem.App.ReportService.ResponseOfDataTable.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ReportService\ReportSoapService.wsdl" />
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.SoapServiceHealthCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestBadRequestExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestConflictExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestCustomExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestDatabaseHealthCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestExternalServiceExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestForbiddenExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestInternalServerErrorExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestMethodNotAllowedExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestNotFoundExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestResourceAlreadyExistsExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestUnauthorizedExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestUnprocessableEntityExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\LibrarySystem.App.TestService.TestValidationExceptionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\TestService\TestSoapService.wsdl" />
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.DeleteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.GetAllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.GetByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.RegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.ResetPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.ResponseOfBoolean.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.ResponseOfListOfUserViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.ResponseOfUserViewDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\LibrarySystem.App.UserService.UpdateUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\UserService\UserSoapService.wsdl" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -299,20 +588,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj">
-      <Project>{89d27d4a-725d-4203-9cc3-b05dedb1f498}</Project>
-      <Name>LibrarySystem.Abstractions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibrarySystem.BLL\LibrarySystem.BLL.csproj">
-      <Project>{4a81701b-170a-4b15-bd32-8c538de0753a}</Project>
-      <Name>LibrarySystem.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LibrarySystem.Domain\LibrarySystem.Domain.csproj">
-      <Project>{a8f66709-f6b1-47cf-9ca3-7b6b590c34c6}</Project>
-      <Name>LibrarySystem.Domain</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\401.png" />
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +605,195 @@
   <ItemGroup>
     <None Include="Resources\bg22.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\AuditService\" />
+    <WCFMetadataStorage Include="Connected Services\AuthorService\" />
+    <WCFMetadataStorage Include="Connected Services\AuthService\" />
+    <WCFMetadataStorage Include="Connected Services\BookLoanService\" />
+    <WCFMetadataStorage Include="Connected Services\BookReservationService\" />
+    <WCFMetadataStorage Include="Connected Services\BookService\" />
+    <WCFMetadataStorage Include="Connected Services\CategoryService\" />
+    <WCFMetadataStorage Include="Connected Services\LanguageService\" />
+    <WCFMetadataStorage Include="Connected Services\ReportService\" />
+    <WCFMetadataStorage Include="Connected Services\TestService\" />
+    <WCFMetadataStorage Include="Connected Services\UserService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuditService\AuditSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuditService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuditService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuditService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\AuthSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookLoanService\BookLoanSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookLoanService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookLoanService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookLoanService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookReservationService\BookReservationSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookReservationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookReservationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookReservationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookService\BookSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\BookService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CategoryService\CategorySoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CategoryService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CategoryService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CategoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LanguageService\LanguageSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LanguageService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LanguageService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LanguageService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ReportService\ReportSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ReportService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ReportService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ReportService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TestService\TestSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TestService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TestService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TestService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\UserSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\UserService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthorService\AuthorSoapService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthorService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthorService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\AuthorService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibrarySystem.Abstractions\LibrarySystem.Abstractions.csproj">
+      <Project>{89d27d4a-725d-4203-9cc3-b05dedb1f498}</Project>
+      <Name>LibrarySystem.Abstractions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

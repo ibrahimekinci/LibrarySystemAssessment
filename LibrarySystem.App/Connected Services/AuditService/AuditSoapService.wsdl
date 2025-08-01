@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="Log">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="actionType" type="tns:AuditActionType" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="details" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="AuditActionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="ApplicationException" />
+          <s:enumeration value="ApplicationStarted" />
+          <s:enumeration value="ApplicationEnded" />
+          <s:enumeration value="Login" />
+          <s:enumeration value="Logout" />
+          <s:enumeration value="CreateBook" />
+          <s:enumeration value="EditBook" />
+          <s:enumeration value="DeleteBook" />
+          <s:enumeration value="SearchBook" />
+          <s:enumeration value="ReserveBook" />
+          <s:enumeration value="BorrowBook" />
+          <s:enumeration value="ReturnBook" />
+          <s:enumeration value="ViewAvailableBooks" />
+          <s:enumeration value="ViewBorrowedBooks" />
+          <s:enumeration value="GetReportMostBorrowedBooks" />
+          <s:enumeration value="GetReportOverdueBooks" />
+          <s:enumeration value="GetReportBorrowedBooksByCategory" />
+          <s:enumeration value="AccessUnauthorizedPage" />
+          <s:enumeration value="ManageUsers" />
+          <s:enumeration value="ManageAuthors" />
+          <s:enumeration value="ManageCategories" />
+          <s:enumeration value="ManageLanguages" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="LogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResponseOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Success" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Data" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogWithDto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="log" type="tns:AuditLogDto" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuditLogDto">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="UserId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActionType" type="tns:AuditActionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActionTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Details" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="LogWithDtoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogWithDtoResult" type="tns:ResponseOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LogSoapIn">
+    <wsdl:part name="parameters" element="tns:Log" />
+  </wsdl:message>
+  <wsdl:message name="LogSoapOut">
+    <wsdl:part name="parameters" element="tns:LogResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogWithDtoSoapIn">
+    <wsdl:part name="parameters" element="tns:LogWithDto" />
+  </wsdl:message>
+  <wsdl:message name="LogWithDtoSoapOut">
+    <wsdl:part name="parameters" element="tns:LogWithDtoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AuditSoapServiceSoap">
+    <wsdl:operation name="Log">
+      <wsdl:input message="tns:LogSoapIn" />
+      <wsdl:output message="tns:LogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogWithDto">
+      <wsdl:input message="tns:LogWithDtoSoapIn" />
+      <wsdl:output message="tns:LogWithDtoSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AuditSoapServiceSoap" type="tns:AuditSoapServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Log">
+      <soap:operation soapAction="http://tempuri.org/Log" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogWithDto">
+      <soap:operation soapAction="http://tempuri.org/LogWithDto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AuditSoapServiceSoap12" type="tns:AuditSoapServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Log">
+      <soap12:operation soapAction="http://tempuri.org/Log" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogWithDto">
+      <soap12:operation soapAction="http://tempuri.org/LogWithDto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AuditSoapService">
+    <wsdl:port name="AuditSoapServiceSoap" binding="tns:AuditSoapServiceSoap">
+      <soap:address location="http://librarysystem.com/Services/AuditSoapService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AuditSoapServiceSoap12" binding="tns:AuditSoapServiceSoap12">
+      <soap12:address location="http://librarysystem.com/Services/AuditSoapService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

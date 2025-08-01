@@ -1,8 +1,7 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

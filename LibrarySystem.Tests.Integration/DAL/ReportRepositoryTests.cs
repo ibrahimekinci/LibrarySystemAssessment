@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Domain.Entities;
 using LibrarySystem.DAL.Repositories;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 using System.Data;
 
 namespace LibrarySystem.Tests.Integration.DAL
@@ -45,7 +45,7 @@ namespace LibrarySystem.Tests.Integration.DAL
                 Password = "pass",
                 PhoneNumber = "0400000000",
                 Email = "report@test.com",
-                UserLevel = UserLevelEnum.Student
+                UserLevel = (int)UserLevelEnum.Student
             };
             _testUserId = _userRepo.Add(user);
 

@@ -6,8 +6,6 @@ namespace LibrarySystem.BLL.Services
 {
     public class AuthenticationService : BaseService, IAuthenticationService
     {
-        private readonly IUserService _userService;
-
         public AuthenticatedUserDto Login(string username, string password)
         {
             var user = UserRepository.GetByUsername(username);

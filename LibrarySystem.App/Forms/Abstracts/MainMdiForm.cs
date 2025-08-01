@@ -1,4 +1,5 @@
-﻿using LibrarySystem.App.Forms.Author;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.App.Forms.Author;
 using LibrarySystem.App.Forms.Book;
 using LibrarySystem.App.Forms.BookManage;
 using LibrarySystem.App.Forms.Category;
@@ -7,10 +8,10 @@ using LibrarySystem.App.Forms.Language;
 using LibrarySystem.App.Forms.Report;
 using LibrarySystem.App.Forms.User;
 using LibrarySystem.App.Helpers;
-using LibrarySystem.Domain.Enums;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+
 
 namespace LibrarySystem.App.Forms.Abstracts
 {

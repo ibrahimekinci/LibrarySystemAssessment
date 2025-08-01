@@ -1,6 +1,6 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Services;
-using LibrarySystem.Domain.Enums;
+using LibrarySystem.Abstractions.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO;

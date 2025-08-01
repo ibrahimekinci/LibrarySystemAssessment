@@ -7,8 +7,8 @@
     <ProjectGuid>{4A81701B-170A-4B15-BD32-8C538DE0753A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibrarySystem.Application</RootNamespace>
-    <AssemblyName>LibrarySystem.Application</AssemblyName>
+    <RootNamespace>LibrarySystem.BLL</RootNamespace>
+    <AssemblyName>LibrarySystem.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -103,7 +103,6 @@
   <ItemGroup>
     <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="Helpers\JwtHelper.cs" />
-    <Compile Include="Helpers\ValidationExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuditService.cs" />
     <Compile Include="Services\AuthenticationService.cs" />

@@ -1,7 +1,7 @@
-﻿using LibrarySystem.App.Forms.Abstracts;
-using LibrarySystem.Abstractions.DTOs;
-using LibrarySystem.BLL.Helpers;
-using LibrarySystem.Domain.Enums;
+﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Helpers;
+using LibrarySystem.App.Forms.Abstracts;
 using System;
 using System.Collections.Generic;
 
@@ -83,15 +83,25 @@ namespace LibrarySystem.App.Forms.Language
                 ShowError(errors, "Validation Error");
                 return;
             }
-            var result = LanguageService.Add(dto);
-            if (result > 0)
+
+            var dtoSoap = Mapper.Map<LanguageService.LanguageCreateDto>(dto);
+            try
             {
-                ShowInformation("Language create successfully.", "Success");
+                var result = LanguageService.Add(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Language.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
         private void btnEdit_Click(object sender, System.EventArgs e)
@@ -105,15 +115,24 @@ namespace LibrarySystem.App.Forms.Language
                 return;
             }
 
-            var result = LanguageService.Update(dto);
-            if (result)
+            var dtoSoap = Mapper.Map<LanguageService.LanguageUpdateDto>(dto);
+            try
             {
-                ShowInformation("Language updated successfully.", "Success");
+                var result = LanguageService.Update(dtoSoap);
+                if (result.Success)
+                {
+                    ShowInformation(result.Message, "Success");
+                }
+                else
+                {
+                    ShowError(result.Message, "Api Error");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ShowError("Failed to update Language.", "Error");
+                HandleException(ex);
             }
+
             CloseTheFormDialog();
         }
     }

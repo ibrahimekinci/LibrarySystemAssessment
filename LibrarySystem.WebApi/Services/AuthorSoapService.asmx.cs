@@ -1,9 +1,10 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
 using LibrarySystem.Abstractions.Exceptions;
-using LibrarySystem.BLL.Helpers;
+using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Web.Services;
 
 namespace LibrarySystem.WebApi.Services
@@ -19,21 +20,21 @@ namespace LibrarySystem.WebApi.Services
     public class AuthorSoapService : BaseSoapService
     {
         [WebMethod]
-        public SoapServiceResult<AuthorViewDto> Add(AuthorCreateDto dto)
+        public Response<AuthorViewDto> Add(AuthorCreateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<AuthorViewDto>.Fail(errorMessage);
+                    return Response<AuthorViewDto>.Fail(errorMessage);
 
                 var result = AuthorService.Add(dto);
                 if (result > 0)
                 {
                     var viewDto = AuthorService.GetById(result);
-                    return SoapServiceResult<AuthorViewDto>.Ok(viewDto, "Author created successfully.");
+                    return Response<AuthorViewDto>.Ok(viewDto, "Author created successfully.");
                 }
-                return SoapServiceResult<AuthorViewDto>.Fail("Failed to create author.");
+                return Response<AuthorViewDto>.Fail("Failed to create author.");
             }
             catch (System.Exception ex)
             {
@@ -41,7 +42,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -51,21 +52,21 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<AuthorViewDto> Update(AuthorUpdateDto dto)
+        public Response<AuthorViewDto> Update(AuthorUpdateDto dto)
         {
             try
             {
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
-                    return SoapServiceResult<AuthorViewDto>.Fail(errorMessage);
+                    return Response<AuthorViewDto>.Fail(errorMessage);
 
                 var result = AuthorService.Update(dto);
                 if (result)
                 {
                     var viewDto = AuthorService.GetById(dto.AID);
-                    return SoapServiceResult<AuthorViewDto>.Ok(viewDto, "Author updated successfully.");
+                    return Response<AuthorViewDto>.Ok(viewDto, "Author updated successfully.");
                 }
-                return SoapServiceResult<AuthorViewDto>.Fail("Failed to update author.");
+                return Response<AuthorViewDto>.Fail("Failed to update author.");
             }
             catch (System.Exception ex)
             {
@@ -73,7 +74,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -83,14 +84,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<bool> Delete(int id)
+        public Response<bool> Delete(int id)
         {
             try
             {
                 var result = AuthorService.Delete(id);
                 if (result)
-                    return SoapServiceResult<bool>.Ok(true, "Author deleted successfully.");
-                return SoapServiceResult<bool>.Fail("Failed to delete author.");
+                    return Response<bool>.Ok(true, "Author deleted successfully.");
+                return Response<bool>.Fail("Failed to delete author. Make sure you have all deleted the records that are realated with this record.");
             }
             catch (System.Exception ex)
             {
@@ -98,7 +99,18 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<bool>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<bool>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else if (ex is SqlException sqlException)
+                {
+                    if (sqlException.Number == 547) // Foreign key violation
+                    {
+                        return Response<bool>.Fail("Deletion failed due to foreign key constraint. Referencing records");
+                    }
+                    else
+                    {
+                        throw; // Re-throw other errors
+                    }
                 }
                 else
                 {
@@ -108,12 +120,12 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<List<AuthorViewDto>> GetAll()
+        public Response<List<AuthorViewDto>> GetAll()
         {
             try
             {
                 var result = AuthorService.GetAll();
-                return SoapServiceResult<List<AuthorViewDto>>.Ok(result);
+                return Response<List<AuthorViewDto>>.Ok(result);
             }
             catch (System.Exception ex)
             {
@@ -121,7 +133,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<List<AuthorViewDto>>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<List<AuthorViewDto>>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
@@ -131,14 +143,14 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
-        public SoapServiceResult<AuthorViewDto> GetById(int id)
+        public Response<AuthorViewDto> GetById(int id)
         {
             try
             {
                 var result = AuthorService.GetById(id);
                 if (result != null)
-                    return SoapServiceResult<AuthorViewDto>.Ok(result);
-                return SoapServiceResult<AuthorViewDto>.Fail("Author not found.");
+                    return Response<AuthorViewDto>.Ok(result);
+                return Response<AuthorViewDto>.Fail("Author not found.");
             }
             catch (System.Exception ex)
             {
@@ -146,7 +158,7 @@ namespace LibrarySystem.WebApi.Services
                 {
                     if (customException.ShouldLog())
                         LogService.LogException(ex);
-                    return SoapServiceResult<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
+                    return Response<AuthorViewDto>.Fail(customException.GetUserFriendlyMessage());
                 }
                 else
                 {
