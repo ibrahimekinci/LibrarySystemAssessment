@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -21,6 +23,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<List<BookViewDto>> GetAll()
         {
             try
@@ -44,6 +47,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BookViewDto> GetByISBN(string isbn)
         {
             try
@@ -69,6 +73,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<BookViewDto> Add(BookDto dto)
         {
             try
@@ -101,6 +106,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<BookViewDto> Update(BookDto dto)
         {
             try
@@ -133,6 +139,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<bool> Delete(string isbn)
         {
             try
@@ -169,6 +176,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<List<BookViewDto>> Search(BookSearchCriteriaDto dto)
         {
             try
@@ -192,6 +200,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<List<BookViewDto>> GetAvailableBooks()
         {
             try
@@ -215,6 +224,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BookViewDto> GetAvailableBookByISBN(string isbn)
         {
             try
@@ -240,6 +250,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BookViewDto> GetBorrowedBookByUserIdAndISBN(int userId, string isbn)
         {
             try

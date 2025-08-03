@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -21,6 +23,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<List<CategoryViewDto>> GetAll()
         {
             try
@@ -44,6 +47,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<CategoryViewDto> GetById(int id)
         {
             try
@@ -69,6 +73,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<CategoryViewDto> Add(CategoryCreateDto dto)
         {
             try
@@ -101,6 +106,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<CategoryViewDto> Update(CategoryUpdateDto dto)
         {
             try
@@ -133,6 +139,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<bool> Delete(int categoryId)
         {
             try

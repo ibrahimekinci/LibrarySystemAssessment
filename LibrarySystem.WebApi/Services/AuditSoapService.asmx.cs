@@ -3,6 +3,7 @@ using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.BLL.Services;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Web.Services;
 
@@ -20,6 +21,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<bool> Log(AuditActionType actionType, int userId, string details)
         {
             var response = Response<bool>.Fail();
@@ -47,6 +49,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<bool> LogWithDto(AuditLogDto log)
         {
             try

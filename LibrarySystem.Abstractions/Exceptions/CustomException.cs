@@ -25,7 +25,7 @@ namespace LibrarySystem.Abstractions.Exceptions
 
         public virtual string GetUserFriendlyMessage()
         {
-            return GetMessage();
+            return $"Custom Message: {GetMessage()}";
         }
 
         public virtual bool ShouldLog()

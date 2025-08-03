@@ -1,8 +1,11 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Web.Services;
+using System.Web.Services.Protocols;
 
 namespace LibrarySystem.WebApi.Services
 {
@@ -13,9 +16,39 @@ namespace LibrarySystem.WebApi.Services
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
+    // [System.Web.Script.Services.ScriptService]]
+
     public class AuthSoapService : BaseSoapService
     {
+        public string AuthHeader;
+        [WebMethod(Description = "Authenticate user with valid JwtToken and return new JWT token.")]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
+        public Response<AuthenticatedUserDto> RefreshToken()
+        {
+            try
+            {
+                var user = GetCurrentUser();
+
+                var result = AuthenticationService.RefreshToken(user.UID);
+                if (result != null && result.UID > 0)
+                    return Response<AuthenticatedUserDto>.Ok(result, "Login successful.");
+
+                return Response<AuthenticatedUserDto>.Fail("Invalid User.");
+            }
+            catch (System.Exception ex)
+            {
+                if (ex is ICustomException customException)
+                {
+                    if (customException.ShouldLog())
+                        LogService.LogException(ex);
+                    return Response<AuthenticatedUserDto>.Fail(customException.GetUserFriendlyMessage());
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
 
         [WebMethod(Description = "Authenticate user and return JWT token.")]
         public Response<AuthenticatedUserDto> Login(string username, string password)

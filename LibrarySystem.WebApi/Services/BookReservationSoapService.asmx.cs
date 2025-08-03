@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Data;
 using System.Web.Services;
@@ -20,6 +22,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<ReserveViewDto> Reserve(ReserveCreateDto dto)
         {
             try
@@ -52,6 +55,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<ReserveViewDto> UpdateReservation(ReserveUpdateDto dto)
         {
             try
@@ -84,6 +88,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<ReserveViewDto> GetById(int id)
         {
             try
@@ -109,6 +114,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<DataTable> GetAll()
         {
             try
@@ -132,10 +138,17 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<DataTable> GetAllByUserId(int userId)
         {
             try
             {
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student &&
+                 userId != GetCurrentUser().UID)
+                    return Response<DataTable>.Fail("Invalid token for this operation");
+
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student)
+                    userId = GetCurrentUser().UID;
                 var result = BookReservationService.GetAllByUserId(userId);
                 return Response<DataTable>.Ok(result);
             }
@@ -155,6 +168,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<bool> CancelReservation(int id)
         {
             try

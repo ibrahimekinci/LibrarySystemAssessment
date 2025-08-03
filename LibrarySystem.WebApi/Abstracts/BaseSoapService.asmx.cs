@@ -4,46 +4,25 @@ using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Services;
 using LibrarySystem.BLL.Helpers;
 using LibrarySystem.BLL.Services;
-using System.Linq;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
 namespace LibrarySystem.WebApi.Abstracts
 {
-    /// <summary>
-    /// Summary description for BaseSoapService
-    /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
-    // [System.Web.Script.Services.ScriptService]
     public abstract class BaseSoapService : System.Web.Services.WebService
     {
-        #region Auth
-        protected class TokenHeader : SoapHeader
-        {
-            public string Token { get; set; }
-        }
-        protected AuthenticatedUserDto CheckAuth(TokenHeader tokenHeader, params UserLevelEnum[] allowedRoles)
-        {
-            var user = JwtHelper.ValidateToken(tokenHeader?.Token);
-            if (user == null)
-                throw new UnauthorizedException();
-
-            if (allowedRoles.Length > 0 && !allowedRoles.Contains(user.UserLevel))
-                throw new ForbiddenException();
-
-            HttpContext.Current.Items["AuthenticatedUser"] = user;
-            return user;
-        }
-
+        #region Authentication
         protected AuthenticatedUserDto GetCurrentUser()
         {
             return HttpContext.Current.Items["AuthenticatedUser"] as AuthenticatedUserDto;
         }
         #endregion
+
 
         #region Services
         private IAuthorService _authorService;

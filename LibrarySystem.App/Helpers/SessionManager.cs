@@ -8,11 +8,11 @@ namespace LibrarySystem.App.Helpers
     public static class SessionManager
     {
         private static AuthenticatedUserDto _user = null;
+        //public  static string Password { get; set; }
         public static void SetUser(AuthenticatedUserDto user)
         {
             _user = user;
         }
-
         public static void Clear()
         {
             _user = null;
@@ -61,7 +61,7 @@ namespace LibrarySystem.App.Helpers
 
         public static int UID => _user?.UID ?? 0;
         public static string Username => _user?.UserName;
-         public static string Token => _user?.Token;
+        public static string Token => _user?.Token;
         public static string Email => _user?.Email;
         public static string PhoneNumber => _user?.PhoneNumber;
         public static UserLevelEnum UserLevel => _user?.UserLevel ?? 0;

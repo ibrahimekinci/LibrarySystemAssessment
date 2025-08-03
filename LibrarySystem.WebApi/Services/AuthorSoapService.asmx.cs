@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -20,6 +22,7 @@ namespace LibrarySystem.WebApi.Services
     public class AuthorSoapService : BaseSoapService
     {
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<AuthorViewDto> Add(AuthorCreateDto dto)
         {
             try
@@ -52,6 +55,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<AuthorViewDto> Update(AuthorUpdateDto dto)
         {
             try
@@ -84,6 +88,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<bool> Delete(int id)
         {
             try
@@ -120,6 +125,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<List<AuthorViewDto>> GetAll()
         {
             try
@@ -143,6 +149,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<AuthorViewDto> GetById(int id)
         {
             try

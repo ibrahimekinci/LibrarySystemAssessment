@@ -1,15 +1,19 @@
-﻿namespace LibrarySystem.WebApi.Models
+﻿using System.Web;
+
+namespace LibrarySystem.WebApi.Models
 {
     public class Response<T>
     {
         public bool Success { get; set; }
         public string Message { get; set; }
         public T Data { get; set; }
+        //public string RefreshToken { get; set; }
         public void SetSuccess(T data, string message = null)
         {
             Success = true;
             Message = string.IsNullOrEmpty(message) ? "Operation completed successfully." : message;
             Data = data;
+            //RefreshToken = HttpContext.Current.Items["AuthToken"] as string;
         }
 
         public void SetFailure(string message = null)

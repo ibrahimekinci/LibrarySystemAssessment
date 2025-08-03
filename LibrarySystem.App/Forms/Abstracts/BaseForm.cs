@@ -7,7 +7,6 @@ using LibrarySystem.App.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Web.Services.Protocols;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms.Abstracts
@@ -31,18 +30,23 @@ namespace LibrarySystem.App.Forms.Abstracts
         }
         // Lazy initialization for thread-safety
         // Lazy initialization for thread-safety with immediate initialization
-        private readonly Lazy<AuthService.AuthSoapServiceSoapClient> _authService = new Lazy<AuthService.AuthSoapServiceSoapClient>(() => new SoapApiHelper().GetAuthSoapClient());
-        private readonly Lazy<BookLoanService.BookLoanSoapServiceSoapClient> _bookLoanService = new Lazy<BookLoanService.BookLoanSoapServiceSoapClient>(() => new SoapApiHelper().GetBookLoanSoapClient());
-        private readonly Lazy<BookReservationService.BookReservationSoapServiceSoapClient> _bookReservationService = new Lazy<BookReservationService.BookReservationSoapServiceSoapClient>(() => new SoapApiHelper().GetBookReservationSoapClient());
-        private readonly Lazy<BookService.BookSoapServiceSoapClient> _bookService = new Lazy<BookService.BookSoapServiceSoapClient>(() => new SoapApiHelper().GetBookSoapClient());
-        private readonly Lazy<CategoryService.CategorySoapServiceSoapClient> _categoryService = new Lazy<CategoryService.CategorySoapServiceSoapClient>(() => new SoapApiHelper().GetCategorySoapClient());
-        private readonly Lazy<LanguageService.LanguageSoapServiceSoapClient> _languageService = new Lazy<LanguageService.LanguageSoapServiceSoapClient>(() => new SoapApiHelper().GetLanguageSoapClient());
-        private readonly Lazy<ReportService.ReportSoapServiceSoapClient> _reportService = new Lazy<ReportService.ReportSoapServiceSoapClient>(() => new SoapApiHelper().GetReportSoapClient());
-        private readonly Lazy<TestService.TestSoapServiceSoapClient> _testService = new Lazy<TestService.TestSoapServiceSoapClient>(() => new SoapApiHelper().GetTestSoapClient());
-        private readonly Lazy<UserService.UserSoapServiceSoapClient> _userService = new Lazy<UserService.UserSoapServiceSoapClient>(() => new SoapApiHelper().GetUserSoapClient());
-        private readonly Lazy<AuditService.AuditSoapServiceSoapClient> _auditService = new Lazy<AuditService.AuditSoapServiceSoapClient>(() => new SoapApiHelper().GetAuditSoapClient());
-        private readonly Lazy<AuthorService.AuthorSoapServiceSoapClient> _authorService = new Lazy<AuthorService.AuthorSoapServiceSoapClient>(() => new SoapApiHelper().GetAuthorSoapClient());
-        private readonly Lazy<SoapApiHelper> _soapApiHelper = new Lazy<SoapApiHelper>(() => new SoapApiHelper(SessionManager.Token));
+        private readonly Lazy<AuthService.AuthSoapServiceSoapClient> _authService = new Lazy<AuthService.AuthSoapServiceSoapClient>(() =>
+        {
+            return SoapApiHelper.GetAuthSoapClient();
+        });
+        private readonly Lazy<BookLoanService.BookLoanSoapServiceSoapClient> _bookLoanService = new Lazy<BookLoanService.BookLoanSoapServiceSoapClient>(() =>
+        {
+            return SoapApiHelper.GetBookLoanSoapClient();
+        });
+        private readonly Lazy<BookReservationService.BookReservationSoapServiceSoapClient> _bookReservationService = new Lazy<BookReservationService.BookReservationSoapServiceSoapClient>(() => SoapApiHelper.GetBookReservationSoapClient());
+        private readonly Lazy<BookService.BookSoapServiceSoapClient> _bookService = new Lazy<BookService.BookSoapServiceSoapClient>(() => SoapApiHelper.GetBookSoapClient());
+        private readonly Lazy<CategoryService.CategorySoapServiceSoapClient> _categoryService = new Lazy<CategoryService.CategorySoapServiceSoapClient>(() => SoapApiHelper.GetCategorySoapClient());
+        private readonly Lazy<LanguageService.LanguageSoapServiceSoapClient> _languageService = new Lazy<LanguageService.LanguageSoapServiceSoapClient>(() => SoapApiHelper.GetLanguageSoapClient());
+        private readonly Lazy<ReportService.ReportSoapServiceSoapClient> _reportService = new Lazy<ReportService.ReportSoapServiceSoapClient>(() => SoapApiHelper.GetReportSoapClient());
+        private readonly Lazy<TestService.TestSoapServiceSoapClient> _testService = new Lazy<TestService.TestSoapServiceSoapClient>(() => SoapApiHelper.GetTestSoapClient());
+        private readonly Lazy<UserService.UserSoapServiceSoapClient> _userService = new Lazy<UserService.UserSoapServiceSoapClient>(() => SoapApiHelper.GetUserSoapClient());
+        private readonly Lazy<AuditService.AuditSoapServiceSoapClient> _auditService = new Lazy<AuditService.AuditSoapServiceSoapClient>(() => SoapApiHelper.GetAuditSoapClient());
+        private readonly Lazy<AuthorService.AuthorSoapServiceSoapClient> _authorService = new Lazy<AuthorService.AuthorSoapServiceSoapClient>(() => SoapApiHelper.GetAuthorSoapClient());
         private readonly Lazy<LogHelper> _logHelper = new Lazy<LogHelper>(() => new LogHelper());
         public AuthService.AuthSoapServiceSoapClient AuthService => _authService.Value;
         public BookLoanService.BookLoanSoapServiceSoapClient BookLoanService => _bookLoanService.Value;
@@ -55,7 +59,6 @@ namespace LibrarySystem.App.Forms.Abstracts
         public UserService.UserSoapServiceSoapClient UserService => _userService.Value;
         public AuditService.AuditSoapServiceSoapClient AuditService => _auditService.Value;
         public AuthorService.AuthorSoapServiceSoapClient AuthorService => _authorService.Value;
-        public SoapApiHelper SoapApiHelper => _soapApiHelper.Value;
         public LogHelper LogHelper => _logHelper.Value;
 
         #endregion
@@ -144,12 +147,6 @@ namespace LibrarySystem.App.Forms.Abstracts
                 DisposeClient(_auditService);
                 DisposeClient(_authorService);
 
-                // Dispose SoapApiHelper if it implements IDisposable
-                if (_soapApiHelper.IsValueCreated && _soapApiHelper.Value is IDisposable disposableSoapApiHelper)
-                {
-                    disposableSoapApiHelper.Dispose();
-                }
-
                 // Dispose LogHelper if it implements IDisposable
                 if (_logHelper.IsValueCreated && _logHelper.Value is IDisposable disposableLogHelper)
                 {
@@ -164,8 +161,8 @@ namespace LibrarySystem.App.Forms.Abstracts
         #region Constructor 
         protected BaseForm()
         {
-            this.FormClosing += ClientsDispose;
 
+            this.FormClosing += ClientsDispose;
             InitializeComponent(); // Required for designer
             InitializeFormBase(); // Safe UI initialization only
         }
@@ -267,14 +264,14 @@ namespace LibrarySystem.App.Forms.Abstracts
                 else if (ex is System.ServiceModel.CommunicationException soapCommunicationException)
                 {
                     if (ex.Message.Contains("Server returned an invalid SOAP Fault"))
-                    {
-                        ShowError($"Invalid SOAP Fault Detected", "Error");
-                    }
+
+                        ShowError($"Invalid SOAP Fault Detected", "Api Error");
                     else
-                    {
-                        ShowError($"General Communication Error", "Error");
-                    }
+                        ShowError($"General Communication Error", "Api Error");
+
                 }
+                else if (ex.Message.StartsWith("The request channel timed out"))
+                    ShowError($"The request channel timed out", "Api Error");
                 LogHelper.LogException(ex);
             }
             catch (Exception logEx)

@@ -2,7 +2,6 @@
 using LibrarySystem.App.Forms.Abstracts;
 using LibrarySystem.App.Helpers;
 using System;
-using System.Web.Services.Protocols;
 using System.Windows.Forms;
 
 namespace LibrarySystem.App.Forms
@@ -36,8 +35,8 @@ namespace LibrarySystem.App.Forms
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUserName.Text;
-            string password = txtPassword.Text;
+            string username = txtUserName.Text.Trim();
+            string password = txtPassword.Text.Trim();
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Please enter both username and password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -60,6 +59,7 @@ namespace LibrarySystem.App.Forms
 
                 var authenticatedUserDto = Mapper.Map<AuthenticatedUserDto>(result.Data);
                 SessionManager.SetUser(authenticatedUserDto);
+                //SessionManager.Password = password;
 
                 ShowDashboard();
             }

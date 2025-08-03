@@ -9,18 +9,36 @@ namespace LibrarySystem.BLL.Services
 {
     public class LogService : ILogService
     {
-        private static readonly string LogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "ErrorLog.txt");
+        private static readonly string errorLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "ErrorLog.txt");
+        private static readonly string informationLogFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", "InformationLog.txt");
 
+        public void LogInformation(string type, string content)
+        {
+
+            try
+            {
+                if (!Directory.Exists(Path.GetDirectoryName(informationLogFilePath)))
+                    Directory.CreateDirectory(Path.GetDirectoryName(informationLogFilePath));
+
+                File.AppendAllText(informationLogFilePath,
+                    $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}]\n{type}\n{content}\n\n");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to log {type} ex: {ex}");
+                Debug.WriteLine($"Failed to log {type} content: {content}");
+            }
+        }
         public void LogException(Exception ex)
         {
             try
             {
                 Debug.WriteLine($"EXCEPTION: {ex}");
 
-                if (!Directory.Exists(Path.GetDirectoryName(LogFilePath)))
-                    Directory.CreateDirectory(Path.GetDirectoryName(LogFilePath));
+                if (!Directory.Exists(Path.GetDirectoryName(errorLogFilePath)))
+                    Directory.CreateDirectory(Path.GetDirectoryName(errorLogFilePath));
 
-                File.AppendAllText(LogFilePath,
+                File.AppendAllText(errorLogFilePath,
                     $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {GetExceptionDetails(ex)}\n\n");
             }
             catch (Exception logException)
@@ -61,6 +79,10 @@ namespace LibrarySystem.BLL.Services
             else if (ex is ICustomException exception)
             {
                 return exception.GetUserFriendlyMessage();
+            }
+            else if (ex.Message.StartsWith("Custom Message"))
+            {
+                return ex.Message;
             }
             else
             {

@@ -1,5 +1,7 @@
-﻿using LibrarySystem.Abstractions.Exceptions;
+﻿using LibrarySystem.Abstractions.Enums;
+using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Data;
 using System.Web.Services;
@@ -17,6 +19,7 @@ namespace LibrarySystem.WebApi.Services
     public class ReportSoapService : BaseSoapService
     {
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<DataTable> GetMostBorrowedBooks()
         {
             try
@@ -40,6 +43,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<DataTable> GetOverdueBooks()
         {
             try
@@ -63,6 +67,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<DataTable> GetBorrowedBooksByCategory()
         {
             try

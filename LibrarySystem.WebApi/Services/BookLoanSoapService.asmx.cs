@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,6 +23,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BorrowViewDto> Borrow(BorrowCreateDto dto)
         {
             try
@@ -53,6 +56,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BorrowViewDto> Return(BorrowReturnDto dto)
         {
             try
@@ -85,6 +89,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<BorrowViewDto> GetById(int id)
         {
             try
@@ -110,6 +115,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<DataTable> GetUnreturnedLoansByUserId(int userId)
         {
             try
@@ -133,6 +139,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<DataTable> GetAll()
         {
             try
@@ -156,10 +163,15 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<DataTable> GetAllByUserId(int userId)
         {
             try
             {
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student &&
+                      userId != GetCurrentUser().UID)
+                    return Response<DataTable>.Fail("Invalid token for this operation");
+
                 var result = BookLoanService.GetAllByUserId(userId);
                 return Response<DataTable>.Ok(result);
             }
@@ -179,6 +191,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<bool> Delete(int borrowId)
         {
             try

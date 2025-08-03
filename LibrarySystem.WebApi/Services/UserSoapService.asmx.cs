@@ -1,7 +1,9 @@
 ﻿using LibrarySystem.Abstractions.DTOs;
+using LibrarySystem.Abstractions.Enums;
 using LibrarySystem.Abstractions.Exceptions;
 using LibrarySystem.Abstractions.Helpers;
 using LibrarySystem.WebApi.Abstracts;
+using LibrarySystem.WebApi.Helpers;
 using LibrarySystem.WebApi.Models;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace LibrarySystem.WebApi.Services
     {
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<UserViewDto> Register(UserCreateDto dto)
         {
             try
@@ -54,10 +57,15 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<UserViewDto> UpdateUser(UserUpdateDto dto)
         {
             try
             {
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student &&
+                    dto.UID != GetCurrentUser().UID)
+                    return Response<UserViewDto>.Fail("Invalid token for this operation");
+
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Response<UserViewDto>.Fail(errorMessage);
@@ -86,10 +94,15 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<UserViewDto> ResetPassword(UserPasswordUpdateDto dto)
         {
             try
             {
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student &&
+                 dto.UID != GetCurrentUser().UID)
+                    return Response<UserViewDto>.Fail("Invalid token for this operation");
+
                 string errorMessage = dto.CheckValidityAndGetErrors();
                 if (!string.IsNullOrEmpty(errorMessage))
                     return Response<UserViewDto>.Fail(errorMessage);
@@ -118,6 +131,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<List<UserViewDto>> GetAll()
         {
             try
@@ -141,10 +155,16 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff, UserLevelEnum.Student)]
         public Response<UserViewDto> GetById(int userId)
         {
             try
             {
+                if (GetCurrentUser().UserLevel == UserLevelEnum.Student &&
+                userId != GetCurrentUser().UID)
+                    return Response<UserViewDto>.Fail("Invalid token for this operation");
+
+
                 var result = UserService.GetById(userId);
                 if (result != null)
                     return Response<UserViewDto>.Ok(result);
@@ -166,6 +186,7 @@ namespace LibrarySystem.WebApi.Services
         }
 
         [WebMethod]
+        [AuthorizeRole(UserLevelEnum.Manager, UserLevelEnum.Staff)]
         public Response<bool> Delete(int userId)
         {
             try
