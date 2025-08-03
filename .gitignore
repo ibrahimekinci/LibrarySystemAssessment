@@ -134,3 +134,7 @@ _NCrunch*
 /.vs
 
 Thumbs.db
+
+# Ignore logs and log directories at any level
+logs/
+log/
