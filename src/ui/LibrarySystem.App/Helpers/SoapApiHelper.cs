@@ -55,7 +55,7 @@ namespace LibrarySystem.App.Helpers
         public static AuthService.AuthSoapServiceSoapClient GetAuthSoapClient(string jwtToken = "")
         {
             var client = GetSoapClient<AuthService.AuthSoapServiceSoapClient>("AuthSoapService");
-
+           
             //Auth Header
             if (string.IsNullOrEmpty(jwtToken))
                 jwtToken = SessionManager.Token;
